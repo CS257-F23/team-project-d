@@ -23,11 +23,12 @@ def look_up_use_of_birth_control_by_religion(religion):
 
 def get_user_ids_by_column(topic):
     educationData = []
+    topic="High school graduate (Grade 12 with diploma or GED certificate)"
     for row in data:
-        print(data[row, 21])
-        #if (row, 21) == topic:
-            #educationData.append((row, 0))
-    #print(educationData)
+        #print(row[21])
+        if (row[21]) == topic:
+            educationData.append(row[0])
+    print(educationData)
             
 
 #def get_use_of_birth_control(user_ids):
