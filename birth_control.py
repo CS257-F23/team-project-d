@@ -11,11 +11,8 @@ def load_data():
     csvfile = open('birthcontroldata.csv')
     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
     for row in reader:
-        #print(', '.join(row))
         data.append(row)
-    #print(data)
 
-#i think this is where we should be displaying the data
 def look_up_use_of_birth_control_by_education_level(educationLevel):
     user_ids=get_user_ids_by_column_for_educ(educationLevel)
     get_use_of_birth_control(user_ids)
@@ -24,7 +21,6 @@ def look_up_use_of_birth_control_by_religion(religion):
     user_ids = get_user_ids_by_column_for_religion(religion)
     get_use_of_birth_control(user_ids)
 
-#done 
 def get_user_ids_by_column_for_educ(topic):
     user_ids = []
     for row in data:
@@ -32,17 +28,13 @@ def get_user_ids_by_column_for_educ(topic):
           user_ids.append(row[0])
     #print(user_ids)
     return user_ids
-    #get_use_of_birth_control(user_ids)
 
-#done 
 def get_user_ids_by_column_for_religion(topic):
     user_ids = []
     for row in data:
         if (row[32]) == topic:
           user_ids.append(row[0])
-    #print(user_ids)
     return user_ids
-    #get_use_of_birth_control(user_ids)
 
 def get_use_of_birth_control(user_ids):
     #This is doing more than one thing. When/how/where do we call display_list?
