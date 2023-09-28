@@ -1,11 +1,11 @@
 # Birth Control In the US
 Katherine Baker, Evelyn Xie, Ella Visconti
 
-## Dataset Records
-Summary:  
+# Dataset Records
+## Summary:  
 The data was gathered from interviews with US adults, studying access, use, impact of COVID-19, relationship, and worries with the change in the Supreme Court in regards to birth control.  
 
-Search terms and search tool you used to find this dataset
+## Search terms and search tool you used to find this dataset
 Roper iPoll
 October 2020 Birth Control Survey 
 URL - (Also be sure to download a local copy)
@@ -15,19 +15,19 @@ Date Downloaded
 Authorship
 Cornell University, SSRS
 
-Exact name of the dataset and version
+## Exact name of the dataset and version
 Power to Decide: October 2020 Birth Control Survey  [Roper #31118270]
 
-Time period, geography, and/or scope covered
+## Time period, geography, and/or scope covered
 October 2020. The US.
 
-Data formats
+## Data formats
 Available in CSV, ASCII, Strata, and SPSS Portable file formats. 
 
-Terms of Use
+## Terms of Use
 The dataset can be used as long as it is not being distributed to people outside of Carleton. 
 
-Suggested Citation if provided
+## Suggested Citation if provided
 Power to Decide (the National Campaign to Prevent Teen and Unplanned Pregnancy). Power to Decide: October 2020 Birth Control Survey, 2020 [Dataset]. Roper #31118270, Version 3. SSRS [producer]. Cornell University, Ithaca, NY: Roper Center for Public Opinion Research [distributor]. doi:10.25940/ROPER-31118270
 
 ## Meaningful Ways User Could Interact:
@@ -57,7 +57,7 @@ When will your team meet? What time, how often, for how long, where?
 We plan on meeting in Evans and the length of meeting will depend at what point we are at in regards to the work we need to get done and how much has been completed independently.   
 
 What roles will members take on in your meetings? Is someone responsible for setting agendas, taking notes, facilitating discussions, etc?  
-We will start by having relatively equal roles and seeing if anybody learns more towards one certain role.   
+We will start by having relatively equal roles and seeing if anybody leans more towards one certain role. Ella will send the text to decide when we are meeting and if people need a reminder, Katherine will facilitate discussions and bringing our questions to office hours, and Evelyn will work on taking notes in the commit sections of github so we are all on the same page. 
 
 How will you communicate with each other?   
 We will communicate by texting in a group chat.  
@@ -75,7 +75,7 @@ How will you make decisions?
 Generally made unanimously or by general consensus. If someone feels especially strongly about one part of the project, we can discuss it further and come to an agreement.   
 
 How will you divide the work?   
-How we divide the work will change once we get started and see who is stronger in certain areas, but at any given time we will have the workload divided as equally as possible for everyone. Everyone will be working on a part of the project independently to avoid confusion and chaos within our work and if someone ever feels that they do not have a manageable amount of work we will make changes to fix the situation.   
+How we divide the work will change once we get started and see who is stronger in certain areas, but at any given time we will have the workload divided as equally as possible for everyone. Katherine will work on the section concerning concerns on abortion policy, Evelyn will do the effects of COVID, and Ella will focus on the different demographics. As we go along, we will divide up our work into different functions and writing the tests for our responsible functions.   
 
 How will you ensure that everybody participates meaningfully? How will you make sure that everyone’s contribution is valued?  
 If we are all treating each other’s ideas, thoughts, and opinions respectfully there should be no issue making sure everyone’s contribution is valued because everyone will be heard in the group and allowed to bring their own ideas to the table.   
