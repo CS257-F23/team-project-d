@@ -17,15 +17,15 @@ def load_data():
 #i think this is where we should be displaying the data
 #is this where we are passing in the input on the command line?
 def look_up_use_of_birth_control_by_education_level(educationLevel):
-    user_ids=get_user_ids_by_column(educationLevel)
+    user_ids=get_user_ids_by_column_for_educ(educationLevel)
     get_use_of_birth_control(user_ids)
 
 def look_up_use_of_birth_control_by_religion(religion):
-    user_ids = get_user_ids_by_column("religion", religion)
-    #get_use_of_birth_control(user_ids)
+    user_ids = get_user_ids_by_column_for_religion(religion)
+    get_use_of_birth_control(user_ids)
 
 #done 
-def get_user_ids_by_column(topic):
+def get_user_ids_by_column_for_educ(topic):
     user_ids = []
     for row in data:
         if (row[21]) == topic:
@@ -33,7 +33,16 @@ def get_user_ids_by_column(topic):
     #print(user_ids)
     return user_ids
     #get_use_of_birth_control(user_ids)
-            
+
+#done 
+def get_user_ids_by_column_for_religion(topic):
+    user_ids = []
+    for row in data:
+        if (row[32]) == topic:
+          user_ids.append(row[0])
+    #print(user_ids)
+    return user_ids
+    #get_use_of_birth_control(user_ids)
 
 def get_use_of_birth_control(user_ids):
     #This is doing more than one thing. When/how/where do we call display_list?
@@ -45,9 +54,11 @@ def get_use_of_birth_control(user_ids):
                 birt3_answers.append(row[45])
     #display_list(birt3_answers)
     print(birt3_answers)
+
 def main():
     load_data()
     look_up_use_of_birth_control_by_education_level('Four year college or university degree/Bachelor.s degree (e.g., BS, BA, AB)')
+    look_up_use_of_birth_control_by_religion("Protestant")
 
 if __name__ == "__main__":
     main()
