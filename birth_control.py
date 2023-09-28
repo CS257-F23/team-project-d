@@ -67,6 +67,8 @@ def main():
         look_up_use_of_birth_control_by_religion(args.religion)
     elif args.educ:
         look_up_use_of_birth_control_by_education_level(args.educ)
+    else:
+        print("You must provide one of the valid command line arguments.")
 
 
 
