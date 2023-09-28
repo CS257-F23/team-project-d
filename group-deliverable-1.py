@@ -17,8 +17,8 @@ def load_data():
 #i think this is where we should be displaying the data
 #is this where we are passing in the input on the command line?
 def look_up_use_of_birth_control_by_education_level(educationLevel):
-    user_ids = get_user_ids_by_column(educationLevel)
-    #get_use_of_birth_control(user_ids)
+    user_ids=get_user_ids_by_column(educationLevel)
+    get_use_of_birth_control(user_ids)
 
 def look_up_use_of_birth_control_by_religion(religion):
     user_ids = get_user_ids_by_column("religion", religion)
@@ -27,12 +27,12 @@ def look_up_use_of_birth_control_by_religion(religion):
 #done 
 def get_user_ids_by_column(topic):
     user_ids = []
-    topic="High school graduate (Grade 12 with diploma or GED certificate)"
     for row in data:
         if (row[21]) == topic:
           user_ids.append(row[0])
     #print(user_ids)
-    get_use_of_birth_control(user_ids)
+    return user_ids
+    #get_use_of_birth_control(user_ids)
             
 
 def get_use_of_birth_control(user_ids):
@@ -42,7 +42,7 @@ def get_use_of_birth_control(user_ids):
         for row in data:
         #access birt3 column and append item to list
             if (row[0]==user):
-                birt3_answers.append(row[46])
+                birt3_answers.append(row[45])
     #display_list(birt3_answers)
     print(birt3_answers)
 def main():
