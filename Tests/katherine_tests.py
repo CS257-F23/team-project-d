@@ -2,11 +2,13 @@ import unittest
 from birth_control import *
 
 class TestBirthControl(unittest.TestCase):
+    def setUp(self):
+        load_data()
     def test_display_list(self):
         """Asserts that the list passed into the function
         is indeed displayed, and that the displayed list is correct"""
         myList = ["Katherine", "Ella", "Evelyn"]
-        self.assertEqual(display_list(myList), myList, "Should be [Katherine, Ella, Evelyn]")
+        self.assertEqual(display_list(myList), myList, "Should be " + myList)
     #def test_load_data(self):
         #"""Asserts the data is loaded correctly"""
         #What are we asserting equal to each other? or, do we use a different type of test?
