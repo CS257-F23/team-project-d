@@ -5,7 +5,8 @@ data = []
 
 def display_list(list):
     """outputs results to user"""
-    print(list)
+    print(str(list))
+    return list
 
 #done
 def load_data():
@@ -53,7 +54,10 @@ def get_use_of_birth_control(user_ids):
         #access birt3 column and append item to list
             if (row[0]==user):
                 birt3_answers.append(row[45])
+    if user_ids == []:
+        raise IndexError("List is empty")
     display_list(birt3_answers)
+    return birt3_answers
 
 def main():
     """creates command line interface for user to ask for specific religion or education and get the birth control use"""
@@ -69,7 +73,6 @@ def main():
         look_up_use_of_birth_control_by_education_level(args.educ)
     else:
         print("You must provide one of the valid command line arguments.")
-
 
 
 if __name__ == "__main__":
