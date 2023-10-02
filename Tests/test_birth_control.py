@@ -36,12 +36,14 @@ class TestBirthControl(unittest.TestCase):
         """Affirms that the user ids for the correct religion are returned"""
         ids = ['50000198', '50000290', '70000589', '70000664', '70000805']
         self.assertEqual(get_user_ids_by_column_for_religion("Hindu"), ids, "Should be " + str(ids))
+        code.terminate()
 
     def test_get_user_ids_by_column_for_religion_EDGECASE(self):
         """Affirms no user ids are returned if religion input is invalid
         and that IndexError is thrown"""
         invalidReligion = "Flying Spaghetti Monster"
         self.assertRaises(IndexError, get_user_ids_by_column_for_religion, invalidReligion)
+        code.terminate()
 
     def test_get_use_of_birth_control(self):
         """Affirms the correct list of birth control usage is displayed"""
