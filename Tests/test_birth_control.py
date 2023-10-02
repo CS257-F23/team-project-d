@@ -2,8 +2,7 @@ import unittest
 import subprocess
 from birth_control import *
 
-#double check the types of errors thrown for edge cases
-#also, will assertIsNone do what I want it to do?
+#repetition error - because of loading data too many times?
 
 class TestBirthControl(unittest.TestCase):
 
