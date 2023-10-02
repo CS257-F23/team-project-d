@@ -8,9 +8,9 @@ def display_list(list):
     print(str(list))
     return list
 
-#done
 def load_data():
     """loads data from csv file into list of strings"""
+    data.clear()
     csvfile = open('birthcontroldata.csv')
     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
     for row in reader:
