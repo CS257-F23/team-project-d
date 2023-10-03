@@ -1,6 +1,13 @@
 import csv
 import argparse
 
+#Add another functionality
+# more return statements
+# print usage/help statenent function 
+# look at get user ids - there should not be errors thrown, just a print statement
+# add what the parameters and output is in each docstring to make them clearer
+
+
 data = []
 
 def display_list(list):
@@ -8,40 +15,26 @@ def display_list(list):
     print(str(list))
     return list
 
-#done
 def load_data():
     """loads data from csv file into list of strings"""
-    csvfile = open('birthcontroldata.csv')
+    data.clear()
+    csvfile = open('Data/birthcontroldata.csv')
     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
     for row in reader:
         data.append(row)
 
-def look_up_use_of_birth_control_by_education_level(educationLevel):
-    """calls the functions to get the birth control use for inputted education level"""
-    user_ids=get_user_ids_by_column_for_educ(educationLevel)
-    get_use_of_birth_control(user_ids)
-
-def look_up_use_of_birth_control_by_religion(religion):
+def look_up_use_of_birth_control_by_demographic(demographic):
     """calls the functions to get the birth control use for inputted religion"""
-    user_ids = get_user_ids_by_column_for_religion(religion)
+    user_ids = get_user_ids_by_column(demographic)
     get_use_of_birth_control(user_ids)
 
-def get_user_ids_by_column_for_educ(topic):
-    """searches csv file matching education level and returns list of ids that match with it"""
-    user_ids = []
-    for row in data:
-        if (row[21]) == topic:
-          user_ids.append(row[0])
-    if user_ids==[]:
-        raise IndexError("Education level not in dataset")
-    return user_ids
-
-def get_user_ids_by_column_for_religion(topic):
+def get_user_ids_by_column(topic):
     """searches csv file matching religion and returns list of ids that match with it"""
     user_ids = []
     for row in data:
-        if (row[32]) == topic:
-          user_ids.append(row[0])
+        for item in row:
+            if item == topic:
+                user_ids.append(row[0])
     if user_ids==[]:
         raise IndexError("Religion not in dataset")
     return user_ids
@@ -68,9 +61,9 @@ def main():
 
     args = parser.parse_args()
     if args.religion:
-        look_up_use_of_birth_control_by_religion(args.religion)
+        look_up_use_of_birth_control_by_demographic(args.religion)
     elif args.educ:
-        look_up_use_of_birth_control_by_education_level(args.educ)
+        look_up_use_of_birth_control_by_demographic(args.educ)
     else:
         print("You must provide one of the valid command line arguments.")
 
