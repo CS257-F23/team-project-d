@@ -52,7 +52,6 @@ Power to Decide (the National Campaign to Prevent Teen and Unplanned Pregnancy).
 People to discuss with (in relation to gender, age, etc.)
 
 	- Feature: look up the availability of individuals to receive in-person sexual and reproductive care as a result of the COVID-19 epidemic (col. birt6a) by the state they are living in (state)
-
 		Usage: python3 birth_control.py –care-after-covid “MN”    
 		This will return a list of (mainly) yes’s or no’s - yes means they have been unable to see their provider in person, while no means that  covid has not impacted their ability to see their provider in person.  
 		Function Signature: get_care_after_covid(state abbreviation)
