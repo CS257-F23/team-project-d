@@ -1,8 +1,6 @@
 import unittest
 import subprocess
-from birth_control import *
-
-#repetition error - because of loading data too many times?
+from ProductionCode.birth_control import *
 
 class TestBirthControl(unittest.TestCase):
 
@@ -23,24 +21,24 @@ class TestBirthControl(unittest.TestCase):
         """Asserts that the use of birth control by religion is being looked up
         and not returning any errors"""
         message = "Test value is not none."
-        self.assertIsNone(look_up_use_of_birth_control_by_religion("Hindu"), message)
+        self.assertIsNone(look_up_use_of_birth_control_by_demographic("Hindu"), message)
 
     def test_look_up_use_of_birth_control_by_religion_EDGECASE(self):
         """Tests the edge case of the function receiving input
         that is not valid, i.e. misspelled or not in database"""
         invalidReligion = "Flying Spaghetti Monster"
-        self.assertRaises(IndexError, look_up_use_of_birth_control_by_religion, invalidReligion)
+        self.assertRaises(IndexError, look_up_use_of_birth_control_by_demographic, invalidReligion)
 
     def test_get_user_ids_by_column_for_religion(self):
         """Affirms that the user ids for the correct religion are returned"""
         ids = ['50000198', '50000290', '70000589', '70000664', '70000805']
-        self.assertEqual(get_user_ids_by_column_for_religion("Hindu"), ids, "Should be " + str(ids))
+        self.assertEqual(get_user_ids_by_column("Hindu"), ids, "Should be " + str(ids))
 
     def test_get_user_ids_by_column_for_religion_EDGECASE(self):
         """Affirms no user ids are returned if religion input is invalid
         and that IndexError is thrown"""
         invalidReligion = "Flying Spaghetti Monster"
-        self.assertRaises(IndexError, get_user_ids_by_column_for_religion, invalidReligion)
+        self.assertRaises(IndexError, get_user_ids_by_column, invalidReligion)
 
     def test_get_use_of_birth_control(self):
         """Affirms the correct list of birth control usage is displayed"""
@@ -55,23 +53,23 @@ class TestBirthControl(unittest.TestCase):
 
     def test_look_up_use_of_birth_control_by_education_level(self):
         """ensure no errors are returned"""
-        self.assertIsNone(look_up_use_of_birth_control_by_education_level("Less than high school (Grades 1-8 or no formal schooling)"))
+        self.assertIsNone(look_up_use_of_birth_control_by_demographic("Less than high school (Grades 1-8 or no formal schooling)"))
 
     def test_edge_look_up_use_of_birth_control_by_education_level(self):
         """edge case for if topic entered into lookup function is not included in the dataset"""
-        self.assertRaises(IndexError, look_up_use_of_birth_control_by_education_level, "Nonexistent education level")
+        self.assertRaises(IndexError, look_up_use_of_birth_control_by_demographic, "Nonexistent education level")
 
     def test_get_user_ids_by_column_for_educ(self):
         """example test for education level"""
         ids= ['50000211','50000290','50000354','50000355','50000385','50000390','70000080','70000113','70000136','70000155','70000292',
         '70000315','70000325','70000350','70000498','70000515','70000548','70000590','70000682','70000762','70000794','70000859']
         #load_data()
-        outcome= get_user_ids_by_column_for_educ("Less than high school (Grades 1-8 or no formal schooling)")
+        outcome= get_user_ids_by_column("Less than high school (Grades 1-8 or no formal schooling)")
         self.assertEqual(outcome, ids, "Should be " + str(ids))
     
     def test_edge_get_user_ids_by_column_for_educ(self):
         """tests edge case that if education level is not included in the dataset returns error for function called by lookup function"""
-        self.assertRaises(IndexError, get_user_ids_by_column_for_educ, "Nonexistent education level")
+        self.assertRaises(IndexError, get_user_ids_by_column, "Nonexistent education level")
 
     def test_main(self):
         """check if birth_control.py works for valid command line argument"""
