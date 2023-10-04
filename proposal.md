@@ -31,40 +31,42 @@ The dataset can be used as long as it is not being distributed to people outside
 Power to Decide (the National Campaign to Prevent Teen and Unplanned Pregnancy). Power to Decide: October 2020 Birth Control Survey, 2020 [Dataset]. Roper #31118270, Version 3. SSRS [producer]. Cornell University, Ithaca, NY: Roper Center for Public Opinion Research [distributor]. doi:10.25940/ROPER-31118270
 
 ## Meaningful Ways User Could Interact and Features:
-- Being able to access/look up birth control use by demographics (age, religion, home ownership status, political party, etc.)
+- Being able to access/look up birth control use by demographics (age, religion, home ownership status, political party, etc.)  
 
- - Feature: look up use of birth control (col. birt3) based on level of education (col. educ)
-   Usage: python3 birth_control.py –birth-control-by-education “High school graduate (Grade 12 with diploma or GED certificate)”
-   This will return a list of all the reported birth control uses from people with high school as their highest level of education. 
-   Function Signature: get_use_of_birth_control(education level)
-   		Returns list of birth control usage for that education level
-
- - Feature: look up use of birth control (col. BIRT3) based on religion (col. religion)
-   Usage: python3 birth_control.py -- birth-control-by-religion “Catholic”
-   This will return a list of all the reported levels of birth control use from people within the subgroup of their religion. 
-   Function Signature: get_use_of_birth_control(religion)
-    	Returns list of the use of birth control by people in the specified religion
+	- Feature: look up use of birth control (col. birt3) based on level of education (col. educ)  
+		Usage: python3 birth_control.py –birth-control-by-education “High school graduate (Grade 12 with diploma or GED certificate)”  
+		This will return a list of all the reported birth control uses from people with high school as their highest level of education.   
+		Function Signature: get_use_of_birth_control(education level)  
+			Returns list of birth control usage for that education level
+		
+	
+	- Feature: look up use of birth control (col. BIRT3) based on religion (col. religion)    
+		Usage: python3 birth_control.py -- birth-control-by-religion “Catholic”  
+		This will return a list of all the reported levels of birth control use from people within the subgroup of their religion.   
+		Function Signature: get_use_of_birth_control(religion)
+    		Returns list of the use of birth control by people in the specified religion
 
 
 
 - Effects of COVID (home ownership status, race, health insurance status, etc. )
 People to discuss with (in relation to gender, age, etc.)
 
- - Feature: look up the availability of individuals to receive in-person sexual and          reproductive care as a result of the COVID-19 epidemic (col. birt6a) by the state they are living in (state)
-   Usage: python3 birth_control.py –care-after-covid “MN”
-   This will return a list of (mainly) yes’s or no’s - yes means they have been unable to see their provider in person, while no means that  covid has not impacted their ability to see their provider in person.
-   Function Signature: get_care_after_covid(state abbreviation)
-		Returns list of whether or not access was available for each pe
+	- Feature: look up the availability of individuals to receive in-person sexual and reproductive care as a result of the COVID-19 epidemic (col. birt6a) by the state they are living in (state)
+		Usage: python3 birth_control.py –care-after-covid “MN”  
+		This will return a list of (mainly) yes’s or no’s - yes means they have been unable to see their provider in person, while no means that  covid has not impacted their ability to see their provider in person.  
+		Function Signature: get_care_after_covid(state abbreviation)
+			Returns list of whether or not access was available for each pe
 
 
 
 
 - Concerns on Abortion Policy (in relation to political party, religion, etc.)
- - Feature: look up use of birth control (col. BIRT3) based on religion (col. religion)
-   Usage: python3 birth_control.py -- birth-control-by-religion “Catholic”
-   This will return a list of all the reported levels of birth control use from people within the subgroup of their religion. 
-   Function Signature: get_use_of_birth_control(religion)
-		Returns list of the use of birth control by people in the specified religion
+
+	- Feature: look up use of birth control (col. BIRT3) based on religion (col. religion)   
+		Usage: python3 birth_control.py -- birth-control-by-religion “Catholic”  
+		This will return a list of all the reported levels of birth control use from people within the subgroup of their religion.   
+		Function Signature: get_use_of_birth_control(religion)
+			Returns list of the use of birth control by people in the specified religion
 
 
 
