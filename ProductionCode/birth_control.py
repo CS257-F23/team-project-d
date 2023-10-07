@@ -6,6 +6,8 @@ import argparse
 # print usage/help statenent function 
 # look at get user ids - there should not be errors thrown, just a print statement
 # add what the parameters and output is in each docstring to make them clearer
+# where should display_list be called?
+# need to make our command line interface work with all demographics
 
 
 data = []
@@ -26,7 +28,8 @@ def load_data():
 def look_up_use_of_birth_control_by_demographic(demographic):
     """calls the functions to get the birth control use for inputted religion"""
     user_ids = get_user_ids_by_column(demographic)
-    get_use_of_birth_control(user_ids)
+    responses = get_use_of_birth_control(user_ids)
+    return display_list(responses)
 
 def get_user_ids_by_column(topic):
     """searches csv file matching religion and returns list of ids that match with it"""
@@ -36,7 +39,7 @@ def get_user_ids_by_column(topic):
             if item == topic:
                 user_ids.append(row[0])
     if user_ids==[]:
-        raise IndexError("Religion not in dataset")
+        print("Sorry, this demographic is not in the dataset.")
     return user_ids
 
 def get_use_of_birth_control(user_ids):
@@ -48,8 +51,7 @@ def get_use_of_birth_control(user_ids):
             if (row[0]==user):
                 birt3_answers.append(row[45])
     if user_ids == []:
-        raise IndexError("List is empty")
-    display_list(birt3_answers)
+        print("List is empty")
     return birt3_answers
 
 def main():
