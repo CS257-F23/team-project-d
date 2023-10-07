@@ -2,6 +2,8 @@ import unittest
 import subprocess
 from ProductionCode.birth_control import *
 
+# clean these up with the new production code
+
 class TestBirthControl(unittest.TestCase):
 
     def setUp(self):
