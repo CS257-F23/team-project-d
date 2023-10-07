@@ -5,20 +5,17 @@ import argparse
 # more return statements
 # print usage/help statenent function 
 # add what the parameters and output is in each docstring to make them clearer
-# where should display_list be called?
 # need to make our command line interface work with all demographics
 # test main is not working
 #needs to print without command line args
-#functions need to return  values and have the printing happen on the 'outer' portion. 
-#ex)get_use_of_birth_control shouldn't call display_list, since it shouldn't be responsible for printing. 
-# Variables should be named better, for example 'myList'
 
 data = []
 
-def display_list(list):
+def display_results(totaled_answers):
     """outputs results to user"""
-    print(str(list))
-    return list
+    for key in totaled_answers:
+        print(key, ":",totaled_answers[key], "%")
+    return totaled_answers
 
 def load_data():
     """loads data from csv file into list of strings"""
@@ -33,7 +30,9 @@ def look_up_use_of_birth_control_by_demographic(demographic):
     """calls the functions to get the birth control use for inputted religion"""
     user_ids = get_user_ids_by_column(demographic)
     responses = get_use_of_birth_control(user_ids)
-    return display_list(responses)
+    results = count_answers(responses)
+    percent_results = calc_percentage(results)
+    return display_results(percent_results)
 
 def get_user_ids_by_column(topic):
     """searches csv file matching religion and returns list of ids that match with it"""
@@ -58,6 +57,48 @@ def get_use_of_birth_control(user_ids):
         print("List is empty")
     return birt3_answers
 
+def count_answers(birt3_answers):
+    """adds up number of users in specified demographic for each possible answer to birt3 question"""
+    never=0
+    na=0
+    always=0
+    half=0
+    some=0
+    almost=0
+    refused=0
+
+    totaled_answers={}
+    for item in birt3_answers:
+        if item == "Never":
+            never=never+1
+        elif item== "Not applicable/Does not have vaginal intercourse/sex":
+            na= na+1
+        elif item == "Every time":
+            always= always+1
+        elif item == "About half the time":
+            half=half+1
+        elif item== "Once in a while":
+            some= some+1
+        elif item == "Almost every time":
+            almost= almost+1
+        else:
+            refused=refused+1
+    totaled_answers["Never"]=never
+    totaled_answers["Not applicable/Does not have vaginal intercourse/sex"]=na
+    totaled_answers["Every time"]=always
+    totaled_answers["About half the time"]=half
+    totaled_answers["Once in a while"]=some
+    totaled_answers["Almost every time"]=almost
+    return totaled_answers
+
+def calc_percentage(totaled_answers):
+    """takes in dictionary with totaled answers and calculates the percentage using total number of responses"""
+    total=0
+    for key in totaled_answers:
+        total=total+totaled_answers[key]
+    for key in totaled_answers:
+        totaled_answers[key]= round((totaled_answers[key]/total)*100)
+    return totaled_answers
 
 def main():
     """creates command line interface for user to ask for specific religion or education and get the birth control use"""
