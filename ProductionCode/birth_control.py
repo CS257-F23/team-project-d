@@ -4,9 +4,12 @@ import argparse
 #Add another functionality
 # more return statements
 # print usage/help statenent function 
-# look at get user ids - there should not be errors thrown, just a print statement
 # add what the parameters and output is in each docstring to make them clearer
-
+# test main is not working
+#needs to print without command line args
+#functions need to return  values and have the printing happen on the 'outer' portion. 
+#ex)get_use_of_birth_control shouldn't call display_list, since it shouldn't be responsible for printing. 
+# Variables should be named better, for example 'myList'
 
 data = []
 
@@ -22,6 +25,7 @@ def load_data():
     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
     for row in reader:
         data.append(row)
+    csvfile.close()
 
 def look_up_use_of_birth_control_by_demographic(demographic):
     """calls the functions to get the birth control use for inputted religion"""
@@ -36,7 +40,7 @@ def get_user_ids_by_column(topic):
             if item == topic:
                 user_ids.append(row[0])
     if user_ids==[]:
-        raise IndexError("Religion not in dataset")
+        print("Religion not in dataset")
     return user_ids
 
 def get_use_of_birth_control(user_ids):
@@ -48,9 +52,10 @@ def get_use_of_birth_control(user_ids):
             if (row[0]==user):
                 birt3_answers.append(row[45])
     if user_ids == []:
-        raise IndexError("List is empty")
+        print("List is empty")
     display_list(birt3_answers)
     return birt3_answers
+
 
 def main():
     """creates command line interface for user to ask for specific religion or education and get the birth control use"""
