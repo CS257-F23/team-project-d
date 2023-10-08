@@ -13,11 +13,11 @@ class TestBirthControl(unittest.TestCase):
         """ensures load data function does not return any errors"""
         self.assertIsNone(load_data())
 
-    def test_display_list(self):
+    def test_display_results(self):
         """Asserts that the list passed into the display_list function
         is indeed displayed, and that the displayed list is correct for the input provided"""
         myList = ["Katherine", "Ella", "Evelyn"]
-        self.assertEqual(display_list(myList), myList, "Should be " + str(myList))
+        self.assertEqual(display_results(myList), myList, "Should be " + str(myList))
 
     def test_look_up_use_of_birth_control_by_religion(self):
         """Asserts that the use of birth control by religion is being looked up

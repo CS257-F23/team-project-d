@@ -1,6 +1,7 @@
 from flask import Flask
 from ProductionCode.birth_control import *
 
+# Katherine make sure that abortion can output to the website
 
 app = Flask(__name__)
 
@@ -38,7 +39,7 @@ def get_parameter_options():
         To see the responses, add /[yourParameterHere] to the current URL.\
             <h3>Religions</h3>"
 
-@app.route('/<demographic>', strict_slashes = False)
+@app.route('/birth-control-use/<demographic>', strict_slashes = False)
 def get_birth_control_use_by_demographic(demographic):
     """
     Returns a list of the responses to the question "How often do you
@@ -46,6 +47,10 @@ def get_birth_control_use_by_demographic(demographic):
     based upon the demographic that is passed in. 
 
         Parameters:
+            demographic = the demographic that was passed in;\
+            all output will be from people in that demographic.
+        
+        Variables:
             reponses = the list of responses to the question above
             
     Returns the string version of that list of responses.
@@ -54,12 +59,34 @@ def get_birth_control_use_by_demographic(demographic):
     responses = look_up_use_of_birth_control_by_demographic(demographic)
     return str(responses)
 
+@app.route('/abortion/<demographic>', strict_slashes = False)
+def get_political_abortion_concerns_by_demographic(demographic):
+    """
+    Returns a list of the responses to the question "How concerned, if at all, are you that \
+    women may not be able to access the full range of birth control methods, such as oral \
+    contraceptives, implants, and IUDs in the future because of changes in the political landscape?"\
+    from the csv based on the demographic that is passed in.
+    
+        Parameters:
+            demographic = the user's chosen demographic that they passed in via the url;
+            all output will be based off of responsers with  this demographic.
+            
+        Variables:
+            responses = the list of responses to the question above.
+            
+    Return the string version of that list of responses.
+    """
+
+    responses = look_up_abortion_concerns_by_demographic(demographic)
+    return str(responses)
+
 @app.errorhandler(404)
 def page_not_found(e):
     """ Returns a statement with the correct formatting when an external error is encountered. """
     return "Oops! You've encountered and error. Double check your spelling and \
         make sure to follow the format from the homepage\
-        by adding /[DEMOGRAPHIC] to the url! If you follow these directions and\
+        by adding either /birth-control-use/[DEMOGRAPHIC] or /abortion/[DEMOGRAPHIC] \
+            to the url! If you follow these directions and\
             encounter an empty list, your demographic is not included in the dataset."
 
 @app.errorhandler(500)
