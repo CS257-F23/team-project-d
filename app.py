@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from ProductionCode.birth_control import *
 
 # Katherine make sure that abortion can output to the website
@@ -57,7 +57,8 @@ def get_birth_control_use_by_demographic(demographic):
     """
 
     responses = look_up_use_of_birth_control_by_demographic(demographic)
-    return str(responses)
+    #return render_template('index.html', resp = responses) 
+    return responses
 
 @app.route('/abortion/<demographic>', strict_slashes = False)
 def get_political_abortion_concerns_by_demographic(demographic):
