@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from ProductionCode.birth_control import *
 
 
@@ -52,7 +52,8 @@ def get_birth_control_use_by_demographic(demographic):
     """
 
     responses = look_up_use_of_birth_control_by_demographic(demographic)
-    return str(responses)
+    #return render_template('index.html', resp = responses) 
+    return responses
 
 @app.errorhandler(404)
 def page_not_found(e):
