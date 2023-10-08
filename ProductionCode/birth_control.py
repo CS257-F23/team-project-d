@@ -1,8 +1,7 @@
 import csv
 import argparse
 
-#Add another functionality
-# more return statements
+# Add another functionality
 # print usage/help statenent function 
 # add what the parameters and output is in each docstring to make them clearer
 # need to make our command line interface work with all demographics
@@ -35,6 +34,11 @@ def look_up_use_of_birth_control_by_demographic(demographic):
     display_results(percent_results)
     return percent_results
 
+def look_up_abortion_concerns_by_demographic(demographic):
+    user_ids = get_user_ids_by_column(demographic)
+    responses = get_political_abortion_concerns(user_ids)
+    return display_results(responses)
+
 def get_user_ids_by_column(topic):
     """searches csv file matching religion and returns list of ids that match with it"""
     user_ids = []
@@ -57,6 +61,16 @@ def get_use_of_birth_control(user_ids):
     if user_ids == []:
         print("List is empty")
     return birt3_answers
+
+def get_political_abortion_concerns(user_ids):
+    birt7_answers = []
+    for user in user_ids:
+        for row in data:
+            if (row[0]==user):
+                birt7_answers.append(row[58])
+    if user_ids == []:
+        print("List is empty")
+    return birt7_answers
 
 def count_answers(birt3_answers):
     """adds up number of users in specified demographic for each possible answer to birt3 question"""
