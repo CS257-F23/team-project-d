@@ -1,7 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask#, render_template
 from ProductionCode.birth_control import *
 
-# Katherine make sure that abortion can output to the website
 
 app = Flask(__name__)
 
@@ -20,24 +19,15 @@ def homepage():
 
     return "This is the homepage for Team D's Project Component #2.\
     To see how often people of a certain demographic use birth control\
-    when they are not trying to get pregnant, add /[DEMOGRAPHIC] to the current url.\
+    when they are not trying to get pregnant, add /birth-control-use/[DEMOGRAPHIC] to the current url.\
+    To see how concerned people of a certain demographic are about future access to birth control\
+    due to the political climate, add /birth-control-access/[DEMOGRAPHIC] to the current url.\
             Here are some demographic ideas to input:<br><pre><font face=\"Times New Roman\">\
             * state abbreviation (ex. MN, MA, HI)<br>\
             * religion (ex. Hindu, Protestant, Jewish/Judaism, etc)<br>\
             * education level<br>\
                 - Two year associate degree from a college or university<br>\
                 - High school graduate (Grade 12 with diploma or GED certificate)<br></pre></font>"
-
-@app.route('/options', strict_slashes = False)
-def get_parameter_options():
-    """
-    Returns a string of more parameter options by category
-    to be displayed in the browser.
-    """
-
-    return "<h1>More Parameter Options</h1><br>\
-        To see the responses, add /[yourParameterHere] to the current URL.\
-            <h3>Religions</h3>"
 
 @app.route('/birth-control-use/<demographic>', strict_slashes = False)
 def get_birth_control_use_by_demographic(demographic):
@@ -57,11 +47,11 @@ def get_birth_control_use_by_demographic(demographic):
     """
 
     responses = look_up_use_of_birth_control_by_demographic(demographic)
-    #return render_template('index.html', resp = responses) 
+    #return render_template('index.html', title="Birth Control Answers", resp = responses) 
     return responses
 
-@app.route('/abortion/<demographic>', strict_slashes = False)
-def get_political_abortion_concerns_by_demographic(demographic):
+@app.route('/birth-control-access/<demographic>', strict_slashes = False)
+def get_birth_control_access_concerns_by_demographic(demographic):
     """
     Returns a list of the responses to the question "How concerned, if at all, are you that \
     women may not be able to access the full range of birth control methods, such as oral \
@@ -78,22 +68,26 @@ def get_political_abortion_concerns_by_demographic(demographic):
     Return the string version of that list of responses.
     """
 
-    responses = look_up_abortion_concerns_by_demographic(demographic)
+    responses = look_up_birth_control_access_concerns_by_demographic(demographic)
     return str(responses)
 
 @app.errorhandler(404)
 def page_not_found(e):
     """ Returns a statement with the correct formatting when an external error is encountered. """
-    return "Oops! You've encountered and error. Double check your spelling and \
+    return "Oops! You've encountered an error. Double check your spelling and \
         make sure to follow the format from the homepage\
-        by adding either /birth-control-use/[DEMOGRAPHIC] or /abortion/[DEMOGRAPHIC] \
-            to the url! If you follow these directions and\
+        by adding either /birth-control-use/[DEMOGRAPHIC] or /birth-control-access/[DEMOGRAPHIC] \
+            to the url! Head back to the homepage if you need demographic ideas. \
+                If you follow these directions and\
             encounter an empty list, your demographic is not included in the dataset."
 
 @app.errorhandler(500)
 def python_bug(e):
     """ Returns a message when there is an internal error. """
-    return "Eek, a bug!"
+    return "Eek, a bug! Make sure to double check your spelling\
+        and follow the format from the homepage by adding either\
+            /birth-control-use/[DEMOGRAPHIC] or /birth-control-access/[DEMOGRAPHIC]\
+                to the url. Head back to the homepage if you need demographic ideas."
 
 if __name__ == '__main__':
     load_data()
