@@ -32,7 +32,8 @@ def look_up_use_of_birth_control_by_demographic(demographic):
     responses = get_use_of_birth_control(user_ids)
     results = count_answers(responses)
     percent_results = calc_percentage(results)
-    return display_results(percent_results)
+    display_results(percent_results)
+    return percent_results
 
 def get_user_ids_by_column(topic):
     """searches csv file matching religion and returns list of ids that match with it"""
