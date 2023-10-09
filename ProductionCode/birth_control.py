@@ -70,7 +70,8 @@ def get_user_ids_by_column(topic):
     user_ids = []
     for row in data:
         for item in row:
-            if item == topic:
+            #if item == topic:
+            if topic in item:
                 user_ids.append(row[0])
     if user_ids==[]:
         print("Sorry, this demographic is not in the dataset.")
