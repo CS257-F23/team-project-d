@@ -224,6 +224,8 @@ def main():
 # need to make our command line interface work with all demographics
 # fix tests
 # needs to print without command line args
+#changed code so that now you can type part of the deographic and it will work for example you can type High school
+#and it will lookup the correct column but we need to provide descriptions of everything the user can look up
     """
     Creates the command line interface for the user to ask for specific religion or education and get the birth control use.
     """
