@@ -218,7 +218,8 @@ def calc_percentage(totaled_answers):
     for key in totaled_answers:
         total=total+totaled_answers[key]
     for key in totaled_answers:
-        totaled_answers[key]= round((totaled_answers[key]/total)*100)
+        if total!=0:   
+            totaled_answers[key]= round((totaled_answers[key]/total)*100)
     return totaled_answers
 
 def main():
