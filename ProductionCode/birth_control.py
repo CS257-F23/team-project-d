@@ -71,7 +71,8 @@ def get_user_ids_by_column(topic):
     for row in data:
         for item in row:
             #if item == topic:
-            if topic in item:
+            item=item.lower()
+            if topic.lower() in item:
                 user_ids.append(row[0])
     if user_ids==[]:
         print("Sorry, this demographic is not in the dataset.")
@@ -230,8 +231,7 @@ def main():
     """
     load_data()
     parser = argparse.ArgumentParser(description="Search for participants and filter by state, religion, or political view")
-    parser.add_argument("--demo", help="Specific subset within demographic to search for")
-    
+    parser.add_argument("--demo",help="Specific subset within demographic to search for")
 
     
 
@@ -239,7 +239,7 @@ def main():
     if args.demo:
         look_up_use_of_birth_control_by_demographic(args.demo)
     else:
-        print("You must provide one of the valid command line arguments.")
+        print("Usage: Please use python3 ProductionCode/birth_control.py --demo + 'the specific demographic you wanna search for' ")
 
 
 if __name__ == "__main__":
