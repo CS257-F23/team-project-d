@@ -74,8 +74,7 @@ def get_birth_control_access_concerns_by_demographic(demographic):
     else:
         return "Invalid Input. The demographic you chose is not in our dataset. Plase try another one."
 
-    responses = look_up_birth_control_access_concerns_by_demographic(demographic)
-    return str(responses)
+
 
 @app.errorhandler(404)
 def page_not_found(e):
