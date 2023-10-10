@@ -190,7 +190,7 @@ def count_birth_control_access_answers(birt7_answers):
         elif item== "Not at all concerned":
             notAtAllConcerned=notAtAllConcerned+1
         elif item == "Don't know":
-            dontknow=dontknow+1
+            dontKnow=dontKnow+1
         else:
             refused=refused+1
     totaled_answers["Very concerned"]=veryConcerned
