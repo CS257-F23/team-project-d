@@ -230,16 +230,26 @@ def main():
     Creates the command line interface for the user to ask for specific religion or education and get the birth control use.
     """
     load_data()
-    parser = argparse.ArgumentParser(description="Search for participants and filter by state, religion, or political view")
-    parser.add_argument("--demo",help="Specific subset within demographic to search for")
-
+    parser = argparse.ArgumentParser(description="Search for participants and filter by demographic")
+    parser.add_argument("--BirthControlUseByDemo",help="Specific subset within demographic to search for")
+    parser.add_argument("--BirthControlAccessByDemo",help="Specific subset within demographic to search for")
     
 
     args = parser.parse_args()
-    if args.demo:
-        look_up_use_of_birth_control_by_demographic(args.demo)
+    if args.BirthControlUseByDemo:
+        look_up_use_of_birth_control_by_demographic(args.BirthControlUseByDemo)
+    elif args.BirthControlAccessByDemo:
+        look_up_birth_control_access_concerns_by_demographic(args.BirthControlAccessByDemo)
     else:
         print("Usage: Please use python3 ProductionCode/birth_control.py --demo + 'the specific demographic you wanna search for' ")
+        print("""Demographic Options: State:MA,MN...\n Region:North East, South... \n Own home: Owned, Rented \n Marital Status: never married, Widowed,
+        Married, Divorced, Single \n Employ: Retired, Homemaker, Full-time, Part-time, Other, Temporarily unemployed, Disabled \n
+        Education: Four year college, High School graduate, Some college, Two year associate degree, Postgraduate or professional degree,
+        Some postgraduate or professional schooling, Refused, Less than high school \n Race: White Non-Hispanic, Native American, White Hispanic,
+        Black Non-Hispanic, Mixed, Asian, Refused, Black Hispanic \n Political party: An Independant, A Republican, A Democrat, Refused \n
+        Political View: Somewhat conservative, Moderate, Somewhat liberal, Very liberal, Very conservative, Refused \n Religion:
+        Protestant, Orthodox, Jewish, Catholic, Christian, Methodist, Baptist, Unitarian, Mormon, Agnostic, Jehovah's Witness, Episcopalian, Athiest, 
+        Nothing, Pentacostal \n Insured: ADD""")
 
 
 if __name__ == "__main__":
