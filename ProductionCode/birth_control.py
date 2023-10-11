@@ -1,5 +1,6 @@
 import csv
 import argparse
+import sys
 
 
 data = []
@@ -218,6 +219,35 @@ def calc_percentage(totaled_answers):
         if total!=0:   
             totaled_answers[key]= round((totaled_answers[key]/total)*100)
     return totaled_answers
+
+def setUpParser(command):
+    parser = argparse.ArgumentParser(description="Search for participants and filter by state, religion, or political view")
+    parser.add_argument("--demo",help="Specific subset within demographic to search for")
+    parser.add_argument("--option", action="store_true", help="list all options for the demographic")
+
+    commandline= parser.parse_args()
+
+    return commandline
+
+def optionUsage():
+
+    option= "To filter by religion, try --demo + 'Hindu/Protestant/...' "
+
+    print(option)
+
+
+
+def runMain():
+    args= setUpParser(sys.argv)
+    if args.demo:
+        look_up_use_of_birth_control_by_demographic(args.demo)
+    elif args.option:
+        optionUsage()
+    else:
+        print("Usage: python3 ProductionCode/birth_control.py --demo 'the specific demographic you wanna search for' . Try --option for more demographic options you could search.")
+
+
+
 
 def main():
     
