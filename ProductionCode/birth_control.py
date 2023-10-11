@@ -220,7 +220,8 @@ def calc_percentage(totaled_answers):
             totaled_answers[key]= round((totaled_answers[key]/total)*100)
     return totaled_answers
 
-def setUpParser(command):
+def setUpParser():
+    """Set up the search options that users could use. Take in the users' input and then return it."""
     parser = argparse.ArgumentParser(description="Search for participants and filter by demographic")
     parser.add_argument("--BirthControlUseByDemo",help="Specific subset within demographic to search for")
     parser.add_argument("--BirthControlAccessByDemo",help="Specific subset within demographic to search for")
@@ -230,7 +231,8 @@ def setUpParser(command):
 
 
 def runMain():
-    args= setUpParser(sys.argv)
+    """calling different functions to give the correct information to users according to the different input from users """
+    args= setUpParser()
     if args.BirthControlUseByDemo:
         look_up_use_of_birth_control_by_demographic(args.BirthControlUseByDemo)
     elif args.BirthControlAccessByDemo:
@@ -241,6 +243,7 @@ def runMain():
         Usage()
 
 def optionsDisplay():
+    """shows users all demographic options they could search for when they type in --option"""
     option= """Demographic Options: State:MA,MN...\n 
         Region:North East, South... \n 
         Own home: Owned, Rented \n 
@@ -256,6 +259,7 @@ def optionsDisplay():
     print(option)
 
 def Usage():
+    """print an usage message if the users did not use the correct format for searching"""
     usage="Usage: python3 ProductionCode/birth_control.py --BirthControlUseByDemo or --BirthContolAccessByDemo 'the specific demographic you wanna search for' . Try python3 ProductionCode/birth_control.py --option for all demographic options you could search."
     print(usage)
         
@@ -264,12 +268,10 @@ def Usage():
 def main():
     
     """
-    Creates the command line interface for the user to ask for specific religion or education and get the birth control use.
+    load the data and return information according to the users' inputs.
     """
     load_data()
     runMain()
-
-    
 
  
         
