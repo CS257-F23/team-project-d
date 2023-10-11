@@ -238,10 +238,9 @@ def setUpParser(command):
 
 def optionUsage():
 
-    option= "To filter by religion, try --demo + 'Hindu/Protestant/...' "
+    option= "To filter by religion, try -- demo+ 'Hindu/Protestant/...; to filter by educ level, try --demo + ..' "
 
     print(option)
-
 
 
 def runMain():
