@@ -251,11 +251,6 @@ def runMain():
 
 def main():
     
-# print usage/help statement function 
-# need to make our command line interface work with all demographics
-# fix tests
-# needs to print without command line args
-#and it will lookup the correct column but we need to provide descriptions of everything the user can look up
     """
     Creates the command line interface for the user to ask for specific religion or education and get the birth control use.
     """
@@ -272,14 +267,17 @@ def main():
         look_up_birth_control_access_concerns_by_demographic(args.BirthControlAccessByDemo)
     else:
         print("Usage: Please use python3 ProductionCode/birth_control.py --demo + 'the specific demographic you wanna search for' ")
-        print("""Demographic Options: State:MA,MN...\n Region:North East, South... \n Own home: Owned, Rented \n Marital Status: never married, Widowed,
-        Married, Divorced, Single \n Employ: Retired, Homemaker, Full-time, Part-time, Other, Temporarily unemployed, Disabled \n
-        Education: Four year college, High School graduate, Some college, Two year associate degree, Postgraduate or professional degree,
-        Some postgraduate or professional schooling, Refused, Less than high school \n Race: White Non-Hispanic, Native American, White Hispanic,
-        Black Non-Hispanic, Mixed, Asian, Refused, Black Hispanic \n Political party: An Independant, A Republican, A Democrat, Refused \n
-        Political View: Somewhat conservative, Moderate, Somewhat liberal, Very liberal, Very conservative, Refused \n Religion:
-        Protestant, Orthodox, Jewish, Catholic, Christian, Methodist, Baptist, Unitarian, Mormon, Agnostic, Jehovah's Witness, Episcopalian, Athiest, 
-        Nothing, Pentacostal \n Insured: ADD""")
+        print("""Demographic Options: State:MA,MN...\n 
+        Region:North East, South... \n 
+        Own home: Owned, Rented \n 
+        Marital Status: never married, Widowed,Married, Divorced, Single \n 
+        Employ: Retired, Homemaker, Full-time, Part-time, Other, Temporarily unemployed, Disabled \n
+        Education: Four year college, High School graduate, Some college, Two year associate degree, Postgraduate or professional degree,Some postgraduate or professional schooling, Refused, Less than high school \n 
+        Race: White Non-Hispanic, Native American, White Hispanic,Black Non-Hispanic, Mixed, Asian, Refused, Black Hispanic \n 
+        Political party: An Independant, A Republican, A Democrat, Refused \n
+        Political View: Somewhat conservative, Moderate, Somewhat liberal, Very liberal, Very conservative, Refused \n
+        Religion:Protestant, Orthodox, Jewish, Catholic, Christian, Methodist, Baptist, Unitarian, Mormon, Agnostic, Jehovah's Witness, Episcopalian, Athiest, Nothing, Pentacostal \n 
+        Insured: covered by health insurance, not covered by health insurance, Don't know""")
 
 
 if __name__ == "__main__":
