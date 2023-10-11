@@ -1,5 +1,6 @@
 import csv
 import argparse
+import sys
 
 <<<<<<< HEAD
 # print usage/help statement function
@@ -226,27 +227,64 @@ def calc_percentage(totaled_answers):
             totaled_answers[key]= round((totaled_answers[key]/total)*100)
     return totaled_answers
 
+def setUpParser(command):
+    parser = argparse.ArgumentParser(description="Search for participants and filter by state, religion, or political view")
+    parser.add_argument("--demo",help="Specific subset within demographic to search for")
+    parser.add_argument("--option", action="store_true", help="list all options for the demographic")
+
+    commandline= parser.parse_args()
+
+    return commandline
+
+def optionUsage():
+
+    option= "To filter by religion, try --demo + 'Hindu/Protestant/...' "
+
+    print(option)
+
+
+
+def runMain():
+    args= setUpParser(sys.argv)
+    if args.demo:
+        look_up_use_of_birth_control_by_demographic(args.demo)
+    elif args.option:
+        optionUsage()
+    else:
+        print("Usage: python3 ProductionCode/birth_control.py --demo 'the specific demographic you wanna search for' . Try --option for more demographic options you could search.")
+
+
+
+
 def main():
     
-# print usage/help statement function 
-# need to make our command line interface work with all demographics
-# fix tests
-# needs to print without command line args
-#and it will lookup the correct column but we need to provide descriptions of everything the user can look up
     """
     Creates the command line interface for the user to ask for specific religion or education and get the birth control use.
     """
     load_data()
-    parser = argparse.ArgumentParser(description="Search for participants and filter by state, religion, or political view")
-    parser.add_argument("--demo",help="Specific subset within demographic to search for")
-
+    parser = argparse.ArgumentParser(description="Search for participants and filter by demographic")
+    parser.add_argument("--BirthControlUseByDemo",help="Specific subset within demographic to search for")
+    parser.add_argument("--BirthControlAccessByDemo",help="Specific subset within demographic to search for")
     
 
     args = parser.parse_args()
-    if args.demo:
-        look_up_use_of_birth_control_by_demographic(args.demo)
+    if args.BirthControlUseByDemo:
+        look_up_use_of_birth_control_by_demographic(args.BirthControlUseByDemo)
+    elif args.BirthControlAccessByDemo:
+        look_up_birth_control_access_concerns_by_demographic(args.BirthControlAccessByDemo)
     else:
         print("Usage: Please use python3 ProductionCode/birth_control.py --demo + 'the specific demographic you wanna search for' ")
+        print("""Demographic Options: State:MA,MN...\n 
+        Region:North East, South... \n 
+        Own home: Owned, Rented \n 
+        Marital Status: never married, Widowed,Married, Divorced, Single \n 
+        Employ: Retired, Homemaker, Full-time, Part-time, Other, Temporarily unemployed, Disabled \n
+        Education: Four year college, High School graduate, Some college, Two year associate degree, Postgraduate or professional degree,Some postgraduate or professional schooling, Refused, Less than high school \n 
+        Race: White Non-Hispanic, Native American, White Hispanic,Black Non-Hispanic, Mixed, Asian, Refused, Black Hispanic \n 
+        Political party: An Independant, A Republican, A Democrat, Refused \n
+        Political View: Somewhat conservative, Moderate, Somewhat liberal, Very liberal, Very conservative, Refused \n
+        Religion:Protestant, Orthodox, Jewish, Catholic, Christian, Methodist, Baptist, Unitarian, Mormon, Agnostic, Jehovah's Witness, Episcopalian, Athiest, Nothing, Pentacostal \n 
+        Insured: covered by health insurance, not covered by health insurance, Don't know""")
 
 
 if __name__ == "__main__":
