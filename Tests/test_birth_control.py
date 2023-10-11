@@ -149,6 +149,99 @@ class TestBirthControl(unittest.TestCase):
         Affirms that the function outputs the correct
         dictionary and counts for the list it is passed in.
         """
+        testListOfResponses = ["Never", "Every time"]
+        expected = {
+            "About half the time":0,
+            "Almost every time":0,
+            "Every time":1,
+            "Never":1,
+            "Not applicable/Does not have vaginal intercourse/sex":0,
+            "Once in a while":0
+        }
+        self.assertEqual(count_birth_control_use_answers(testListOfResponses), expected, "Should be " + str(expected))
+
+    def test_count_birth_control_use_answers_EDGECASE(self):
+        """
+        Affirms that if an empty list is input,
+        the correct dictionary with no responses will be output.
+        """
+        expected = {
+            "About half the time":0,
+            "Almost every time":0,
+            "Every time":0,
+            "Never":0,
+            "Not applicable/Does not have vaginal intercourse/sex":0,
+            "Once in a while":0
+        }
+        self.assertEqual(count_birth_control_use_answers([]), expected, "Should be: " + str(expected))
+
+    def test_count_birth_control_access_answers(self):
+        """
+        Affirms that the function outputs the correct dictionary
+        and numbers of responses for the list it is passed.
+        """
+        testListOfAccessAnswers = ["Refused", "Very concerned", "Not at all concerned"]
+        expected = {
+            "Don't know":0,
+            "Not applicable/don't believe in birth control":0,
+            "Not at all concerned":1,
+            "Not very concerned":0,
+            "Refused":1,
+            "Somewhat concerned":0,
+            "Very concerned":1
+        }
+        self.assertEqual(count_birth_control_access_answers(testListOfAccessAnswers), expected, "Should be: " + str(expected))
+
+    def test_count_birth_control_access_answers_EDGECASE(self):
+        """
+        Affirms that if the function is passed an empty list,
+        A dictionary with all responses set to zero is returned.
+        """
+        expected = {
+            "Don't know":0,
+            "Not applicable/don't believe in birth control":0,
+            "Not at all concerned":0,
+            "Not very concerned":0,
+            "Refused":0,
+            "Somewhat concerned":0,
+            "Very concerned":0
+        }
+        self.assertEqual(count_birth_control_access_answers([]), expected, "Should be: " + str(expected))
+
+    def test_calc_percentage(self):
+        """
+        Affirms the calc_percentage function accurately
+        calculates the percentages based on the list of 
+        responses it is given, and returns them in the
+        correct format. 
+        """
+        totaled_answers = {
+            "Don't know":0,
+            "Not applicable/don't believe in birth control":0,
+            "Not at all concerned":0,
+            "Not very concerned":4,
+            "Refused":0,
+            "Somewhat concerned":0,
+            "Very concerned":4
+        }
+        expected = {
+            "Don't know":0,
+            "Not applicable/don't believe in birth control":0,
+            "Not at all concerned":0,
+            "Not very concerned":50,
+            "Refused":0,
+            "Somewhat concerned":0,
+            "Very concerned":50
+        }
+        self.assertEqual(calc_percentage(totaled_answers), expected, "Should be: " + str(expected))
+
+    def test_calc_percentage_EDGECASE(self):
+        """
+        Affirms the calc_percentage function will output
+        an empty dictionary if it is passed an empty dictionary. 
+        """
+        self.assertEqual(calc_percentage({}), {}, "Should be: " + str({}))
+
 
     def test_main(self):
         """check if birth_control.py works for valid command line argument"""
