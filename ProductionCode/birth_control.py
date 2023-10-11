@@ -1,10 +1,13 @@
 import csv
 import argparse
 
+<<<<<<< HEAD
 # print usage/help statement function
 # need to make our command line interface work with all demographics
 # fix tests
 # needs to print without command line args
+=======
+>>>>>>> a51725ba22c175535aaf01637f944575263aa208
 
 data = []
 
@@ -74,7 +77,9 @@ def get_user_ids_by_column(topic):
     user_ids = []
     for row in data:
         for item in row:
-            if item == topic:
+            #if item == topic:
+            item=item.lower()
+            if topic.lower() in item:
                 user_ids.append(row[0])
     if user_ids==[]:
         print("Sorry, this demographic is not in the dataset.")
@@ -193,7 +198,7 @@ def count_birth_control_access_answers(birt7_answers):
         elif item== "Not at all concerned":
             notAtAllConcerned=notAtAllConcerned+1
         elif item == "Don't know":
-            dontknow=dontknow+1
+            dontKnow=dontKnow+1
         else:
             refused=refused+1
     totaled_answers["Very concerned"]=veryConcerned
@@ -217,25 +222,31 @@ def calc_percentage(totaled_answers):
     for key in totaled_answers:
         total=total+totaled_answers[key]
     for key in totaled_answers:
-        totaled_answers[key]= round((totaled_answers[key]/total)*100)
+        if total!=0:   
+            totaled_answers[key]= round((totaled_answers[key]/total)*100)
     return totaled_answers
 
 def main():
+    
+# print usage/help statement function 
+# need to make our command line interface work with all demographics
+# fix tests
+# needs to print without command line args
+#and it will lookup the correct column but we need to provide descriptions of everything the user can look up
     """
     Creates the command line interface for the user to ask for specific religion or education and get the birth control use.
     """
     load_data()
     parser = argparse.ArgumentParser(description="Search for participants and filter by state, religion, or political view")
-    parser.add_argument("--educ", help="Educational level of participants to search for")
-    parser.add_argument("--religion", help="Religion of participants to search for")
+    parser.add_argument("--demo",help="Specific subset within demographic to search for")
+
+    
 
     args = parser.parse_args()
-    if args.religion:
-        look_up_use_of_birth_control_by_demographic(args.religion)
-    elif args.educ:
-        look_up_use_of_birth_control_by_demographic(args.educ)
+    if args.demo:
+        look_up_use_of_birth_control_by_demographic(args.demo)
     else:
-        print("You must provide one of the valid command line arguments.")
+        print("Usage: Please use python3 ProductionCode/birth_control.py --demo + 'the specific demographic you wanna search for' ")
 
 
 if __name__ == "__main__":
