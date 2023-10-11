@@ -2,7 +2,6 @@ import unittest
 import subprocess
 from ProductionCode.birth_control import *
 
-# clean these up with the new production code, git pull for divide by zero error
 
 class TestBirthControl(unittest.TestCase):
 
@@ -20,16 +19,63 @@ class TestBirthControl(unittest.TestCase):
         Asserts that the list passed into the display_list function
         is indeed displayed, and that the displayed list is correct for the input provided.
         """
-        listOfNamesToDisplay = ["Katherine", "Ella", "Evelyn"]
-        self.assertEqual(display_results(listOfNamesToDisplay), listOfNamesToDisplay, "Should be " + str(listOfNamesToDisplay))
+        exampleDictToDisplay = {
+            "About half the time":0,
+            "Almost every time":0,
+            "Every time":40,
+            "Never":40,
+            "Not applicable/Does not have vaginal intercourse/sex":20,
+            "Once in a while":0
+        }
+        self.assertEqual(display_results(exampleDictToDisplay), exampleDictToDisplay, "Should be " + str(exampleDictToDisplay))
+
+    def test_look_up_birth_control_access_by_demographic(self):
+        """
+        Asserts that the responses to the question about concerns regarding future
+        birth control access are being accuratlely looked up and returned.
+        """
+        expected = {
+            "Don't know":0,
+            "Not applicable/don't believe in birth control":0,
+            "Not at all concerned":20,
+            "Not very concerned":0,
+            "Refused":0,
+            "Somewhat concerned":40,
+            "Very concerned":40
+        }
+        self.assertEqual(look_up_birth_control_access_concerns_by_demographic("Hindu"), expected, "Should be: " + str(expected))
+
+    def test_look_up_birth_control_access_by_demographic_EDGECASE(self):
+        """
+        Asserts that when invalid input is provided, the function
+        returns the dictionary with no percentage values to indicate
+        that the demographic is not included in the dataset.
+        """
+        expected = {
+            "Don't know":0,
+            "Not applicable/don't believe in birth control":0,
+            "Not at all concerned":0,
+            "Not very concerned":0,
+            "Refused":0,
+            "Somewhat concerned":0,
+            "Very concerned":0
+        }
+        self.assertEqual(look_up_birth_control_access_concerns_by_demographic("vegetarian"), expected, "Should be: " + str(expected))
 
     def test_look_up_use_of_birth_control_by_demographic(self):
         """
         Asserts that the use of birth control by demographic is being looked up
-        and not returning any errors.
+        and returning the correct dictionary.
         """
-        message = "Test value is not none."
-        self.assertIsNone(look_up_use_of_birth_control_by_demographic("Hindu"), message)
+        expected = {
+            "About half the time":0,
+            "Almost every time":0,
+            "Every time":40,
+            "Never":40,
+            "Not applicable/Does not have vaginal intercourse/sex":20,
+            "Once in a while":0
+        }
+        self.assertEqual(look_up_use_of_birth_control_by_demographic("Hindu"), expected, "Should be: " + str(expected))
 
     def test_look_up_use_of_birth_control_by_demographic_EDGECASE(self):
         """
@@ -37,7 +83,15 @@ class TestBirthControl(unittest.TestCase):
         that is not valid, i.e. misspelled or not in database.
         """
         invalidReligion = "Flying Spaghetti Monster"
-        self.assertEqual(look_up_use_of_birth_control_by_demographic(invalidReligion), "Sorry, this demographic is not in the dataset.", "Should be: Sorry, this demographic is not in the dataset.")
+        expected = {
+            "About half the time":0,
+            "Almost every time":0,
+            "Every time":0,
+            "Never":0,
+            "Not applicable/Does not have vaginal intercourse/sex":0,
+            "Once in a while":0
+        }
+        self.assertEqual(look_up_use_of_birth_control_by_demographic(invalidReligion), expected, "Should be: " + str(expected))
 
     def test_get_user_ids_by_column(self):
         """
@@ -52,7 +106,7 @@ class TestBirthControl(unittest.TestCase):
         and that the error message is printed.
         """
         invalidReligion = "Flying Spaghetti Monster"
-        self.assertEqual(get_user_ids_by_column(invalidReligion), "Sorry, this demographic is not in the dataset.", "Should be: Sorry, this demographic is not in the dataset.")
+        self.assertEqual(get_user_ids_by_column(invalidReligion), [], "Should be: " + str([]))
 
     def test_get_use_of_birth_control(self):
         """
@@ -67,7 +121,34 @@ class TestBirthControl(unittest.TestCase):
         Affirms that a message is printed if the function
         is passed an empty list as input.
         """
-        self.assertEqual(get_use_of_birth_control([]), "List is empty", "Should be: List is empty")
+        self.assertEqual(get_use_of_birth_control([]), [], "Should be: " + str([]))
+
+    def test_get_birth_control_access_concerns(self):
+        """
+        Affirms that the correct list of responses
+        is returned according to the demographic input.
+        """
+        ids = ['50000198', '50000290',  '70000589', '70000664', '70000805']
+        expected = ["Very concerned",
+            "Not at all concerned",
+            "Somewhat concerned",
+            "Somewhat concerned",
+            "Very concerned"
+            ]
+        self.assertEqual(get_birth_control_access_concerns(ids), expected, "Should be: " + str(expected))
+
+    def test_get_birth_control_access_concerns_EDGECASE(self):
+        """
+        Affirms that if invalid input or an empty list is passed in,
+        an empty list is returned to signal that there was an issue.
+        """
+        self.assertEqual(get_birth_control_access_concerns([]), [], "Should be: " + str([]))
+        
+    def test_count_birth_control_use_answers(self):
+        """
+        Affirms that the function outputs the correct
+        dictionary and counts for the list it is passed in.
+        """
 
     def test_main(self):
         """check if birth_control.py works for valid command line argument"""

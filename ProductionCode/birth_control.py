@@ -235,8 +235,10 @@ def setUpParser(command):
 def runMain():
     args= setUpParser(sys.argv)
     if args.BirthControlUseByDemo:
+        print("How often do you use birth control? Demographic:", args.BirthControlUseByDemo)
         look_up_use_of_birth_control_by_demographic(args.BirthControlUseByDemo)
     elif args.BirthControlAccessByDemo:
+        print("Given the current political climate(2020), are you concerned with birth control access in the future? Demographic:", args.BirthControlAccessByDemo)
         look_up_birth_control_access_concerns_by_demographic(args.BirthControlAccessByDemo)
     elif args.option:
         optionsDisplay()
@@ -275,8 +277,5 @@ def main():
     
 
  
-        
-
-
 if __name__ == "__main__":
     main()
