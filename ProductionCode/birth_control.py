@@ -216,6 +216,9 @@ def calc_percentage(totaled_answers):
     Returns the same dictionary, but formatted based upon percentages instead of total responses.
     """
     total=0
+    if totaled_answers == {}:
+        print("Dictionary is empty, try again.")
+        return {}
     for key in totaled_answers:
         total=total+totaled_answers[key]
     for key in totaled_answers:
