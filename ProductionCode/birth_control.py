@@ -1,8 +1,7 @@
 import csv
 import argparse
 
-# print usage/help statement function 
-# add what the parameters and output is in each docstring to make them clearer
+# print usage/help statement function
 # need to make our command line interface work with all demographics
 # fix tests
 # needs to print without command line args
