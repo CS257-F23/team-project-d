@@ -1,7 +1,5 @@
 import csv
 import argparse
-import sys
-
 
 data = []
 
