@@ -226,17 +226,19 @@ def calc_percentage(totaled_answers):
             totaled_answers[key]= round((totaled_answers[key]/total)*100)
     return totaled_answers
 
-def setUpParser(command):
-    parser = argparse.ArgumentParser(description="Search for participants and filter by demographic")
+def setUpParser():
+    """Set up the search options that users could use. Take in the users' input and then return it."""
+    parser = argparse.ArgumentParser(description="Search for participants and filter by demographic",usage=Usage())
     parser.add_argument("--BirthControlUseByDemo",help="Specific subset within demographic to search for")
     parser.add_argument("--BirthControlAccessByDemo",help="Specific subset within demographic to search for")
     parser.add_argument("--option", action="store_true", help="list all options for the demographic")
     args= parser.parse_args()
+    
     return args
 
 
 def runMain():
-    args= setUpParser(sys.argv)
+    args= setUpParser()
     if args.BirthControlUseByDemo:
         print("How often do you use birth control? Demographic:", args.BirthControlUseByDemo)
         look_up_use_of_birth_control_by_demographic(args.BirthControlUseByDemo)
@@ -244,9 +246,9 @@ def runMain():
         print("Given the current political climate(2020), are you concerned with birth control access in the future? Demographic:", args.BirthControlAccessByDemo)
         look_up_birth_control_access_concerns_by_demographic(args.BirthControlAccessByDemo)
     elif args.option:
-        optionsDisplay()
+        print(optionsDisplay())
     else:
-        Usage()
+        print(Usage())
 
 def optionsDisplay():
     option= """Demographic Options: State:MA,MN...\n 
@@ -261,11 +263,12 @@ def optionsDisplay():
         Religion:Protestant, Orthodox, Jewish, Catholic, Christian, Methodist, Baptist, Unitarian, Mormon, Agnostic, Jehovah's Witness, Episcopalian, Athiest, Nothing, Pentecostal \n 
         Insured: covered by health insurance, not covered by health insurance, Don't know"""
 
-    print(option)
+    return option
 
 def Usage():
-    usage="Usage: python3 ProductionCode/birth_control.py --BirthControlUseByDemo or --BirthContolAccessByDemo 'the specific demographic you wanna search for' . Try python3 ProductionCode/birth_control.py --option for all demographic options you could search."
-    print(usage)
+    """print an usage message if the users did not use the correct format for searching"""
+    usage="[python3 ProductionCode/birth_control.py --BirthControlUseByDemo or --BirthContolAccessByDemo demographic] for searching information by demographics.\n [python3 ProductionCode/birth_control.py --option] for all demographic options you could search."
+    return usage
         
 
 
