@@ -369,7 +369,7 @@ Refused : 1 %"""
         self.assertIn(output.strip(),optionsDisplay())
         code.terminate()
 
-    def test_Usage(self):
+    def test_empty_args(self):
         """This is an edge case test. Check if birth_control.py prints the usage for no command line argument."""
         code=subprocess.Popen(['python3', 'ProductionCode/birth_control.py'],
                               stdin=subprocess.PIPE, stdout=subprocess.PIPE,
