@@ -333,7 +333,8 @@ class TestBirthControl(unittest.TestCase):
                               stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                               encoding='utf8')
         output, err=code.communicate()
-        expected= """Never : 49 %
+        expected= """How often do you use birth control? Demographic: Protestant
+Never : 49 %
 Not applicable/Does not have vaginal intercourse/sex : 18 %
 Every time : 22 %
 About half the time : 2 %
@@ -348,7 +349,8 @@ Almost every time : 4 %"""
                               stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                               encoding='utf8')
         output, err=code.communicate()
-        expected="""Very concerned : 23 %
+        expected="""Given the current political climate(2020), are you concerned with birth control access in the future? Demographic: High school
+Very concerned : 23 %
 Not applicable/don't believe in birth control : 2 %
 Somewhat concerned : 22 %
 Not very concerned : 14 %
