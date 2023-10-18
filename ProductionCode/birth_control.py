@@ -9,7 +9,7 @@ class BirthControl:
         self.data = []
         self.load_data()
 
-    def display_results(totaled_answers):
+    def display_results(self, totaled_answers):
         """
         Iterates through a dictionary to output the dataset answers
         and their percentage values to the user. Returns totaled_answers,
@@ -122,7 +122,7 @@ class BirthControl:
             return []
         return birt7_answers
 
-    def count_birth_control_use_answers(birt3_answers):
+    def count_birth_control_use_answers(self, birt3_answers):
         """
         Counts the amount of each possible response to the birt3 question in the dataset
         regarding birth control use for the appropriate list of users based on inputted demographic.
@@ -166,7 +166,7 @@ class BirthControl:
         totaled_answers["Almost every time"]=almost
         return totaled_answers
 
-    def count_birth_control_access_answers(birt7_answers):
+    def count_birth_control_access_answers(self, birt7_answers):
         """
         Counts the amount of each possible response to the birt7 question in the dataset
         regarding concerns about future access to birth control for the appropriate list 
@@ -211,7 +211,7 @@ class BirthControl:
         totaled_answers["Refused"]=refused
         return totaled_answers
 
-    def calc_percentage(totaled_answers):
+    def calc_percentage(self, totaled_answers):
         """
         Calculates the percentage of each possible response to the question in the dataset.
             Parameters:
