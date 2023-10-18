@@ -243,25 +243,150 @@ class TestBirthControl(unittest.TestCase):
         self.assertEqual(calc_percentage({}), {}, "Should be: " + str({}))
 
 
-    def test_main(self):
-        """check if birth_control.py works for valid command line argument"""
-        code=subprocess.Popen(['python3','birth_control.py','--religion','Protestant'],
+    def test_count_birth_control_use_answers_EDGECASE(self):
+        """
+        Affirms that if an empty list is input,
+        the correct dictionary with no responses will be output.
+        """
+        expected = {
+            "About half the time":0,
+            "Almost every time":0,
+            "Every time":0,
+            "Never":0,
+            "Not applicable/Does not have vaginal intercourse/sex":0,
+            "Once in a while":0
+        }
+        self.assertEqual(count_birth_control_use_answers([]), expected, "Should be: " + str(expected))
+
+    def test_count_birth_control_access_answers(self):
+        """
+        Affirms that the function outputs the correct dictionary
+        and numbers of responses for the list it is passed.
+        """
+        testListOfAccessAnswers = ["Refused", "Very concerned", "Not at all concerned"]
+        expected = {
+            "Don't know":0,
+            "Not applicable/don't believe in birth control":0,
+            "Not at all concerned":1,
+            "Not very concerned":0,
+            "Refused":1,
+            "Somewhat concerned":0,
+            "Very concerned":1
+        }
+        self.assertEqual(count_birth_control_access_answers(testListOfAccessAnswers), expected, "Should be: " + str(expected))
+
+    def test_count_birth_control_access_answers_EDGECASE(self):
+        """
+        Affirms that if the function is passed an empty list,
+        A dictionary with all responses set to zero is returned.
+        """
+        expected = {
+            "Don't know":0,
+            "Not applicable/don't believe in birth control":0,
+            "Not at all concerned":0,
+            "Not very concerned":0,
+            "Refused":0,
+            "Somewhat concerned":0,
+            "Very concerned":0
+        }
+        self.assertEqual(count_birth_control_access_answers([]), expected, "Should be: " + str(expected))
+
+    def test_calc_percentage(self):
+        """
+        Affirms the calc_percentage function accurately
+        calculates the percentages based on the list of 
+        responses it is given, and returns them in the
+        correct format. 
+        """
+        totaled_answers = {
+            "Don't know":0,
+            "Not applicable/don't believe in birth control":0,
+            "Not at all concerned":0,
+            "Not very concerned":4,
+            "Refused":0,
+            "Somewhat concerned":0,
+            "Very concerned":4
+        }
+        expected = {
+            "Don't know":0,
+            "Not applicable/don't believe in birth control":0,
+            "Not at all concerned":0,
+            "Not very concerned":50,
+            "Refused":0,
+            "Somewhat concerned":0,
+            "Very concerned":50
+        }
+        self.assertEqual(calc_percentage(totaled_answers), expected, "Should be: " + str(expected))
+
+    def test_calc_percentage_EDGECASE(self):
+        """
+        Affirms the calc_percentage function will output
+        an empty dictionary if it is passed an empty dictionary. 
+        """
+        self.assertEqual(calc_percentage({}), {}, "Should be: " + str({}))
+
+
+
+    def test_main_BirthControlUseByDemo(self):
+        """This is a base case test. Check if birth_control.py works for valid command line argument -- BirthControlUseByDemo"""
+        code=subprocess.Popen(['python3','ProductionCode/birth_control.py','--BirthControlUseByDemo','Protestant'],
                               stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                               encoding='utf8')
         output, err=code.communicate()
-        expected=['Never', 'Every time', 'Never', 'Never', 'Never', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'Never', 'Never', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'Never', 'Not applicable/Does not have vaginal intercourse/sex', 'Not applicable/Does not have vaginal intercourse/sex', 'Not applicable/Does not have vaginal intercourse/sex', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'Not applicable/Does not have vaginal intercourse/sex', 'Not applicable/Does not have vaginal intercourse/sex', 'Every time', 'Never', 'Every time', 'Never', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'Every time', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'Every time', 'Never', 'Never', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'Never', 'Never', 'Never', 'Never', 'Never', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'Never', 'Not applicable/Does not have vaginal intercourse/sex', 'Not applicable/Does not have vaginal intercourse/sex', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'Not applicable/Does not have vaginal intercourse/sex', 'Every time', 'Never', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'Never', 'Never', 'Never', 'Never', 'Almost every time', 'Never', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'Never', 'Once in a while', 'Once in a while', 'Never', 'Never', 'Never', 'Never', 'Not applicable/Does not have vaginal intercourse/sex', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'Never', 'Never', 'Never', 'Not applicable/Does not have vaginal intercourse/sex', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'Every time', 'Every time', 'Not applicable/Does not have vaginal intercourse/sex', 'Every time', 'Never', 'Every time', 'Never', 'Never', 'Once in a while', 'Every time', 'Every time', 'Never', 'Every time', 'Almost every time', 'Never', 'Never', 'Every time', "Don't know", 'Every time', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'Every time', 'Never', 'Refused', 'Every time', 'Never', 'Never', 'Every time', 'Refused', 'Every time', 'Refused', 'Never', 'Never', 'Never', 'Never', 'Never', 'Never', 'Never', 'Once in a while', 'Never', 'Every time', 'Never', 'Every time', 'Every time', 'Never', 'Every time', 'Every time', 'Every time', 'Never', 'Every time', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'Never', 'Every time', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'Never', 'Not applicable/Does not have vaginal intercourse/sex', 'Refused', 'Never', 'Not applicable/Does not have vaginal intercourse/sex', 'Every time', 'Every time', 'Never', 'Never', 'Never', 'Never', 'Never', 'Never', 'Not applicable/Does not have vaginal intercourse/sex', 'About half the time', 'Every time', 'Never', 'Never', 'Every time', 'Never', 'About half the time', 'Never', 'Never', 'Never', 'Almost every time', 'Never', 'Never', 'Every time', 'Every time', 'Never', 'Never', 'Almost every time', 'Every time', 'Never', 'Every time', 'Never', 'Never', 'About half the time', 'Never', 'Never', 'Almost every time', 'Once in a while', 'Every time', 'Not applicable/Does not have vaginal intercourse/sex', 'Every time', 'Every time', 'Every time', 'Never', 'Almost every time', 'Almost every time', 'Never', 'Once in a while', 'Every time', 'Every time', 'Once in a while', 'Never', 'Never', 'Every time', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'About half the time', 'Not applicable/Does not have vaginal intercourse/sex', 'Almost every time', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'Almost every time', 'Not applicable/Does not have vaginal intercourse/sex', 'Never', 'Once in a while', 'Every time', 'Every time', 'Every time', 'Every time']  
-        # Now, you can compare the actual_output_list with the expected output
+        expected= """How often do you use birth control? Demographic: Protestant
+Never : 49 %
+Not applicable/Does not have vaginal intercourse/sex : 18 %
+Every time : 22 %
+About half the time : 2 %
+Once in a while : 4 %
+Almost every time : 4 %"""
         self.assertEqual(output.strip(),str(expected))
         code.terminate()
 
-    def test_main_edge(self):
-        """This is an edge case test. Check if birth_control.py works for invalid command line argument"""
-        code=subprocess.Popen(['python3','birth_control.py','--state'],
+    def test_main_BirthControlAccessByDemo(self):
+        """This is a base case test. Check if birth_control.py works for valid command line argument -- BirthControlAccessByDemo"""
+        code=subprocess.Popen(['python3','ProductionCode/birth_control.py','--BirthControlAccessByDemo','High school'],
                               stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                               encoding='utf8')
         output, err=code.communicate()
-        self.assertIn(output.strip(),"Usage: python3 birth_control.py --educ or --religion")
+        expected="""Given the current political climate(2020), are you concerned with birth control access in the future? Demographic: High school
+Very concerned : 23 %
+Not applicable/don't believe in birth control : 2 %
+Somewhat concerned : 22 %
+Not very concerned : 14 %
+Not at all concerned : 37 %
+Don't know : 0 %
+Refused : 1 %"""
+        self.assertEqual(output.strip(),str(expected))
         code.terminate()
+
+    def test_main_options(self):
+        """This is an base case test. Check if birth_control.py works for valid command line argument --option"""
+        code=subprocess.Popen(['python3','ProductionCode/birth_control.py','--option'],
+                              stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                              encoding='utf8')
+        output, err=code.communicate()
+        self.assertIn(output.strip(),optionsDisplay())
+        code.terminate()
+
+    def test_empty_args(self):
+        """This is an edge case test. Check if birth_control.py prints the usage for no command line argument."""
+        code=subprocess.Popen(['python3', 'ProductionCode/birth_control.py'],
+                              stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                              encoding='utf8')
+        output, err=code.communicate()
+        self.assertIn(output.strip(),Usage())
+        code.terminate()
+    
+    def test_Invalid_args(self):
+        """This is an edge case test. Check if birth_control.py prints the usage for invalid command line arguments."""
+        code=subprocess.Popen(['python3', 'ProductionCode/birth_control.py','--invalid'],
+                              stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                              encoding='utf8')
+        output, err=code.communicate()
+        self.assertIn(output.strip(),Usage())
+        code.terminate()
+
 
 if __name__ == '__main__':
     unittest.main()
