@@ -2,6 +2,8 @@ from flask import Flask#, render_template
 from ProductionCode.birth_control import *
 
 
+data_accessor = BirthControl()
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -45,9 +47,9 @@ def get_birth_control_use_by_demographic(demographic):
             
     Returns the string version of that list of responses.
     """
-    user_ids = get_user_ids_by_column(demographic)
+    user_ids = data_accessor.get_user_ids_by_column(demographic)
     if user_ids != []:
-        return look_up_use_of_birth_control_by_demographic(demographic)
+        return data_accessor.look_up_use_of_birth_control_by_demographic(demographic)
     else:
         return "Invalid Input. The demographic you chose is not in our dataset. Plase try another one."
 
@@ -68,9 +70,9 @@ def get_birth_control_access_concerns_by_demographic(demographic):
             
     Return the string version of that list of responses.
     """
-    user_ids = get_user_ids_by_column(demographic)
+    user_ids = data_accessor.get_user_ids_by_column(demographic)
     if user_ids != []:
-        return look_up_birth_control_access_concerns_by_demographic(demographic)
+        return data_accessor.look_up_birth_control_access_concerns_by_demographic(demographic)
     else:
         return "Invalid Input. The demographic you chose is not in our dataset. Plase try another one."
 
@@ -95,5 +97,5 @@ def python_bug(e):
                 to the url. Head back to the homepage if you need demographic ideas."
 
 if __name__ == '__main__':
-    load_data()
+    data_accessor.load_data()
     app.run()
