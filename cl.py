@@ -42,7 +42,7 @@ def optionsDisplay():
     print(option)
 
 def Usage():
-    usage="Usage: python3 ProductionCode/birth_control.py --BirthControlUseByDemo or --BirthContolAccessByDemo 'the specific demographic you wanna search for' . Try python3 ProductionCode/birth_control.py --option for all demographic options you could search."
+    usage="Usage: python3 cl.py --BirthControlUseByDemo or --BirthContolAccessByDemo 'the specific demographic you wanna search for' . Try python3 ProductionCode/birth_control.py --option for all demographic options you could search."
     print(usage)
         
 
@@ -52,7 +52,6 @@ def main():
     """
     Creates the command line interface for the user to ask for specific religion or education and get the birth control use.
     """
-    #load_data()
     runMain()
 
     
