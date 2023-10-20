@@ -1,6 +1,4 @@
 import csv
-# import argparse
-# import sys
 
 class BirthControl:
 
@@ -42,7 +40,7 @@ class BirthControl:
         Returns the dictionary of answers and their percentage results after being displayed. 
         """
         user_ids = self.get_user_ids_by_column(demographic)
-        responses = self.get_use_of_birth_control(user_ids)
+        responses = self.get_birth_control_info(user_ids, "use")
         results = self.count_birth_control_use_answers(responses)
         percent_results = self.calc_percentage(results)
         return self.display_results(percent_results)
@@ -58,7 +56,7 @@ class BirthControl:
         Returns the dictionary of answers and their percentage results after being displayed. 
         """
         user_ids = self.get_user_ids_by_column(demographic)
-        responses = self.get_birth_control_access_concerns(user_ids)
+        responses = self.get_birth_control_info(user_ids, "access")
         results = self.count_birth_control_access_answers(responses)
         percent_results = self.calc_percentage(results)
         return self.display_results(percent_results)
@@ -84,7 +82,9 @@ class BirthControl:
             return []
         return user_ids
 
-    def get_use_of_birth_control(self, user_ids):
+    def get_birth_control_info(self, user_ids, useOrAccess):
+        #add another parameter to differentiate use or access
+        #to combine these into one function to lessen repetitive code
         """
         Iterates through the list of user ids and creates a list of their
         answers to the appropriate question in the dataset.
@@ -92,37 +92,44 @@ class BirthControl:
                 user_ids = the list of user_ids of the appropriate demographic.
         Returns the list of answers to the question about how often birth control is used.
         """
-        birt3_answers = []
+        birth_control_use_answers = []
+        birth_control_access_answers = []
         for user in user_ids:
             for row in self.data:
             #access birt3 column and append item to list
                 if (row[0]==user):
-                    birt3_answers.append(row[45])
+                    if useOrAccess == "use":
+                        birth_control_use_answers.append(row[45])
+                    else:
+                        birth_control_access_answers.append(row[58])
         if user_ids == []:
             print("List is empty")
             return []
-        return birt3_answers
+        if useOrAccess == "use":
+            return birth_control_use_answers
+        else:
+            return birth_control_access_answers
 
-    def get_birth_control_access_concerns(self, user_ids):
-        """
-        Iterates through the list of user ids and creates a list of their
-        answers to the appropriate question in the dataset.
-            Parameters:
-                user_ids = the list of user_ids of the appropriate demographic.
-        Returns the list of answers to the question about how concerned the person is
-        regarding future access to birth control considering the recent political climate.
-        """
-        birt7_answers = []
-        for user in user_ids:
-            for row in self.data:
-                if (row[0]==user):
-                    birt7_answers.append(row[58])
-        if user_ids == []:
-            print("List is empty")
-            return []
-        return birt7_answers
+    # def get_birth_control_access_concerns(self, user_ids):
+    #     """
+    #     Iterates through the list of user ids and creates a list of their
+    #     answers to the appropriate question in the dataset.
+    #         Parameters:
+    #             user_ids = the list of user_ids of the appropriate demographic.
+    #     Returns the list of answers to the question about how concerned the person is
+    #     regarding future access to birth control considering the recent political climate.
+    #     """
+    #     birth_control_access_answers = []
+    #     for user in user_ids:
+    #         for row in self.data:
+    #             if (row[0]==user):
+    #                 birth_control_access_answers.append(row[58])
+    #     if user_ids == []:
+    #         print("List is empty")
+    #         return []
+    #     return birth_control_access_answers
 
-    def count_birth_control_use_answers(self, birt3_answers):
+    def count_birth_control_use_answers(self, birth_control_use_answers):
         """
         Counts the amount of each possible response to the birt3 question in the dataset
         regarding birth control use for the appropriate list of users based on inputted demographic.
@@ -143,7 +150,7 @@ class BirthControl:
         refused=0
 
         totaled_answers={}
-        for item in birt3_answers:
+        for item in birth_control_use_answers:
             if item == "Never":
                 never=never+1
             elif item== "Not applicable/Does not have vaginal intercourse/sex":
@@ -166,7 +173,7 @@ class BirthControl:
         totaled_answers["Almost every time"]=almost
         return totaled_answers
 
-    def count_birth_control_access_answers(self, birt7_answers):
+    def count_birth_control_access_answers(self, birth_control_access_answers):
         """
         Counts the amount of each possible response to the birt7 question in the dataset
         regarding concerns about future access to birth control for the appropriate list 
@@ -187,7 +194,7 @@ class BirthControl:
         refused=0
 
         totaled_answers={}
-        for item in birt7_answers:
+        for item in birth_control_access_answers:
             if item == "Very concerned":
                 veryConcerned=veryConcerned+1
             elif item== "Not applicable/don't believe in birth control":
@@ -229,60 +236,3 @@ class BirthControl:
             if total!=0:   
                 totaled_answers[key]= round((totaled_answers[key]/total)*100)
         return totaled_answers
-
-# def setUpParser(command):
-#     parser = argparse.ArgumentParser(description="Search for participants and filter by demographic")
-#     parser.add_argument("--BirthControlUseByDemo",help="Specific subset within demographic to search for")
-#     parser.add_argument("--BirthControlAccessByDemo",help="Specific subset within demographic to search for")
-#     parser.add_argument("--option", action="store_true", help="list all options for the demographic")
-#     args= parser.parse_args()
-#     return args
-
-
-# def runMain():
-#     args= setUpParser(sys.argv)
-#     if args.BirthControlUseByDemo:
-#         print("How often do you use birth control? Demographic:", args.BirthControlUseByDemo)
-#         look_up_use_of_birth_control_by_demographic(args.BirthControlUseByDemo)
-#     elif args.BirthControlAccessByDemo:
-#         print("Given the current political climate(2020), are you concerned with birth control access in the future? Demographic:", args.BirthControlAccessByDemo)
-#         look_up_birth_control_access_concerns_by_demographic(args.BirthControlAccessByDemo)
-#     elif args.option:
-#         optionsDisplay()
-#     else:
-#         Usage()
-
-# def optionsDisplay():
-#     option= """Demographic Options: State:MA,MN...\n 
-#         Region:North East, South... \n 
-#         Own home: Owned, Rented \n 
-#         Marital Status: never married, Widowed,Married, Divorced, Single \n 
-#         Employ: Retired, Homemaker, Full-time, Part-time, Other, Temporarily unemployed, Disabled \n
-#         Education: Four year college, High School graduate, Some college, Two year associate degree, Postgraduate or professional degree,Some postgraduate or professional schooling, Refused, Less than high school \n 
-#         Race: White Non-Hispanic, Native American, White Hispanic,Black Non-Hispanic, Mixed, Asian, Refused, Black Hispanic \n 
-#         Political party: An Independent, A Republican, A Democrat, Refused \n
-#         Political View: Somewhat conservative, Moderate, Somewhat liberal, Very liberal, Very conservative, Refused \n
-#         Religion:Protestant, Orthodox, Jewish, Catholic, Christian, Methodist, Baptist, Unitarian, Mormon, Agnostic, Jehovah's Witness, Episcopalian, Athiest, Nothing, Pentecostal \n 
-#         Insured: covered by health insurance, not covered by health insurance, Don't know"""
-
-#     print(option)
-
-# def Usage():
-#     usage="Usage: python3 ProductionCode/birth_control.py --BirthControlUseByDemo or --BirthContolAccessByDemo 'the specific demographic you wanna search for' . Try python3 ProductionCode/birth_control.py --option for all demographic options you could search."
-#     print(usage)
-        
-
-
-# def main():
-    
-#     """
-#     Creates the command line interface for the user to ask for specific religion or education and get the birth control use.
-#     """
-#     load_data()
-#     runMain()
-
-    
-
- 
-# if __name__ == "__main__":
-#     main()
