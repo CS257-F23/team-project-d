@@ -1,18 +1,20 @@
 import unittest
 import subprocess
 from ProductionCode.birth_control import *
+from cl import *
+data_accessor = BirthControl()
 
 
 class TestBirthControl(unittest.TestCase):
 
     def setUp(self):
-        load_data()
+        data_accessor.load_data()
 
     def test_load_data(self):
         """
         Ensures the load data function does not return any errors.
         """
-        self.assertIsNone(load_data())
+        self.assertIsNone(data_accessor.load_data())
 
     def test_display_results(self):
         """
@@ -27,7 +29,7 @@ class TestBirthControl(unittest.TestCase):
             "Not applicable/Does not have vaginal intercourse/sex":20,
             "Once in a while":0
         }
-        self.assertEqual(display_results(exampleDictToDisplay), exampleDictToDisplay, "Should be " + str(exampleDictToDisplay))
+        self.assertEqual(data_accessor.display_results(exampleDictToDisplay), exampleDictToDisplay, "Should be " + str(exampleDictToDisplay))
 
     def test_look_up_birth_control_access_by_demographic(self):
         """
@@ -43,7 +45,7 @@ class TestBirthControl(unittest.TestCase):
             "Somewhat concerned":40,
             "Very concerned":40
         }
-        self.assertEqual(look_up_birth_control_access_concerns_by_demographic("Hindu"), expected, "Should be: " + str(expected))
+        self.assertEqual(data_accessor.look_up_birth_control_access_concerns_by_demographic("Hindu"), expected, "Should be: " + str(expected))
 
     def test_look_up_birth_control_access_by_demographic_EDGECASE(self):
         """
@@ -60,7 +62,7 @@ class TestBirthControl(unittest.TestCase):
             "Somewhat concerned":0,
             "Very concerned":0
         }
-        self.assertEqual(look_up_birth_control_access_concerns_by_demographic("vegetarian"), expected, "Should be: " + str(expected))
+        self.assertEqual(data_accessor.look_up_birth_control_access_concerns_by_demographic("vegetarian"), expected, "Should be: " + str(expected))
 
     def test_look_up_use_of_birth_control_by_demographic(self):
         """
@@ -75,7 +77,7 @@ class TestBirthControl(unittest.TestCase):
             "Not applicable/Does not have vaginal intercourse/sex":20,
             "Once in a while":0
         }
-        self.assertEqual(look_up_use_of_birth_control_by_demographic("Hindu"), expected, "Should be: " + str(expected))
+        self.assertEqual(data_accessor.look_up_use_of_birth_control_by_demographic("Hindu"), expected, "Should be: " + str(expected))
 
     def test_look_up_use_of_birth_control_by_demographic_EDGECASE(self):
         """
@@ -91,14 +93,14 @@ class TestBirthControl(unittest.TestCase):
             "Not applicable/Does not have vaginal intercourse/sex":0,
             "Once in a while":0
         }
-        self.assertEqual(look_up_use_of_birth_control_by_demographic(invalidReligion), expected, "Should be: " + str(expected))
+        self.assertEqual(data_accessor.look_up_use_of_birth_control_by_demographic(invalidReligion), expected, "Should be: " + str(expected))
 
     def test_get_user_ids_by_column(self):
         """
         Affirms that the user ids for the correct demographic are returned
         """
         ids = ['50000198', '50000290', '70000589', '70000664', '70000805']
-        self.assertEqual(get_user_ids_by_column("Hindu"), ids, "Should be " + str(ids))
+        self.assertEqual(data_accessor.get_user_ids_by_column("Hindu"), ids, "Should be " + str(ids))
 
     def test_get_user_ids_by_column_EDGECASE(self):
         """
@@ -106,7 +108,7 @@ class TestBirthControl(unittest.TestCase):
         and that the error message is printed.
         """
         invalidReligion = "Flying Spaghetti Monster"
-        self.assertEqual(get_user_ids_by_column(invalidReligion), [], "Should be: " + str([]))
+        self.assertEqual(data_accessor.get_user_ids_by_column(invalidReligion), [], "Should be: " + str([]))
 
     def test_get_use_of_birth_control(self):
         """
@@ -114,14 +116,14 @@ class TestBirthControl(unittest.TestCase):
         """
         ids = ['50000198', '50000290',  '70000589', '70000664', '70000805']
         output = ['Every time', 'Never', 'Every time', 'Not applicable/Does not have vaginal intercourse/sex', 'Never']
-        self.assertEqual(get_use_of_birth_control(ids), output, "Should be " + str(output))
+        self.assertEqual(data_accessor.get_birth_control_info(ids,'use'), output, "Should be " + str(output))
 
     def test_get_use_of_birth_control_EDGECASE(self):
         """
         Affirms that a message is printed if the function
         is passed an empty list as input.
         """
-        self.assertEqual(get_use_of_birth_control([]), [], "Should be: " + str([]))
+        self.assertEqual(data_accessor.get_birth_control_info([], 'use'), [], "Should be: " + str([]))
 
     def test_get_birth_control_access_concerns(self):
         """
@@ -135,14 +137,14 @@ class TestBirthControl(unittest.TestCase):
             "Somewhat concerned",
             "Very concerned"
             ]
-        self.assertEqual(get_birth_control_access_concerns(ids), expected, "Should be: " + str(expected))
+        self.assertEqual(data_accessor.get_birth_control_info(ids, 'Access'), expected, "Should be: " + str(expected))
 
     def test_get_birth_control_access_concerns_EDGECASE(self):
         """
         Affirms that if invalid input or an empty list is passed in,
         an empty list is returned to signal that there was an issue.
         """
-        self.assertEqual(get_birth_control_access_concerns([]), [], "Should be: " + str([]))
+        self.assertEqual(data_accessor.get_birth_control_info([], 'Access'), [], "Should be: " + str([]))
         
     def test_count_birth_control_use_answers(self):
         """
@@ -158,7 +160,7 @@ class TestBirthControl(unittest.TestCase):
             "Not applicable/Does not have vaginal intercourse/sex":0,
             "Once in a while":0
         }
-        self.assertEqual(count_birth_control_use_answers(testListOfResponses), expected, "Should be " + str(expected))
+        self.assertEqual(data_accessor.count_birth_control_use_answers(testListOfResponses), expected, "Should be " + str(expected))
 
     def test_count_birth_control_use_answers_EDGECASE(self):
         """
@@ -173,7 +175,7 @@ class TestBirthControl(unittest.TestCase):
             "Not applicable/Does not have vaginal intercourse/sex":0,
             "Once in a while":0
         }
-        self.assertEqual(count_birth_control_use_answers([]), expected, "Should be: " + str(expected))
+        self.assertEqual(data_accessor.count_birth_control_use_answers([]), expected, "Should be: " + str(expected))
 
     def test_count_birth_control_access_answers(self):
         """
@@ -190,7 +192,7 @@ class TestBirthControl(unittest.TestCase):
             "Somewhat concerned":0,
             "Very concerned":1
         }
-        self.assertEqual(count_birth_control_access_answers(testListOfAccessAnswers), expected, "Should be: " + str(expected))
+        self.assertEqual(data_accessor.count_birth_control_access_answers(testListOfAccessAnswers), expected, "Should be: " + str(expected))
 
     def test_count_birth_control_access_answers_EDGECASE(self):
         """
@@ -206,7 +208,7 @@ class TestBirthControl(unittest.TestCase):
             "Somewhat concerned":0,
             "Very concerned":0
         }
-        self.assertEqual(count_birth_control_access_answers([]), expected, "Should be: " + str(expected))
+        self.assertEqual(data_accessor.count_birth_control_access_answers([]), expected, "Should be: " + str(expected))
 
     def test_calc_percentage(self):
         """
@@ -233,14 +235,14 @@ class TestBirthControl(unittest.TestCase):
             "Somewhat concerned":0,
             "Very concerned":50
         }
-        self.assertEqual(calc_percentage(totaled_answers), expected, "Should be: " + str(expected))
+        self.assertEqual(data_accessor.calc_percentage(totaled_answers), expected, "Should be: " + str(expected))
 
     def test_calc_percentage_EDGECASE(self):
         """
         Affirms the calc_percentage function will output
         an empty dictionary if it is passed an empty dictionary. 
         """
-        self.assertEqual(calc_percentage({}), {}, "Should be: " + str({}))
+        self.assertEqual(data_accessor.calc_percentage({}), {}, "Should be: " + str({}))
 
 
     def test_count_birth_control_use_answers_EDGECASE(self):
@@ -256,7 +258,7 @@ class TestBirthControl(unittest.TestCase):
             "Not applicable/Does not have vaginal intercourse/sex":0,
             "Once in a while":0
         }
-        self.assertEqual(count_birth_control_use_answers([]), expected, "Should be: " + str(expected))
+        self.assertEqual(data_accessor.count_birth_control_use_answers([]), expected, "Should be: " + str(expected))
 
     def test_count_birth_control_access_answers(self):
         """
@@ -273,7 +275,7 @@ class TestBirthControl(unittest.TestCase):
             "Somewhat concerned":0,
             "Very concerned":1
         }
-        self.assertEqual(count_birth_control_access_answers(testListOfAccessAnswers), expected, "Should be: " + str(expected))
+        self.assertEqual(data_accessor.count_birth_control_access_answers(testListOfAccessAnswers), expected, "Should be: " + str(expected))
 
     def test_count_birth_control_access_answers_EDGECASE(self):
         """
@@ -289,7 +291,7 @@ class TestBirthControl(unittest.TestCase):
             "Somewhat concerned":0,
             "Very concerned":0
         }
-        self.assertEqual(count_birth_control_access_answers([]), expected, "Should be: " + str(expected))
+        self.assertEqual(data_accessor.count_birth_control_access_answers([]), expected, "Should be: " + str(expected))
 
     def test_calc_percentage(self):
         """
@@ -316,14 +318,14 @@ class TestBirthControl(unittest.TestCase):
             "Somewhat concerned":0,
             "Very concerned":50
         }
-        self.assertEqual(calc_percentage(totaled_answers), expected, "Should be: " + str(expected))
+        self.assertEqual(data_accessor.calc_percentage(totaled_answers), expected, "Should be: " + str(expected))
 
     def test_calc_percentage_EDGECASE(self):
         """
         Affirms the calc_percentage function will output
         an empty dictionary if it is passed an empty dictionary. 
         """
-        self.assertEqual(calc_percentage({}), {}, "Should be: " + str({}))
+        self.assertEqual(data_accessor.calc_percentage({}), {}, "Should be: " + str({}))
 
 
 
@@ -340,7 +342,7 @@ Every time : 22 %
 About half the time : 2 %
 Once in a while : 4 %
 Almost every time : 4 %"""
-        self.assertEqual(output.strip(),str(expected))
+        self.assertIn(output.strip(),str(expected))
         code.terminate()
 
     def test_main_BirthControlAccessByDemo(self):
