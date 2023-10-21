@@ -1,6 +1,5 @@
-from flask import Flask#, render_template
+from flask import Flask, render_template, request
 from ProductionCode.birth_control import *
-
 
 data_accessor = BirthControl()
 
@@ -49,7 +48,8 @@ def get_birth_control_use_by_demographic(demographic):
     """
     user_ids = data_accessor.get_user_ids_by_column(demographic)
     if user_ids != []:
-        return data_accessor.look_up_use_of_birth_control_by_demographic(demographic)
+        use=data_accessor.look_up_use_of_birth_control_by_demographic(demographic)
+        return render_template('datapage.html',title2="Birth Control Use by Demographic",header2=request.args['WHATEVER VARIABLE'],displaylist=use)
     else:
         return "Invalid Input. The demographic you chose is not in our dataset. Plase try another one."
 
@@ -72,7 +72,8 @@ def get_birth_control_access_concerns_by_demographic(demographic):
     """
     user_ids = data_accessor.get_user_ids_by_column(demographic)
     if user_ids != []:
-        return data_accessor.look_up_birth_control_access_concerns_by_demographic(demographic)
+        concerns=data_accessor.look_up_use_of_birth_control_access_by_demographic(request.args['WHATEVER VARIABLE IT IS ON HOME PAGE'])
+        return render_template('datapage.html',title2="Birth Control Policy Concerns by Demographic",header2=request.args['WHATEVER VARIABLE'],displaylist=concerns)
     else:
         return "Invalid Input. The demographic you chose is not in our dataset. Plase try another one."
 
