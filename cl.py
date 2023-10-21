@@ -5,6 +5,9 @@ from ProductionCode.birth_control import *
 data_accessor = BirthControl()
 
 def setUpParser(command):
+    """
+    Sets up the parser component by adding and returning the args
+    """
     parser = argparse.ArgumentParser(description="Search for participants and filter by demographic")
     parser.add_argument("--BirthControlUseByDemo",help="Specific subset within demographic to search for")
     parser.add_argument("--BirthControlAccessByDemo",help="Specific subset within demographic to search for")
@@ -14,6 +17,10 @@ def setUpParser(command):
 
 
 def runMain():
+    """
+    Determines the args being input and calls the correct function based on the input
+    If input does not match a listed option, the usage statement is printed
+    """
     args= setUpParser(sys.argv)
     if args.BirthControlUseByDemo:
         print("How often do you use birth control? Demographic:", args.BirthControlUseByDemo)
@@ -27,6 +34,9 @@ def runMain():
         Usage()
 
 def optionsDisplay():
+    """
+    Displays and returns a string of possible input options.
+    """
     option= """Demographic Options: State:MA,MN...\n 
         Region:North East, South... \n 
         Own home: Owned, Rented \n 
@@ -40,10 +50,15 @@ def optionsDisplay():
         Insured: covered by health insurance, not covered by health insurance, Don't know"""
 
     print(option)
+    return option
 
 def Usage():
+    """
+    Displays and returns a string usage statement.
+    """
     usage="Usage: python3 cl.py --BirthControlUseByDemo or --BirthContolAccessByDemo 'the specific demographic you wanna search for' . Try python3 cl.py --option for all demographic options you could search."
     print(usage)
+    return usage
         
 
 

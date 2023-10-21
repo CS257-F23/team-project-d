@@ -330,7 +330,10 @@ class TestBirthControl(unittest.TestCase):
 
 
     def test_main_BirthControlUseByDemo(self):
-        """This is a base case test. Check if birth_control.py works for valid command line argument -- BirthControlUseByDemo"""
+        """
+        Affirms that birth_control.py works for valid command line argument --BirthControlUseByDemo
+        and returns the correct output and format.
+        """
         code=subprocess.Popen(['python3','ProductionCode/birth_control.py','--BirthControlUseByDemo','Protestant'],
                               stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                               encoding='utf8')
@@ -346,8 +349,11 @@ Almost every time : 4 %"""
         code.terminate()
 
     def test_main_BirthControlAccessByDemo(self):
-        """This is a base case test. Check if birth_control.py works for valid command line argument -- BirthControlAccessByDemo"""
-        code=subprocess.Popen(['python3','ProductionCode/birth_control.py','--BirthControlAccessByDemo','High school'],
+        """
+        Affirms that birth_control.py works for valid command line argument --BirthControlAccessByDemo
+        and returns the correct output and format. 
+        """
+        code=subprocess.Popen(['python3','cl.py','--BirthControlAccessByDemo','High school'],
                               stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                               encoding='utf8')
         output, err=code.communicate()
@@ -363,26 +369,33 @@ Refused : 1 %"""
         code.terminate()
 
     def test_main_options(self):
-        """This is an base case test. Check if birth_control.py works for valid command line argument --option"""
-        code=subprocess.Popen(['python3','ProductionCode/birth_control.py','--option'],
+        """
+        Affirms that birth_control.py works for valid command line argument --option
+        and outputs the options available to input in the correct format. 
+        """
+        code=subprocess.Popen(['python3','cl.py','--option'],
                               stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                               encoding='utf8')
         output, err=code.communicate()
-        self.assertIn(output.strip(),optionsDisplay())
+        self.assertEqual(output.strip(),optionsDisplay())
         code.terminate()
 
     def test_empty_args(self):
-        """This is an edge case test. Check if birth_control.py prints the usage for no command line argument."""
-        code=subprocess.Popen(['python3', 'ProductionCode/birth_control.py'],
+        """
+        This is an edge case test. Check if birth_control.py prints the usage for no command line argument.
+        """
+        code=subprocess.Popen(['python3', 'cl.py'],
                               stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                               encoding='utf8')
         output, err=code.communicate()
-        self.assertIn(output.strip(),Usage())
+        self.assertEqual(output.strip(),Usage())
         code.terminate()
     
     def test_Invalid_args(self):
-        """This is an edge case test. Check if birth_control.py prints the usage for invalid command line arguments."""
-        code=subprocess.Popen(['python3', 'ProductionCode/birth_control.py','--invalid'],
+        """
+        This is an edge case test. Check if birth_control.py prints the usage for invalid command line arguments.
+        """
+        code=subprocess.Popen(['python3', 'cl.py','--invalid'],
                               stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                               encoding='utf8')
         output, err=code.communicate()
