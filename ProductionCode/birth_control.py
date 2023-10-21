@@ -73,7 +73,6 @@ class BirthControl:
         user_ids = []
         for row in self.data:
             for item in row:
-                #if item == topic:
                 item=item.lower()
                 if topic.lower() in item:
                     user_ids.append(row[0])
@@ -83,8 +82,6 @@ class BirthControl:
         return user_ids
 
     def get_birth_control_info(self, user_ids, useOrAccess):
-        #add another parameter to differentiate use or access
-        #to combine these into one function to lessen repetitive code
         """
         Iterates through the list of user ids and creates a list of their
         answers to the appropriate question in the dataset.
@@ -109,25 +106,6 @@ class BirthControl:
             return birth_control_use_answers
         else:
             return birth_control_access_answers
-
-    # def get_birth_control_access_concerns(self, user_ids):
-    #     """
-    #     Iterates through the list of user ids and creates a list of their
-    #     answers to the appropriate question in the dataset.
-    #         Parameters:
-    #             user_ids = the list of user_ids of the appropriate demographic.
-    #     Returns the list of answers to the question about how concerned the person is
-    #     regarding future access to birth control considering the recent political climate.
-    #     """
-    #     birth_control_access_answers = []
-    #     for user in user_ids:
-    #         for row in self.data:
-    #             if (row[0]==user):
-    #                 birth_control_access_answers.append(row[58])
-    #     if user_ids == []:
-    #         print("List is empty")
-    #         return []
-    #     return birth_control_access_answers
 
     def count_birth_control_use_answers(self, birth_control_use_answers):
         """
