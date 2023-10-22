@@ -49,7 +49,7 @@ def get_birth_control_use_by_demographic(demographic):
     user_ids = data_accessor.get_user_ids_by_column(demographic)
     if user_ids != []:
         use=data_accessor.look_up_use_of_birth_control_by_demographic(demographic)
-        return render_template('datapage.html',title2="Birth Control Use by Demographic",header2=request.args['WHATEVER VARIABLE'],displaylist=use)
+        return render_template('datapage.html',title2="Birth Control Use by Demographic",header2=request.args['WHATEVER VARIABLE'], question= "Birth Control Use", displaylist=use)
     else:
         return "Invalid Input. The demographic you chose is not in our dataset. Plase try another one."
 
@@ -73,7 +73,7 @@ def get_birth_control_access_concerns_by_demographic(demographic):
     user_ids = data_accessor.get_user_ids_by_column(demographic)
     if user_ids != []:
         concerns=data_accessor.look_up_use_of_birth_control_access_by_demographic(request.args['WHATEVER VARIABLE IT IS ON HOME PAGE'])
-        return render_template('datapage.html',title2="Birth Control Policy Concerns by Demographic",header2=request.args['WHATEVER VARIABLE'],displaylist=concerns)
+        return render_template('datapage.html',title2="Birth Control Policy Concerns by Demographic",header2=request.args['WHATEVER VARIABLE'],question="Birth Control Access", displaylist=concerns)
     else:
         return "Invalid Input. The demographic you chose is not in our dataset. Plase try another one."
 
