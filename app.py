@@ -17,10 +17,7 @@ def homepage():
     on how to change the fonts in HTML, and to stackoverflow.com for the
     information as to how to include new lines (breaks) and indentation in the browser.
     """
-
     return render_template('homepage.html')
-
-
 
 """This is the page that allows the users to look up for the results of birth control use by their input of a demographic value"""
 @app.route('/birth-control-use', strict_slashes=False, methods=['GET', 'POST'])
@@ -40,20 +37,18 @@ def get_birth_control_use_by_demographic(demographic):
     Returns a list of the responses to the question "How often do you
     use birth control when not trying to get pregnant?" from the csv
     based upon the demographic that is passed in. 
-
         Parameters:
             demographic = the demographic that was passed in;\
             all output will be from people in that demographic.
-        
         Variables:
             reponses = the list of responses to the question above
-            
     Returns the string version of that list of responses.
     """
     user_ids = data_accessor.get_user_ids_by_column(demographic)
     if user_ids != []:
         use=data_accessor.look_up_use_of_birth_control_by_demographic(demographic)
-        return render_template('datapage.html',title2="Birth Control Use by Demographic",header2=request.args['WHATEVER VARIABLE'], question= "Birth Control Use", displaylist=use)
+        displaylist={}
+        return render_template('datapage.html',title2="Birth Control Use by Demographic",header2=demographic, question= "Birth Control Use", displaylist=use)
     else:
         return "Invalid Input. The demographic you chose is not in our dataset. Plase try another one."
 
@@ -89,11 +84,12 @@ def get_birth_control_access_concerns_by_demographic(demographic):
     """
     user_ids = data_accessor.get_user_ids_by_column(demographic)
     if user_ids != []:
-        concerns=data_accessor.look_up_birth_control_access_concerns_by_demographic(request.args['WHATEVER VARIABLE IT IS ON HOME PAGE'])
-        return render_template('datapage.html',title2="Birth Control Policy Concerns by Demographic",header2=request.args['WHATEVER VARIABLE'],question="Birth Control Access", displaylist=concerns)
+        concerns=data_accessor.look_up_birth_control_access_concerns_by_demographic(demographic)
+        x=data_accessor.xvals(concerns)
+        y=data_accessor.yvals(concerns)
+        return render_template('datapage.html',title2="Birth Control Policy Concerns by Demographic",header2=demographic,question="Birth Control Access", displaylist=concerns,xValues=x,yValues=y)
     else:
         return "Invalid Input. The demographic you chose is not in our dataset. Plase try another one."
-
 
 
 @app.errorhandler(404)
