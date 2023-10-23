@@ -17,6 +17,17 @@ class BirthControl:
         for key in totaled_answers:
             print(key, ":",totaled_answers[key], "%")
         return totaled_answers
+    
+    def xvals(self, totaled_answers):
+        keys=[]
+        for key in totaled_answers:
+            keys.append(key)
+        return keys
+    def yvals(self,totaled_answers):
+        vals=[]
+        for key in totaled_answered:
+            vals.append(totaled_answers[key])
+        return vals
 
     def load_data(self):
         """
