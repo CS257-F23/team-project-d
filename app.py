@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, redirect, render_template, request, url_for
 from ProductionCode.birth_control import *
 
 data_accessor = BirthControl()
@@ -18,17 +18,21 @@ def homepage():
     information as to how to include new lines (breaks) and indentation in the browser.
     """
 
-    return "This is the homepage for Team D's Project Component #2.\
-    To see how often people of a certain demographic use birth control\
-    when they are not trying to get pregnant, add /birth-control-use/[DEMOGRAPHIC] to the current url.\
-    To see how concerned people of a certain demographic are about future access to birth control\
-    due to the political climate, add /birth-control-access/[DEMOGRAPHIC] to the current url.\
-            Here are some demographic ideas to input:<br><pre><font face=\"Times New Roman\">\
-            * state abbreviation (ex. MN, MA, HI)<br>\
-            * religion (ex. Hindu, Protestant, Jewish/Judaism, etc)<br>\
-            * education level<br>\
-                - Two year associate degree from a college or university<br>\
-                - High school graduate (Grade 12 with diploma or GED certificate)<br></pre></font>"
+    return render_template('homepage.html')
+
+
+
+"""This is the page that allows the users to look up for the results of birth control uses by their input of a demographic value"""
+@app.route('/birth-control-use', strict_slashes=False, methods=['GET', 'POST'])
+def get_birth_control_use():
+    if request.method == 'POST':
+        demographic = request.form.get('demographic')
+        if demographic:
+            return redirect(url_for('get_birth_control_use_by_demographic', demographic=demographic))
+        else:
+            return "Invalid input. Please provide a valid demographic value."
+
+    return render_template('use.html')
 
 @app.route('/birth-control-use/<demographic>', strict_slashes = False)
 def get_birth_control_use_by_demographic(demographic):
@@ -53,6 +57,19 @@ def get_birth_control_use_by_demographic(demographic):
     else:
         return "Invalid Input. The demographic you chose is not in our dataset. Plase try another one."
 
+"""This is the page that allows the users to look up for the results of birth control accesses by their input of a demographic value"""    
+@app.route('/birth-control-access', strict_slashes=False, methods=['GET', 'POST'])
+def get_birth_control_access():
+    if request.method == 'POST':
+        demographic = request.form.get('demographic')
+        if demographic:
+            return redirect(url_for('get_birth_control_access_concerns_by_demographic', demographic=demographic))
+        else:
+            return "Invalid input. Please provide a valid demographic value."
+
+    return render_template('access.html')
+
+
 @app.route('/birth-control-access/<demographic>', strict_slashes = False)
 def get_birth_control_access_concerns_by_demographic(demographic):
     """
@@ -72,7 +89,7 @@ def get_birth_control_access_concerns_by_demographic(demographic):
     """
     user_ids = data_accessor.get_user_ids_by_column(demographic)
     if user_ids != []:
-        concerns=data_accessor.look_up_use_of_birth_control_access_by_demographic(request.args['WHATEVER VARIABLE IT IS ON HOME PAGE'])
+        concerns=data_accessor.look_up_birth_control_access_concerns_by_demographic(request.args['WHATEVER VARIABLE IT IS ON HOME PAGE'])
         return render_template('datapage.html',title2="Birth Control Policy Concerns by Demographic",header2=request.args['WHATEVER VARIABLE'],question="Birth Control Access", displaylist=concerns)
     else:
         return "Invalid Input. The demographic you chose is not in our dataset. Plase try another one."
