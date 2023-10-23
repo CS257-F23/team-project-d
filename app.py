@@ -22,7 +22,7 @@ def homepage():
 
 
 
-"""This is the page that allows the users to look up for the results of birth control uses by their input of a demographic value"""
+"""This is the page that allows the users to look up for the results of birth control use by their input of a demographic value"""
 @app.route('/birth-control-use', strict_slashes=False, methods=['GET', 'POST'])
 def get_birth_control_use():
     if request.method == 'POST':
