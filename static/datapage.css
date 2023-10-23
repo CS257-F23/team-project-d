@@ -1,0 +1,64 @@
+h1 {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: rgb(16, 0, 157);
+    color: white;
+    text-align: center;
+}
+h2 {
+    font-family: Verdana, Geneva, sans-serif;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    color: rgb(16, 0, 157);
+    text-align: left;
+}
+
+p {
+    font-family: Verdana, Geneva, sans-serif;
+    line-height: 1;
+    font-weight:normal
+}
+  
+nav ul {
+    border: 3px solid rgb(16, 0, 157);
+    border-radius: 8px;
+    list-style-type: none;
+    overflow: hidden;
+}
+
+/* Navigation bar list items should render starting at the left margin. */
+nav li {
+    float: left;
+}
+
+/* Navigation bar items should link to elements on the page, or to other pages.
+     This is the "a" tag. So this says "apply this style to links within the nav bar".
+*/
+nav li a {
+    display: block;
+    color: rgb(16, 0, 157);
+    text-decoration: none;
+    text-align: center;
+    padding: 14px 16px;
+}
+
+/* When you mouse over something in the nav bar, turn it blue. */
+nav li a:hover {
+    color: white;
+    background-color: rgb(16, 0, 157);
+}
+
+a {
+    text-decoration: none;
+    background: rgb(233, 233, 235);
+    padding: 5px;
+    border-radius: 1px;
+  }
+
+h3 {
+    font-family: Verdana, Geneva, sans-serif;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    color: rgb(16, 0, 157);
+    text-align: left;
+}
