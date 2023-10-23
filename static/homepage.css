@@ -1,0 +1,39 @@
+body {
+    background-color: beige;
+    color: brown;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+    margin: 30px;
+    margin-top: 40px;
+  
+}
+
+
+h1 {
+    text-align: center;
+    font-size: 28px;
+    margin: 30px;
+}
+
+
+p {
+    margin: 14px;
+}
+
+a {
+    color: Red; 
+    text-decoration: underline;
+  
+}
+
+a:visited{
+    color:purple
+}
+
+a:hover {
+    color: purple;
+    text-decoration: underline;
+    text-align: center; 
+    
+}
+
