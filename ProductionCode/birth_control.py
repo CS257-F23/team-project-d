@@ -25,7 +25,7 @@ class BirthControl:
         return keys
     def yvals(self,totaled_answers):
         vals=[]
-        for key in totaled_answered:
+        for key in totaled_answers:
             vals.append(totaled_answers[key])
         return vals
 
