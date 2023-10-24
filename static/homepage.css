@@ -21,19 +21,31 @@ p {
 }
 
 a {
-    color: Red; 
-    text-decoration: underline;
-  
+    color: brown; 
+    text-decoration: none;
+    border: 2px solid white; 
+    padding: 5px;
+    text-decoration: none;
+    background-color: white;
 }
 
 a:visited{
-    color:purple
+    color:purple;
 }
 
 a:hover {
-    color: purple;
+    color: orange;
     text-decoration: underline;
     text-align: center; 
     
 }
 
+nav {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    padding: 14px 16px;
+}
+
+
+  
