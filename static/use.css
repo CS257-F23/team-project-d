@@ -1,5 +1,5 @@
 body {
-    background-color: beige; 
+    background-color: white; 
     text-align: center; 
     margin: 12px;
     font-family: "Times New Roman", Times, serif;
@@ -48,5 +48,3 @@ input[type="submit"] {
     cursor: pointer; 
     margin-top: 15px; 
 }
-
-

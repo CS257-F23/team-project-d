@@ -31,16 +31,6 @@ nav li {
     float: left;
 }
 
-/* Navigation bar items should link to elements on the page, or to other pages.
-     This is the "a" tag. So this says "apply this style to links within the nav bar".
-*/
-nav li a {
-    display: block;
-    color: rgb(16, 0, 157);
-    text-decoration: none;
-    text-align: center;
-    padding: 14px 16px;
-}
 
 /* When you mouse over something in the nav bar, turn it blue. */
 nav li a:hover {

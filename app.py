@@ -29,7 +29,7 @@ def get_birth_control_use():
         else:
             return "Invalid input. Please provide a valid demographic value."
 
-    return render_template('use.html')
+    return render_template('search.html',header="Birth Control Use By Demographic",description="Search a demographic to analyze how often that subset using birth control during sex when not trying to reproduce")
 
 @app.route('/birth-control-use/<demographic>', strict_slashes = False)
 def get_birth_control_use_by_demographic(demographic):
@@ -62,7 +62,7 @@ def get_birth_control_access():
         else:
             return "Invalid input. Please provide a valid demographic value."
 
-    return render_template('access.html')
+    return render_template('search.html',header="Birth Control Access by Demographic",description="Search a demographic to analyze how concerned that subset is over birth control acess policy today" )
 
 
 @app.route('/birth-control-access/<demographic>', strict_slashes = False)
