@@ -18,25 +18,6 @@ p {
     line-height: 1;
     font-weight:normal
 }
-  
-nav ul {
-    border: 3px solid rgb(16, 0, 157);
-    border-radius: 8px;
-    list-style-type: none;
-    overflow: hidden;
-}
-
-/* Navigation bar list items should render starting at the left margin. */
-nav li {
-    float: left;
-}
-
-
-/* When you mouse over something in the nav bar, turn it blue. */
-nav li a:hover {
-    color: white;
-    background-color: rgb(16, 0, 157);
-}
 
 a {
     text-decoration: none;
