@@ -5,21 +5,12 @@ data_accessor = BirthControl()
 
 app = Flask(__name__)
 
+"""Displays two question options"""
 @app.route('/')
 def homepage():
-    """
-    Sets up a home page for the server with information on how
-    to navigate and operate the server using parameters. This also
-    shows the user how to access more details on how to use the site.
-    Returns the text to be viewed on the home page in the browser.
-
-    Thank you to Anna Fitzgerald from blog.hubspot.com for the information
-    on how to change the fonts in HTML, and to stackoverflow.com for the
-    information as to how to include new lines (breaks) and indentation in the browser.
-    """
     return render_template('homepage.html')
 
-"""This is the page that allows the users to look up for the results of birth control use by their input of a demographic value"""
+"""Allows the users to look up for the results of birth control use by their input of a demographic value"""
 @app.route('/birth-control-use', strict_slashes=False, methods=['GET', 'POST'])
 def get_birth_control_use():
     if request.method == 'POST':
@@ -29,7 +20,7 @@ def get_birth_control_use():
         else:
             return "Invalid input. Please provide a valid demographic value."
 
-    return render_template('search.html',header="Birth Control Use By Demographic",description="Search a demographic to analyze how often that subset using birth control during sex when not trying to reproduce")
+    return render_template('search.html',header="Birth Control Use By Demographic",description="When not trying to get pregnant, how often, if at all, do you use some form of birth control such as birth control pills or condoms when you have vaginal intercourse?")
 
 @app.route('/birth-control-use/<demographic>', strict_slashes = False)
 def get_birth_control_use_by_demographic(demographic):
@@ -47,12 +38,14 @@ def get_birth_control_use_by_demographic(demographic):
     user_ids = data_accessor.get_user_ids_by_column(demographic)
     if user_ids != []:
         use=data_accessor.look_up_use_of_birth_control_by_demographic(demographic)
+        y=list(data_accessor.yvals(use))
         displaylist={}
-        return render_template('datapage.html',title2="Birth Control Use by Demographic",header2=demographic, question= "Birth Control Use", displaylist=use)
+        return render_template('datapage.html',title2="Birth Control Use by Demographic",subset=demographic, question= "How often do you use birth control when not trying to get pregnant?", displaylist=use,yValues=y)
     else:
         return "Invalid Input. The demographic you chose is not in our dataset. Plase try another one."
 
-"""This is the page that allows the users to look up for the results of birth control accesses by their input of a demographic value"""    
+
+"""Allows the users to look up for the results of birth control accesses by their input of a demographic value"""    
 @app.route('/birth-control-access', strict_slashes=False, methods=['GET', 'POST'])
 def get_birth_control_access():
     if request.method == 'POST':
@@ -62,7 +55,7 @@ def get_birth_control_access():
         else:
             return "Invalid input. Please provide a valid demographic value."
 
-    return render_template('search.html',header="Birth Control Access by Demographic",description="Search a demographic to analyze how concerned that subset is over birth control acess policy today" )
+    return render_template('search.html',header="Birth Control Access by Demographic",description="With the passing of Supreme Court Justice Ruth Bader Ginsburg there is now a vacancy on the supreme court. How concerned, if at all, are you about the upcoming change to the Supreme Court impacting your ability to afford or access your preferred birth control method?" )
 
 
 @app.route('/birth-control-access/<demographic>', strict_slashes = False)
@@ -85,9 +78,8 @@ def get_birth_control_access_concerns_by_demographic(demographic):
     user_ids = data_accessor.get_user_ids_by_column(demographic)
     if user_ids != []:
         concerns=data_accessor.look_up_birth_control_access_concerns_by_demographic(demographic)
-        x=data_accessor.xvals(concerns)
-        y=data_accessor.yvals(concerns)
-        return render_template('datapage.html',title2="Birth Control Policy Concerns by Demographic",header2=demographic,question="Birth Control Access", displaylist=concerns,xValues=x,yValues=y)
+        y=list(data_accessor.yvals(concerns))
+        return render_template('datapage.html',title2="Birth Control Policy Concerns by Demographic",subset=demographic,question="How concerned are you about the upcoming change to the Supreme Court impacting your ability to afford or access your preferred birth control method?", displaylist=concerns,yValues=y)
     else:
         return "Invalid Input. The demographic you chose is not in our dataset. Plase try another one."
 
