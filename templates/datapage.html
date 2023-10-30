@@ -8,23 +8,20 @@
     <body>
         <h3><a href="http://127.0.0.1:5000/">Home</a></h3>
 
-        <h2>{{header2}}</h2> 
-        <p>{{Question}}</p>
-        <p><strong>Percent of specified demographic usage of birth control</strong></p>
+        <h2>{{question}} Results for: {{subset}}</h2>
         {% for key,value in displaylist.items() %}
         <p>{{key}} : {{value}} %</p>
         {% endfor %}
         <div>
         <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
         <script>
-
-            var xValues
-            var yValues
+            var xValues=["Very concerned", "Not applicable/don't believe in birth control","Somewhat concerned","Not very concerned","Not at all concerned","Don't know","Refused"];
+            var yValues="{{yValues}}"
             var barColors = "blue";
             new Chart("myChart", {
                 type: "bar",
                 data: {
-                    labels: xValues,
+                    labels:xValues,
                     datasets: [{
                         backgroundColor: barColors,
                         data: yValues
