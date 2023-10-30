@@ -1,3 +1,4 @@
+/*Title consistent with rest of site*/
 h1 {
     padding-top: 1em;
     padding-bottom: 1em;
@@ -5,6 +6,7 @@ h1 {
     color: white;
     text-align: center;
 }
+/*Displays looked up demographic and birthcontrol question*/
 h2 {
     font-family: Verdana, Geneva, sans-serif;
     padding-top: 1em;
@@ -13,12 +15,15 @@ h2 {
     text-align: left;
 }
 
+/*All other writing*/
 p {
     font-family: Verdana, Geneva, sans-serif;
     line-height: 1;
+    font-size:20px;
+    color: rgb(16, 0, 157);
     font-weight:normal
 }
-
+/*Datasource link at bottom of page*/
 a {
     text-decoration: none;
     background: rgb(233, 233, 235);
@@ -26,6 +31,7 @@ a {
     border-radius: 1px;
   }
 
+  /*home button*/
 h3 {
     font-family: Verdana, Geneva, sans-serif;
     padding-top: 1em;
