@@ -1,3 +1,4 @@
+/*title consistent with rest of site*/
 h1 {
     padding-top: 1em;
     padding-bottom: 1em;
@@ -5,6 +6,7 @@ h1 {
     color: white;
     text-align: center;
 }
+
 h2 {
     font-family: Verdana, Geneva, sans-serif;
     padding-top: 1em;
@@ -21,11 +23,22 @@ p {
 
 
 a:hover {
-    color: orange;
+    color: white;
     text-decoration: underline;
     text-align: center; 
     
 }
+
+button {
+    background-color: rgb(16, 0, 157); 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
 
 nav {
     display: block;
