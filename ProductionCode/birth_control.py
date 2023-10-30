@@ -14,10 +14,13 @@ class BirthControl:
         which is the dictionary of possible answers and their percentages.
         The parameter being passed in is the same as totaled_answers above.
         """
+        #TODO: change key variable name
         for key in totaled_answers:
             print(key, ":",totaled_answers[key], "%")
         return totaled_answers
     
+
+    #TODO: rename xvals and yvals to be more meaningful, same with key, vals could be values
     def xvals(self, totaled_answers):
         keys=[]
         for key in totaled_answers:
@@ -40,6 +43,7 @@ class BirthControl:
             self.data.append(row)
         csvfile.close()
 
+    #TODO: Should be get_  instead of look_up_ since it is an accessor method
     def look_up_use_of_birth_control_by_demographic(self, demographic):
         """
         Retrieves the user ids of the specified demographic in order to
@@ -56,6 +60,7 @@ class BirthControl:
         percent_results = self.calc_percentage(results)
         return self.display_results(percent_results)
 
+    #TODO: should be get, not look up
     def look_up_birth_control_access_concerns_by_demographic(self, demographic):
         """
         Retrieves the user ids of the specified demographic in order to
@@ -72,6 +77,8 @@ class BirthControl:
         percent_results = self.calc_percentage(results)
         return self.display_results(percent_results)
 
+    #TODO: rename to something like get_user_ids_by_demographic, since we aren't using any other column
+    #TODO: topic could also be more meaningful
     def get_user_ids_by_column(self, topic):
         """
         Iterates through and searches the list of lists named data in order
@@ -83,6 +90,7 @@ class BirthControl:
         """
         user_ids = []
         for row in self.data:
+            #TODO: rename item to be more meaningful
             for item in row:
                 item=item.lower()
                 if topic.lower() in item:
@@ -92,6 +100,7 @@ class BirthControl:
             return []
         return user_ids
 
+    #TODO: rename to be more searchable
     def get_birth_control_info(self, user_ids, useOrAccess):
         """
         Iterates through the list of user ids and creates a list of their
@@ -100,11 +109,11 @@ class BirthControl:
                 user_ids = the list of user_ids of the appropriate demographic.
         Returns the list of answers to the question about how often birth control is used.
         """
+        #TODO: possibly rename to be more searchable so that they don't start with birth_control_, also kind of reduntant since the class is named BirthControl
         birth_control_use_answers = []
         birth_control_access_answers = []
         for user in user_ids:
             for row in self.data:
-            #access birt3 column and append item to list
                 if (row[0]==user):
                     if useOrAccess == "use":
                         birth_control_use_answers.append(row[45])
@@ -118,6 +127,7 @@ class BirthControl:
         else:
             return birth_control_access_answers
 
+    #TODO: rename to be more searchable
     def count_birth_control_use_answers(self, birth_control_use_answers):
         """
         Counts the amount of each possible response to the birt3 question in the dataset
@@ -166,7 +176,7 @@ class BirthControl:
         """
         Counts the amount of each possible response to the birt7 question in the dataset
         regarding concerns about future access to birth control for the appropriate list 
-        of users based on inputted demographic.Then, compiles a dictionary of each possible 
+        of users based on inputted demographic. Then, compiles a dictionary of each possible 
         response and the amount of times that response was chosen. 
             Parameters:
                 birt7_answers = the list of answers to the question about birth control access concerns
@@ -219,6 +229,7 @@ class BirthControl:
         if totaled_answers == {}:
             print("Dictionary is empty, try again.")
             return {}
+        #TODO: rename key to be more specific
         for key in totaled_answers:
             total=total+totaled_answers[key]
         for key in totaled_answers:
