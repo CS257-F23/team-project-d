@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <h1>{{header}}</h1>
+    <link rel= "stylesheet" href="{{url_for('static', filename='search.css')}}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="http://127.0.0.1:5000/">Home</a>
+        <div class="dropdown">
+          <button class="dropbtn">Region
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a>North East</a>
+            <a>South</a>
+            <a>North Central</a>
+            <a>West</a>
+          </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">State
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a>Abbr of any state ex. MN</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropbtn">Religion
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a>Protestant</a>
+              <a>Orthodox</a>
+              <a>Jewish</a>
+              <a>Catholic</a>
+              <a>Christian</a>
+              <a>Methodist</a>
+              <a>Baptist</a>
+              <a>Unitarian</a>
+              <a>Mormon</a>
+              <a>Agnostic</a>
+              <a>Jehovahs Witness</a>
+              <a>Episcopalian</a>
+              <a>Atheist</a>
+              <a>Nothing</a>
+              <a>Hindu</a>
+              <a>Pentecostal</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropbtn">Homeownership
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a>Owned</a>
+              <a>Rented</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropbtn">Employ
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a>Retired</a>
+              <a>Homemaker</a>
+              <a>Full-time</a>
+              <a>Part-time</a>
+              <a>Other</a>
+              <a>Temporarily unemployed</a>
+              <a>Disabled</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropbtn">Employ
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a>Maritial status</a>
+              <a>Never Married</a>
+              <a>Widowed</a>
+              <a>Married</a>
+              <a>Divorced</a>
+              <a>Single</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropbtn">Education
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a>Four year college</a>
+              <a>High School graduate</a>
+              <a>Some college</a>
+              <a>Two year associate degree</a>
+              <a>Postgraduate or professional degree</a>
+              <a>Some postgraduate or professional schooling</a>
+              <a>Refused</a>
+              <a>Less than high school</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropbtn">Race
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a>White Non-hispanic</a>
+              <a>Native American</a>
+              <a>White Hispanic</a>
+              <a>Black Non-Hispanic</a>
+              <a>Mixed</a>
+              <a>Asian</a>
+              <a>Refused</a>
+              <a>Black Hispanic</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropbtn">Pol. Party
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a>Independant</a>
+              <a>Republican</a>
+              <a>Democrat</a>
+              <a>Refused</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropbtn">Pol. view
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a>Somewhat conservative</a>
+              <a>Moderate</a>
+              <a>Somewhat liberal</a>
+              <a>Very liberal</a>
+              <a>Very conservative</a>
+              <a>Some postgraduate or professional schooling</a>
+              <a>Refused</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropbtn">Insurance
+              <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+              <a>Covered by health insurance</a>
+              <a>Not covered by health insurance</a>
+              <a>Don't know</a>
+            </div>
+          </div>
+      </div>
+    <p>Toggle through the options above to see demographic lookup options</p>
+    <h2>{{description}}</h2>
+    <form action="/birth-control-access" method="post">
+        <label for="demographic">Enter demographic below:</label>
+        <input type="text" name="demographic" id="demographic" required>
+        <br>
+        <input type="submit" value="Search">
+    </form>
+</body>
+</html>
