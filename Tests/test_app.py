@@ -7,11 +7,15 @@ class TestFlaskApp(unittest.TestCase):
  
     def setUp(self):
         data_accessor.load_data()
+    def createapp(self):
+        return app
 
-
-
-    
     """This is the test for the information on the homepage"""
+    def test_route_homepage_2(self):
+        self.app=app.test_client()
+        self.app.get('/')
+        self.assert_template_used('homepage.html')
+
     def test_route_homepage(self):
         self.app = app.test_client()
         response = self.app.get('/', follow_redirects=True)
