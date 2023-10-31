@@ -7,44 +7,27 @@ h1 {
     text-align: center;
 }
 
-h2 {
-    font-family: Verdana, Geneva, sans-serif;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    color: rgb(16, 0, 157);
-    text-align: left;
-}
-
+/*All other words on the page*/
 p {
     font-family: Verdana, Geneva, sans-serif;
     line-height: 1;
     font-weight:normal
 }
 
-
-a:hover {
-    color: white;
-    text-decoration: underline;
-    text-align: center; 
-    
+/*Put the buttons in the center*/
+.button-container {
+    text-align: center;
 }
 
+/*search button*/
 button {
     background-color: rgb(16, 0, 157); 
-    border: none;
     color: white;
     padding: 15px 32px;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
     font-size: 16px;
-  }
 
-nav {
-    display: block;
-    text-decoration: none;
-    text-align: center;
-    padding: 14px 16px;
-}
+  }
 
 

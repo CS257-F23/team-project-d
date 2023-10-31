@@ -92,7 +92,7 @@ input[type="submit"] {
     font-size: 16px;
     border: none;
     outline: none;
-    color: rgb(16, 0, 157);
+    color: yellow(16, 0, 157);
     padding: 14px 16px;
   }
   

@@ -1,3 +1,4 @@
+from xarray import load_dataset
 from app import *
 import unittest
 
@@ -18,7 +19,7 @@ class TestFlaskApp(unittest.TestCase):
     when they are not trying to get pregnant, add /birth-control-use/[DEMOGRAPHIC] to the current url.\
     To see how concerned people of a certain demographic are about future access to birth control\
     due to the political climate, add /birth-control-access/[DEMOGRAPHIC] to the current url.\
-            Here are some demographic ideas to input:<br><pre><font face=\"Times New Roman\">\
+            Here are some d `emographic ideas to input:<br><pre><font face=\"Times New Roman\">\
             * state abbreviation (ex. MN, MA, HI)<br>\
             * religion (ex. Hindu, Protestant, Jewish/Judaism, etc)<br>\
             * education level<br>\

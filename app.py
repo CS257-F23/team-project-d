@@ -42,7 +42,7 @@ def get_birth_control_use_by_demographic(demographic):
         displaylist={}
         return render_template('datapage.html',title2="Birth Control Use by Demographic",subset=demographic, question= "How often do you use birth control when not trying to get pregnant?", displaylist=use,yValues=y)
     else:
-        return "Invalid Input. The demographic you chose is not in our dataset. Plase try another one."
+        return render_template('notFound.html')
 
 
 """Allows the users to look up for the results of birth control accesses by their input of a demographic value"""    
@@ -53,7 +53,7 @@ def get_birth_control_access():
         if demographic:
             return redirect(url_for('get_birth_control_access_concerns_by_demographic', demographic=demographic))
         else:
-            return "Invalid input. Please provide a valid demographic value."
+            return render_template('notFound.html')
 
     return render_template('search.html',header="Birth Control Access by Demographic",description="With the passing of Supreme Court Justice Ruth Bader Ginsburg there is now a vacancy on the supreme court. How concerned, if at all, are you about the upcoming change to the Supreme Court impacting your ability to afford or access your preferred birth control method?" )
 
@@ -81,18 +81,15 @@ def get_birth_control_access_concerns_by_demographic(demographic):
         y=list(data_accessor.yvals(concerns))
         return render_template('datapage.html',title2="Birth Control Policy Concerns by Demographic",subset=demographic,question="How concerned are you about the upcoming change to the Supreme Court impacting your ability to afford or access your preferred birth control method?", displaylist=concerns,yValues=y)
     else:
-        return "Invalid Input. The demographic you chose is not in our dataset. Plase try another one."
+        return render_template('notFound.html')
 
 
 @app.errorhandler(404)
 def page_not_found(e):
-    """ Returns a statement with the correct formatting when an external error is encountered. """
-    return "Oops! You've encountered an error. Double check your spelling and \
-        make sure to follow the format from the homepage\
-        by adding either /birth-control-use/[DEMOGRAPHIC] or /birth-control-access/[DEMOGRAPHIC] \
-            to the url! Head back to the homepage if you need demographic ideas. \
-                If you follow these directions and\
-            encounter an empty list, your demographic is not included in the dataset."
+    """ Returns a statement with the instructions when an external error is encountered. """
+    
+    return render_template('notFound.html')
+   
 
 @app.errorhandler(500)
 def python_bug(e):
