@@ -7,11 +7,21 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    font-family: Verdana, Geneva, sans-serif;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    color: rgb(16, 0, 157);
+    text-align: center;
+}
+
 /*All other words on the page*/
 p {
     font-family: Verdana, Geneva, sans-serif;
     line-height: 1;
-    font-weight:normal
+    font-weight:normal;
+    color: rgb(16, 0, 157);
+    font-size: 20px;
 }
 
 /*Put the buttons in the center*/
@@ -30,4 +40,14 @@ button {
 
   }
 
+button:hover {
+    background-color: rgb(237, 237, 237); /* Green */
+    color: rgb(16, 0, 157);
+  }
 
+/*line under purpose of website*/
+hr {
+    height:7px;
+    border-width:0;
+    background-color:rgb(16, 0, 157);
+  }
