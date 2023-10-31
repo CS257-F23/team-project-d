@@ -20,7 +20,7 @@ def get_birth_control_use():
         else:
             return "Invalid input. Please provide a valid demographic value."
 
-    return render_template('search.html',header="Birth Control Use By Demographic",description="When not trying to get pregnant, how often, if at all, do you use some form of birth control such as birth control pills or condoms when you have vaginal intercourse?")
+    return render_template('search_use.html',header="Birth Control Use By Demographic",description="When not trying to get pregnant, how often, if at all, do you use some form of birth control such as birth control pills or condoms when you have vaginal intercourse?")
 
 @app.route('/birth-control-use/<demographic>', strict_slashes = False)
 def get_birth_control_use_by_demographic(demographic):
@@ -55,7 +55,7 @@ def get_birth_control_access():
         else:
             return render_template('notFound.html')
 
-    return render_template('search.html',header="Birth Control Access by Demographic",description="With the passing of Supreme Court Justice Ruth Bader Ginsburg there is now a vacancy on the supreme court. How concerned, if at all, are you about the upcoming change to the Supreme Court impacting your ability to afford or access your preferred birth control method?" )
+    return render_template('search_access.html',header="Birth Control Access by Demographic",description="With the passing of Supreme Court Justice Ruth Bader Ginsburg there is now a vacancy on the supreme court. How concerned, if at all, are you about the upcoming change to the Supreme Court impacting your ability to afford or access your preferred birth control method?" )
 
 
 @app.route('/birth-control-access/<demographic>', strict_slashes = False)
