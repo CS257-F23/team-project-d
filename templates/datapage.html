@@ -14,9 +14,10 @@
         {% endfor %}
         <div>
         <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+        {% block javascript %}
         <script>
             var xValues=["Very concerned", "Not applicable/don't believe in birth control","Somewhat concerned","Not very concerned","Not at all concerned","Don't know","Refused"];
-            var yValues="{{yValues}}"
+            var yValues=JSON.parse('{{yValues | tojson}}');
             var barColors = "blue";
             new Chart("myChart", {
                 type: "bar",
