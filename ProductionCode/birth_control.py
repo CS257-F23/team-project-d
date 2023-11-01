@@ -24,11 +24,13 @@ class BirthControl:
 
     #TODO: rename xvals and yvals to be more meaningful, same with key, vals could be values
     def xvals(self, totaled_answers):
+        """Initializes xvals for graph which is currently not working"""
         keys=[]
         for key in totaled_answers:
             keys.append(key)
         return keys
     def yvals(self,totaled_answers):
+        """Initializes yvals for graph which is currently not working"""
         vals=[]
         for key in totaled_answers:
             vals.append(totaled_answers[key])
@@ -55,7 +57,7 @@ class BirthControl:
                     in either the command line or the url. 
         Returns the dictionary of answers and their percentage results after being displayed. 
         """
-        responses = database_accessor.get_use_rows_by_demographic(demographic)
+        responses = database_accessor.get_use_column_by_demographic(demographic)
         results = self.count_birth_control_use_answers(responses)
         percent_results = self.calc_percentage(results)
         return self.display_results(percent_results)
@@ -70,7 +72,7 @@ class BirthControl:
                     in either the command line or the url. 
         Returns the dictionary of answers and their percentage results after being displayed. 
         """
-        responses = database_accessor.get_access_rows_by_demographic(demographic)
+        responses = database_accessor.get_access_column_by_demographic(demographic)
         results = self.count_birth_control_access_answers(responses)
         percent_results = self.calc_percentage(results)
         return self.display_results(percent_results)

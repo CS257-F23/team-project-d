@@ -100,7 +100,7 @@ class TestBirthControl(unittest.TestCase):
         Affirms that the function outputs the correct
         dictionary and counts for the list it is passed in.
         """
-        testListOfResponses = ["Never", "Every time"]
+        testListOfResponses = [('Never',), ('Every time',)]
         expected = {
             "About half the time":0,
             "Almost every time":0,
@@ -131,7 +131,7 @@ class TestBirthControl(unittest.TestCase):
         Affirms that the function outputs the correct dictionary
         and numbers of responses for the list it is passed.
         """
-        testListOfAccessAnswers = ["Refused", "Very concerned", "Not at all concerned"]
+        testListOfAccessAnswers = [('Refused',), ('Very concerned',), ('Not at all concerned',)]
         expected = {
             "Don't know":0,
             "Not applicable/don't believe in birth control":0,
@@ -214,7 +214,7 @@ class TestBirthControl(unittest.TestCase):
         Affirms that the function outputs the correct dictionary
         and numbers of responses for the list it is passed.
         """
-        testListOfAccessAnswers = ["Refused", "Very concerned", "Not at all concerned"]
+        testListOfAccessAnswers = [('Refused',), ('Very concerned',), ('Not at all concerned',)]
         expected = {
             "Don't know":0,
             "Not applicable/don't believe in birth control":0,
@@ -302,18 +302,18 @@ Almost every time : 4 %"""
         Affirms that birth_control.py works for valid command line argument --BirthControlAccessByDemo
         and returns the correct output and format. 
         """
-        code=subprocess.Popen(['python3','cl.py','--BirthControlAccessByDemo','High school'],
+        code=subprocess.Popen(['python3','cl.py','--BirthControlAccessByDemo','Hindu'],
                               stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                               encoding='utf8')
         output, err=code.communicate()
-        expected="""Given the current political climate(2020), are you concerned with birth control access in the future? Demographic: High school
-Very concerned : 23 %
-Not applicable/don't believe in birth control : 2 %
-Somewhat concerned : 22 %
-Not very concerned : 14 %
-Not at all concerned : 37 %
+        expected="""Given the current political climate(2020), are you concerned with birth control access in the future? Demographic: Hindu
+Very concerned : 40 %
+Not applicable/don't believe in birth control : 0 %
+Somewhat concerned : 40 %
+Not very concerned : 0 %
+Not at all concerned : 20 %
 Don't know : 0 %
-Refused : 1 %"""
+Refused : 0 %"""
         self.assertEqual(output.strip(),str(expected))
         code.terminate()
 

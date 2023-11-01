@@ -20,7 +20,7 @@ class DataSource:
             exit()
         return connection
     
-    def get_access_rows_by_demographic(self, demographic):
+    def get_access_column_by_demographic(self, demographic):
         """
         Searches all demographic columns and retrieves the birth control access concerns column 
         for subjects of the specified demographic.
@@ -38,7 +38,7 @@ class DataSource:
             print("Something went wrong when executing the query: ", e)
             return None
 
-    def get_use_rows_by_demographic(self, demographic):
+    def get_use_column_by_demographic(self, demographic):
         """
         Retrieves the birth control use column for the subjects of the specified demographic.
         use_column_for_demographic is a list that contains 
