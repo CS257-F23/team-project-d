@@ -58,7 +58,7 @@ class BirthControl:
         percent_results = self.calc_percentage(results)
         return self.display_results(percent_results)
 
-    def get_use_of_birth_control_access_concerns_by_demographic(self, demographic):
+    def get_birth_control_access_concerns_by_demographic(self, demographic):
         """
         Retrieves the user ids of the specified demographic in order to
         total up the answers for the concern level of access to birth control
