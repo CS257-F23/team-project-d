@@ -24,10 +24,10 @@ def runMain():
     args= setUpParser(sys.argv)
     if args.BirthControlUseByDemo:
         print("How often do you use birth control? Demographic:", args.BirthControlUseByDemo)
-        data_accessor.look_up_use_of_birth_control_by_demographic(args.BirthControlUseByDemo)
+        data_accessor.get_use_of_birth_control_by_demographic(args.BirthControlUseByDemo)
     elif args.BirthControlAccessByDemo:
         print("Given the current political climate(2020), are you concerned with birth control access in the future? Demographic:", args.BirthControlAccessByDemo)
-        data_accessor.look_up_birth_control_access_concerns_by_demographic(args.BirthControlAccessByDemo)
+        data_accessor.get_birth_control_access_concerns_by_demographic(args.BirthControlAccessByDemo)
     elif args.option:
         optionsDisplay()
     else:
