@@ -56,8 +56,6 @@ class BirthControl:
         Returns the dictionary of answers and their percentage results after being displayed. 
         """
         responses = database_accessor.get_use_rows_by_demographic(demographic)
-        # user_ids = self.get_user_ids_by_demographic(demographic)
-        # responses = self.get_birth_control_info(user_ids, "use")
         results = self.count_birth_control_use_answers(responses)
         percent_results = self.calc_percentage(results)
         return self.display_results(percent_results)
@@ -73,56 +71,9 @@ class BirthControl:
         Returns the dictionary of answers and their percentage results after being displayed. 
         """
         responses = database_accessor.get_access_rows_by_demographic(demographic)
-        # user_ids = self.get_user_ids_by_demographic(demographic)
-        # responses = self.get_birth_control_info(user_ids, "access")
         results = self.count_birth_control_access_answers(responses)
         percent_results = self.calc_percentage(results)
         return self.display_results(percent_results)
-
-    # def get_user_ids_by_demographic(self, topic):
-    #     """
-    #     Iterates through and searches the list of lists named data in order
-    #     to create a list of the user ids who are part of the appropriate demographic.
-    #         Parameters:
-    #             topic = the string demographic of people in the dataset whose user ids will be
-    #             appended to the user_ids list.
-    #     Returns the list of user_ids with the requested demographic.
-    #     """
-    #     user_ids = []
-    #     for row in self.data:
-    #         for demographic in row:
-    #             demographic=demographic.lower()
-    #             if topic.lower() in demographic:
-    #                 user_ids.append(row[0])
-    #     if user_ids==[]:
-    #         print("Sorry, this demographic is not in the dataset.")
-    #         return []
-    #     return user_ids
-
-    # def get_birth_control_info(self, user_ids, useOrAccess):
-    #     """
-    #     Iterates through the list of user ids and creates a list of their
-    #     answers to the appropriate question in the dataset.
-    #         Parameters:
-    #             user_ids = the list of user_ids of the appropriate demographic.
-    #     Returns the list of answers to the question about how often birth control is used.
-    #     """
-    #     use_answers = []
-    #     access_answers = []
-    #     for user in user_ids:
-    #         for row in self.data:
-    #             if (row[0]==user):
-    #                 if useOrAccess == "use":
-    #                     use_answers.append(row[45])
-    #                 else:
-    #                     access_answers.append(row[58])
-    #     if user_ids == []:
-    #         print("List is empty")
-    #         return []
-    #     if useOrAccess == "use":
-    #         return use_answers
-    #     else:
-    #         return access_answers
 
     def count_birth_control_use_answers(self, use_answers):
         """
