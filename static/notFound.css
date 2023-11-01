@@ -1,0 +1,32 @@
+/*Title consistent with rest of site*/
+h1 {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: rgb(16, 0, 157);
+    color: white;
+    text-align: center;
+}
+
+/*nav to the home page*/
+h2 {
+    font-family: Verdana, Geneva, sans-serif;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    color: rgb(16, 0, 157);
+    text-align: left;
+}
+
+/*All other words on the page*/
+p {
+    font-family: Verdana, Geneva, sans-serif;
+    line-height: 1;
+    font-weight:normal
+}
+
+/*home button*/
+a {
+    text-decoration: none;
+    background: rgb(233, 233, 235);
+    padding: 5px;
+    border-radius: 1px;
+  }

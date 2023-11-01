@@ -12,39 +12,42 @@ h2 {
     padding-top: 1em;
     padding-bottom: 1em;
     color: rgb(16, 0, 157);
-    text-align: left;
+    text-align: center;
 }
 
+/*All other words on the page*/
 p {
     font-family: Verdana, Geneva, sans-serif;
     line-height: 1;
-    font-weight:normal
+    font-weight:normal;
+    color: rgb(16, 0, 157);
+    font-size: 20px;
 }
 
-
-a:hover {
-    color: white;
-    text-decoration: underline;
-    text-align: center; 
-    
+/*Put the buttons in the center*/
+.button-container {
+    text-align: center;
 }
 
+/*search button*/
 button {
     background-color: rgb(16, 0, 157); 
-    border: none;
     color: white;
     padding: 15px 32px;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
     font-size: 16px;
+
   }
 
-nav {
-    display: block;
-    text-decoration: none;
-    text-align: center;
-    padding: 14px 16px;
-}
+button:hover {
+    background-color: rgb(237, 237, 237); /* Green */
+    color: rgb(16, 0, 157);
+  }
 
-
+/*line under purpose of website*/
+hr {
+    height:7px;
+    border-width:0;
+    background-color:rgb(16, 0, 157);
+  }
