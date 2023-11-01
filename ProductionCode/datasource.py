@@ -20,34 +20,38 @@ class DataSource:
             exit()
         return connection
     
-    def get_all_rows(self):
-        """Returns all the rows of the table as a list"""
+    def get_access_rows_by_demographic(self, demographic):
+        """
+        Searches all demographic columns and retrieves the birth control access concerns column 
+        for subjects of the specified demographic.
+        access_column_for_demographic is a list that contains 
+        all of the answers to the access concerns question.
+        Returns None if an error is encountered.
+        """
+        try:
+            cursor = self.connection.cursor()
+            cursor.execute("SELECT birthcontrol_access FROM subjectIDs_and_religion WHERE states=%s OR region=%s OR homeownership=%s OR marriage=%s OR employ1=%s OR education=%s OR race=%s OR poliParty=%s OR poliView=%s OR religion=%s OR insurance=%s", (demographic,))
+            access_column_for_demographic = cursor.fetchall()
+            return access_column_for_demographic
+        
+        except Exception as e:
+            print("Something went wrong when executing the query: ", e)
+            return None
 
-        #Establishing a cursor
-        cursor = self.connection.cursor()
-
-        #Pulling all the rows from the table
-        cursor.execute("SELECT * FROM subjectIDs_and_religion")
-
-        #displaying all selected rows
-        records = cursor.fetchall()
-        print(records)
-
-    def get_religion_rows(self, religion):
-        """Retrieves and displays all the rows in the table
-        that have the specified religion. Prints an error
-        message if an exception is encountered.
+    def get_use_rows_by_demographic(self, demographic):
+        """
+        Retrieves the birth control use column for the subjects of the specified demographic.
+        use_column_for_demographic is a list that contains 
+        all of the answers to the use question in the dataset. 
+        Returns None if an error is encountered.
         """
 
-        try:
-            #Establishes a cursor and executes the prompt to
-            #retrieve all the rows in the table with the matching
-            #religion, then prints the results. 
+        try: 
             cursor = self.connection.cursor()
-            cursor.execute("SELECT * FROM subjectIDs_and_religion WHERE religion=%s", (religion,))
-            print(cursor.fetchall())
+            cursor.execute("SELECT birthcontrol_use FROM subjectIDs_and_religion WHERE states=%s OR region=%s OR homeownership=%s OR marriage=%s OR employ1=%s OR education=%s OR race=%s OR poliParty=%s OR poliView=%s OR religion=%s OR insurance=%s", (demographic,))
+            use_column_for_demographic = cursor.fetchall()
+            return use_column_for_demographic
 
         except Exception as e:
-            #In the case of an exception, prints error message
             print("Something went wrong when executing the query: ", e)
             return None
