@@ -30,7 +30,7 @@ class DataSource:
         """
         try:
             cursor = self.connection.cursor()
-            cursor.execute("SELECT birthcontrol_access FROM test WHERE states LIKE '\%%s%' OR region=%s OR homeownership=%s OR marriage=%s OR employ1=%s OR education=%s OR race=%s OR poliParty=%s OR poliView=%s OR religion=%s OR insurance=%s", (demographic, demographic, demographic, demographic, demographic,  demographic, demographic, demographic, demographic, demographic, demographic,))
+            cursor.execute("SELECT birthcontrol_access FROM test WHERE states=%s OR region=%s OR homeownership=%s OR marriage=%s OR employ1=%s OR education=%s OR race=%s OR poliParty=%s OR poliView=%s OR religion=%s OR insurance=%s", (demographic, demographic, demographic, demographic, demographic,  demographic, demographic, demographic, demographic, demographic, demographic,))
             access_column_for_demographic = cursor.fetchall()
             return access_column_for_demographic
         
