@@ -57,13 +57,13 @@ class TestFlaskApp(unittest.TestCase):
     def test_route_access_edge(self):
         self.app=app.test_client()
         response=self.app.get('/birth-control-access/invalid',follow_redirects=True)
-        self.assertIn(b"The page you are looking for does not exist.",response.data) 
+        self.assertIn(b"Very concerned : 0 %",response.data) 
 
     """This is the edge case test to test when users give a name that is not in out dataset when searching for birth_control_uses"""
     def test_route_uses_edge(self):
         self.app=app.test_client()
         response=self.app.get('/birth-control-access/random',follow_redirects=True)
-        self.assertIn(b"The page you are looking for does not exist.",response.data) 
+        self.assertIn(b"Very concerned : 0 %",response.data) 
 
     """This is the base case test to test when users did not find the correct route name"""
     def test_not_found_error(self):

@@ -31,7 +31,7 @@ class TestBirthControl(unittest.TestCase):
         }
         self.assertEqual(data_accessor.display_results(exampleDictToDisplay), exampleDictToDisplay, "Should be " + str(exampleDictToDisplay))
 
-    def test_look_up_birth_control_access_by_demographic(self):
+    def test_get_birth_control_access_by_demographic(self):
         """
         Asserts that the responses to the question about concerns regarding future
         birth control access are being accuratlely looked up and returned.
@@ -47,7 +47,7 @@ class TestBirthControl(unittest.TestCase):
         }
         self.assertEqual(data_accessor.get_birth_control_access_concerns_by_demographic("Hindu"), expected, "Should be: " + str(expected))
 
-    def test_look_up_birth_control_access_by_demographic_EDGECASE(self):
+    def test_get_birth_control_access_by_demographic_EDGECASE(self):
         """
         Asserts that when invalid input is provided, the function
         returns the dictionary with no percentage values to indicate
@@ -64,7 +64,7 @@ class TestBirthControl(unittest.TestCase):
         }
         self.assertEqual(data_accessor.get_birth_control_access_concerns_by_demographic("vegetarian"), expected, "Should be: " + str(expected))
 
-    def test_look_up_use_of_birth_control_by_demographic(self):
+    def test_get_use_of_birth_control_by_demographic(self):
         """
         Asserts that the use of birth control by demographic is being looked up
         and returning the correct dictionary.
@@ -79,7 +79,7 @@ class TestBirthControl(unittest.TestCase):
         }
         self.assertEqual(data_accessor.get_use_of_birth_control_by_demographic("Hindu"), expected, "Should be: " + str(expected))
 
-    def test_look_up_use_of_birth_control_by_demographic_EDGECASE(self):
+    def test_get_use_of_birth_control_by_demographic_EDGECASE(self):
         """
         Tests the edge case of the function receiving input
         that is not valid, i.e. misspelled or not in database.
@@ -94,64 +94,13 @@ class TestBirthControl(unittest.TestCase):
             "Once in a while":0
         }
         self.assertEqual(data_accessor.get_use_of_birth_control_by_demographic(invalidReligion), expected, "Should be: " + str(expected))
-
-    def test_get_user_ids_by_column(self):
-        """
-        Affirms that the user ids for the correct demographic are returned
-        """
-        ids = ['50000198', '50000290', '70000589', '70000664', '70000805']
-        self.assertEqual(data_accessor.get_user_ids_by_demographic("Hindu"), ids, "Should be " + str(ids))
-
-    def test_get_user_ids_by_column_EDGECASE(self):
-        """
-        Affirms no user ids are returned if the demogrpahic input is invalid
-        and that the error message is printed.
-        """
-        invalidReligion = "Flying Spaghetti Monster"
-        self.assertEqual(data_accessor.get_user_ids_by_demographic(invalidReligion), [], "Should be: " + str([]))
-
-    def test_get_use_of_birth_control(self):
-        """
-        Affirms the correct list of birth control usage is displayed based on the demographic.
-        """
-        ids = ['50000198', '50000290',  '70000589', '70000664', '70000805']
-        output = ['Every time', 'Never', 'Every time', 'Not applicable/Does not have vaginal intercourse/sex', 'Never']
-        self.assertEqual(data_accessor.get_birth_control_info(ids,'use'), output, "Should be " + str(output))
-
-    def test_get_use_of_birth_control_EDGECASE(self):
-        """
-        Affirms that a message is printed if the function
-        is passed an empty list as input.
-        """
-        self.assertEqual(data_accessor.get_birth_control_info([], 'use'), [], "Should be: " + str([]))
-
-    def test_get_birth_control_access_concerns(self):
-        """
-        Affirms that the correct list of responses
-        is returned according to the demographic input.
-        """
-        ids = ['50000198', '50000290',  '70000589', '70000664', '70000805']
-        expected = ["Very concerned",
-            "Not at all concerned",
-            "Somewhat concerned",
-            "Somewhat concerned",
-            "Very concerned"
-            ]
-        self.assertEqual(data_accessor.get_birth_control_info(ids, 'Access'), expected, "Should be: " + str(expected))
-
-    def test_get_birth_control_access_concerns_EDGECASE(self):
-        """
-        Affirms that if invalid input or an empty list is passed in,
-        an empty list is returned to signal that there was an issue.
-        """
-        self.assertEqual(data_accessor.get_birth_control_info([], 'Access'), [], "Should be: " + str([]))
         
     def test_count_birth_control_use_answers(self):
         """
         Affirms that the function outputs the correct
         dictionary and counts for the list it is passed in.
         """
-        testListOfResponses = ["Never", "Every time"]
+        testListOfResponses = [('Never',), ('Every time',)]
         expected = {
             "About half the time":0,
             "Almost every time":0,
@@ -182,7 +131,7 @@ class TestBirthControl(unittest.TestCase):
         Affirms that the function outputs the correct dictionary
         and numbers of responses for the list it is passed.
         """
-        testListOfAccessAnswers = ["Refused", "Very concerned", "Not at all concerned"]
+        testListOfAccessAnswers = [('Refused',), ('Very concerned',), ('Not at all concerned',)]
         expected = {
             "Don't know":0,
             "Not applicable/don't believe in birth control":0,
@@ -265,7 +214,7 @@ class TestBirthControl(unittest.TestCase):
         Affirms that the function outputs the correct dictionary
         and numbers of responses for the list it is passed.
         """
-        testListOfAccessAnswers = ["Refused", "Very concerned", "Not at all concerned"]
+        testListOfAccessAnswers = [('Refused',), ('Very concerned',), ('Not at all concerned',)]
         expected = {
             "Don't know":0,
             "Not applicable/don't believe in birth control":0,
@@ -353,18 +302,18 @@ Almost every time : 4 %"""
         Affirms that birth_control.py works for valid command line argument --BirthControlAccessByDemo
         and returns the correct output and format. 
         """
-        code=subprocess.Popen(['python3','cl.py','--BirthControlAccessByDemo','High school'],
+        code=subprocess.Popen(['python3','cl.py','--BirthControlAccessByDemo','Hindu'],
                               stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                               encoding='utf8')
         output, err=code.communicate()
-        expected="""Given the current political climate(2020), are you concerned with birth control access in the future? Demographic: High school
-Very concerned : 23 %
-Not applicable/don't believe in birth control : 2 %
-Somewhat concerned : 22 %
-Not very concerned : 14 %
-Not at all concerned : 37 %
+        expected="""Given the current political climate(2020), are you concerned with birth control access in the future? Demographic: Hindu
+Very concerned : 40 %
+Not applicable/don't believe in birth control : 0 %
+Somewhat concerned : 40 %
+Not very concerned : 0 %
+Not at all concerned : 20 %
 Don't know : 0 %
-Refused : 1 %"""
+Refused : 0 %"""
         self.assertEqual(output.strip(),str(expected))
         code.terminate()
 
