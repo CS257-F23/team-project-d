@@ -45,7 +45,7 @@ class TestBirthControl(unittest.TestCase):
             "Somewhat concerned":40,
             "Very concerned":40
         }
-        self.assertEqual(data_accessor.look_up_birth_control_access_concerns_by_demographic("Hindu"), expected, "Should be: " + str(expected))
+        self.assertEqual(data_accessor.get_birth_control_access_concerns_by_demographic("Hindu"), expected, "Should be: " + str(expected))
 
     def test_look_up_birth_control_access_by_demographic_EDGECASE(self):
         """
@@ -62,7 +62,7 @@ class TestBirthControl(unittest.TestCase):
             "Somewhat concerned":0,
             "Very concerned":0
         }
-        self.assertEqual(data_accessor.look_up_birth_control_access_concerns_by_demographic("vegetarian"), expected, "Should be: " + str(expected))
+        self.assertEqual(data_accessor.get_birth_control_access_concerns_by_demographic("vegetarian"), expected, "Should be: " + str(expected))
 
     def test_look_up_use_of_birth_control_by_demographic(self):
         """
@@ -77,7 +77,7 @@ class TestBirthControl(unittest.TestCase):
             "Not applicable/Does not have vaginal intercourse/sex":20,
             "Once in a while":0
         }
-        self.assertEqual(data_accessor.look_up_use_of_birth_control_by_demographic("Hindu"), expected, "Should be: " + str(expected))
+        self.assertEqual(data_accessor.get_use_of_birth_control_by_demographic("Hindu"), expected, "Should be: " + str(expected))
 
     def test_look_up_use_of_birth_control_by_demographic_EDGECASE(self):
         """
@@ -93,14 +93,14 @@ class TestBirthControl(unittest.TestCase):
             "Not applicable/Does not have vaginal intercourse/sex":0,
             "Once in a while":0
         }
-        self.assertEqual(data_accessor.look_up_use_of_birth_control_by_demographic(invalidReligion), expected, "Should be: " + str(expected))
+        self.assertEqual(data_accessor.get_use_of_birth_control_by_demographic(invalidReligion), expected, "Should be: " + str(expected))
 
     def test_get_user_ids_by_column(self):
         """
         Affirms that the user ids for the correct demographic are returned
         """
         ids = ['50000198', '50000290', '70000589', '70000664', '70000805']
-        self.assertEqual(data_accessor.get_user_ids_by_column("Hindu"), ids, "Should be " + str(ids))
+        self.assertEqual(data_accessor.get_user_ids_by_demographic("Hindu"), ids, "Should be " + str(ids))
 
     def test_get_user_ids_by_column_EDGECASE(self):
         """
@@ -108,7 +108,7 @@ class TestBirthControl(unittest.TestCase):
         and that the error message is printed.
         """
         invalidReligion = "Flying Spaghetti Monster"
-        self.assertEqual(data_accessor.get_user_ids_by_column(invalidReligion), [], "Should be: " + str([]))
+        self.assertEqual(data_accessor.get_user_ids_by_demographic(invalidReligion), [], "Should be: " + str([]))
 
     def test_get_use_of_birth_control(self):
         """
