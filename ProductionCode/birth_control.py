@@ -14,9 +14,8 @@ class BirthControl:
         which is the dictionary of possible answers and their percentages.
         The parameter being passed in is the same as totaled_answers above.
         """
-        #TODO: change key variable name
-        for key in totaled_answers:
-            print(key, ":",totaled_answers[key], "%")
+        for response in totaled_answers:
+            print(response, ":",totaled_answers[response], "%")
         return totaled_answers
     
 
@@ -43,8 +42,7 @@ class BirthControl:
             self.data.append(row)
         csvfile.close()
 
-    #TODO: Should be get_  instead of look_up_ since it is an accessor method
-    def look_up_use_of_birth_control_by_demographic(self, demographic):
+    def get_use_of_birth_control_by_demographic(self, demographic):
         """
         Retrieves the user ids of the specified demographic in order to
         total up the use of birth control for those user ids. Then, the results
@@ -54,14 +52,13 @@ class BirthControl:
                     in either the command line or the url. 
         Returns the dictionary of answers and their percentage results after being displayed. 
         """
-        user_ids = self.get_user_ids_by_column(demographic)
+        user_ids = self.get_user_ids_by_demographic(demographic)
         responses = self.get_birth_control_info(user_ids, "use")
         results = self.count_birth_control_use_answers(responses)
         percent_results = self.calc_percentage(results)
         return self.display_results(percent_results)
 
-    #TODO: should be get, not look up
-    def look_up_birth_control_access_concerns_by_demographic(self, demographic):
+    def get_use_of_birth_control_access_concerns_by_demographic(self, demographic):
         """
         Retrieves the user ids of the specified demographic in order to
         total up the answers for the concern level of access to birth control
@@ -71,15 +68,13 @@ class BirthControl:
                     in either the command line or the url. 
         Returns the dictionary of answers and their percentage results after being displayed. 
         """
-        user_ids = self.get_user_ids_by_column(demographic)
+        user_ids = self.get_user_ids_by_demographic(demographic)
         responses = self.get_birth_control_info(user_ids, "access")
         results = self.count_birth_control_access_answers(responses)
         percent_results = self.calc_percentage(results)
         return self.display_results(percent_results)
 
-    #TODO: rename to something like get_user_ids_by_demographic, since we aren't using any other column
-    #TODO: topic could also be more meaningful
-    def get_user_ids_by_column(self, topic):
+    def get_user_ids_by_demographic(self, topic):
         """
         Iterates through and searches the list of lists named data in order
         to create a list of the user ids who are part of the appropriate demographic.
@@ -90,17 +85,15 @@ class BirthControl:
         """
         user_ids = []
         for row in self.data:
-            #TODO: rename item to be more meaningful
-            for item in row:
-                item=item.lower()
-                if topic.lower() in item:
+            for demographic in row:
+                demographic=demographic.lower()
+                if topic.lower() in demographic:
                     user_ids.append(row[0])
         if user_ids==[]:
             print("Sorry, this demographic is not in the dataset.")
             return []
         return user_ids
 
-    #TODO: rename to be more searchable
     def get_birth_control_info(self, user_ids, useOrAccess):
         """
         Iterates through the list of user ids and creates a list of their
@@ -109,26 +102,24 @@ class BirthControl:
                 user_ids = the list of user_ids of the appropriate demographic.
         Returns the list of answers to the question about how often birth control is used.
         """
-        #TODO: possibly rename to be more searchable so that they don't start with birth_control_, also kind of reduntant since the class is named BirthControl
-        birth_control_use_answers = []
-        birth_control_access_answers = []
+        use_answers = []
+        access_answers = []
         for user in user_ids:
             for row in self.data:
                 if (row[0]==user):
                     if useOrAccess == "use":
-                        birth_control_use_answers.append(row[45])
+                        use_answers.append(row[45])
                     else:
-                        birth_control_access_answers.append(row[58])
+                        access_answers.append(row[58])
         if user_ids == []:
             print("List is empty")
             return []
         if useOrAccess == "use":
-            return birth_control_use_answers
+            return use_answers
         else:
-            return birth_control_access_answers
+            return access_answers
 
-    #TODO: rename to be more searchable
-    def count_birth_control_use_answers(self, birth_control_use_answers):
+    def count_birth_control_use_answers(self, use_answers):
         """
         Counts the amount of each possible response to the birt3 question in the dataset
         regarding birth control use for the appropriate list of users based on inputted demographic.
@@ -149,7 +140,7 @@ class BirthControl:
         refused=0
 
         totaled_answers={}
-        for item in birth_control_use_answers:
+        for item in use_answers:
             if item == "Never":
                 never=never+1
             elif item== "Not applicable/Does not have vaginal intercourse/sex":
@@ -172,7 +163,7 @@ class BirthControl:
         totaled_answers["Almost every time"]=almost
         return totaled_answers
 
-    def count_birth_control_access_answers(self, birth_control_access_answers):
+    def count_birth_control_access_answers(self, access_answers):
         """
         Counts the amount of each possible response to the birt7 question in the dataset
         regarding concerns about future access to birth control for the appropriate list 
@@ -193,7 +184,7 @@ class BirthControl:
         refused=0
 
         totaled_answers={}
-        for item in birth_control_access_answers:
+        for item in access_answers:
             if item == "Very concerned":
                 veryConcerned=veryConcerned+1
             elif item== "Not applicable/don't believe in birth control":
@@ -230,9 +221,9 @@ class BirthControl:
             print("Dictionary is empty, try again.")
             return {}
         #TODO: rename key to be more specific
-        for key in totaled_answers:
-            total=total+totaled_answers[key]
-        for key in totaled_answers:
+        for response in totaled_answers:
+            total=total+totaled_answers[response]
+        for response in totaled_answers:
             if total!=0:   
-                totaled_answers[key]= round((totaled_answers[key]/total)*100)
+                totaled_answers[response]= round((totaled_answers[response]/total)*100)
         return totaled_answers
