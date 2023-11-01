@@ -1,5 +1,4 @@
 import csv
-
 from ProductionCode.datasource import *
 
 database_accessor = DataSource()
