@@ -36,12 +36,13 @@ def get_birth_control_use_by_demographic(demographic):
             reponses = the list of responses to the question above
     Returns the string version of that list of responses.
     """
-    user_ids = data_accessor.get_user_ids_by_demographic(demographic)
-    if user_ids != []:
-        use=data_accessor.get_use_of_birth_control_by_demographic(demographic)
-        y=list(data_accessor.yvals(use))
-        displaylist={}
-        return render_template('datapage.html',title2="Birth Control Use by Demographic",subset=demographic, question= "How often do you use birth control when not trying to get pregnant?", displaylist=use,yValues=y)
+    #user_ids = data_accessor.get_user_ids_by_demographic(demographic)
+    #if user_ids != []:
+    use=data_accessor.get_use_of_birth_control_by_demographic(demographic)
+        #y=list(data_accessor.yvals(use))
+        #displaylist={}
+    if demographic:
+        return render_template('datapage.html',title2="Birth Control Use by Demographic",subset=demographic, question= "How often do you use birth control when not trying to get pregnant?", displaylist=use) #,yValues=y)
     else:
         return render_template('notFound.html')
 
@@ -76,11 +77,12 @@ def get_birth_control_access_concerns_by_demographic(demographic):
             
     Return the string version of that list of responses.
     """
-    user_ids = data_accessor.get_user_ids_by_demographic(demographic)
-    if user_ids != []:
-        concerns=data_accessor.get_birth_control_access_concerns_by_demographic(demographic)
-        y=list(data_accessor.yvals(concerns))
-        return render_template('datapage.html',title2="Birth Control Policy Concerns by Demographic",subset=demographic,question="How concerned are you about the upcoming change to the Supreme Court impacting your ability to afford or access your preferred birth control method?", displaylist=concerns,yValues=y)
+    #user_ids = data_accessor.get_user_ids_by_demographic(demographic)
+    #if user_ids != []:
+    concerns=data_accessor.get_birth_control_access_concerns_by_demographic(demographic)
+        #y=list(data_accessor.yvals(concerns))
+    if demographic:
+        return render_template('datapage.html',title2="Birth Control Policy Concerns by Demographic",subset=demographic,question="How concerned are you about the upcoming change to the Supreme Court impacting your ability to afford or access your preferred birth control method?", displaylist=concerns) #,yValues=y)
     else:
         return render_template('notFound.html')
 

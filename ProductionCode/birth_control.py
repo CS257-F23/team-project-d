@@ -146,17 +146,17 @@ class BirthControl:
 
         totaled_answers={}
         for item in use_answers:
-            if item == "Never":
+            if item == ('Never',):
                 never=never+1
-            elif item== "Not applicable/Does not have vaginal intercourse/sex":
+            elif item== ('Not applicable/Does not have vaginal intercourse/sex',):
                 na= na+1
-            elif item == "Every time":
+            elif item == ('Every time',):
                 always= always+1
-            elif item == "About half the time":
+            elif item == ('About half the time',):
                 half=half+1
-            elif item== "Once in a while":
+            elif item== ('Once in a while',):
                 some= some+1
-            elif item == "Almost every time":
+            elif item == ('Almost every time',):
                 almost= almost+1
             else:
                 refused=refused+1
@@ -190,17 +190,17 @@ class BirthControl:
 
         totaled_answers={}
         for item in access_answers:
-            if item == "Very concerned":
+            if item == ('Very concerned',):
                 veryConcerned=veryConcerned+1
-            elif item== "Not applicable/don't believe in birth control":
+            elif item== ('Not applicable/don\'t believe in birth control',):
                 notApplicable= notApplicable+1
-            elif item == "Somewhat concerned":
+            elif item == ('Somewhat concerned',):
                 somewhatConcerned= somewhatConcerned+1
-            elif item == "Not very concerned":
+            elif item == ('Not very concerned',):
                 notVeryConcerned=notVeryConcerned+1
-            elif item== "Not at all concerned":
+            elif item== ('Not at all concerned',):
                 notAtAllConcerned=notAtAllConcerned+1
-            elif item == "Don't know":
+            elif item == ('Don\'t know',):
                 dontKnow=dontKnow+1
             else:
                 refused=refused+1
