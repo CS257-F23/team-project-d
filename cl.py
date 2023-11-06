@@ -23,10 +23,10 @@ def runMain():
     """
     args= setUpParser(sys.argv)
     if args.BirthControlUseByDemo:
-        print("How often do you use birth control? Demographic:", args.BirthControlUseByDemo)
+        print("How often do you use birth control when not trying to get pregnant? Demographic:", args.BirthControlUseByDemo)
         data_accessor.get_use_of_birth_control_by_demographic(args.BirthControlUseByDemo)
     elif args.BirthControlAccessByDemo:
-        print("Given the current political climate(2020), are you concerned with birth control access in the future? Demographic:", args.BirthControlAccessByDemo)
+        print("Given the current political climate (2020), how concerned are you with birth control access in the future? Demographic:", args.BirthControlAccessByDemo)
         data_accessor.get_birth_control_access_concerns_by_demographic(args.BirthControlAccessByDemo)
     elif args.option:
         optionsDisplay()
@@ -40,7 +40,7 @@ def optionsDisplay():
     option= """Demographic Options: State:MA,MN...\n 
         Region:North East, South... \n 
         Own home: Owned, Rented \n 
-        Marital Status: never married, Widowed,Married, Divorced, Single \n 
+        Marital Status: never married, Widowed, Married, Divorced, Single \n 
         Employ: Retired, Homemaker, Full-time, Part-time, Other, Temporarily unemployed, Disabled \n
         Education: Four year college, High School graduate, Some college, Two year associate degree, Postgraduate or professional degree,Some postgraduate or professional schooling, Refused, Less than high school \n 
         Race: White Non-Hispanic, Native American, White Hispanic,Black Non-Hispanic, Mixed, Asian, Refused, Black Hispanic \n 
@@ -56,7 +56,7 @@ def Usage():
     """
     Displays and returns a string usage statement.
     """
-    usage="Usage: python3 cl.py --BirthControlUseByDemo or --BirthContolAccessByDemo 'the specific demographic you wanna search for' . Try python3 cl.py --option for all demographic options you could search."
+    usage="Usage: python3 cl.py --BirthControlUseByDemo or --BirthControlAccessByDemo 'the specific demographic you are searching for' . Try python3 cl.py --option for all demographic options you could search."
     print(usage)
     return usage
         
