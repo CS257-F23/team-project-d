@@ -39,10 +39,19 @@ def get_birth_control_use_by_demographic(demographic):
     #user_ids = data_accessor.get_user_ids_by_demographic(demographic)
     #if user_ids != []:
     use=data_accessor.get_use_of_birth_control_by_demographic(demographic)
+    #x=json.dumps(data_accessor.xvals(use))
     #y=json.dumps(data_accessor.yvals(use))
+    keys=[]
+    vals=[]
+    for key in use:
+        keys.append(key)
+    for key in use: 
+        vals.append(use[key])
+    x=json.dumps(keys)
+    y=json.dumps(vals)
     displaylist={}
     if demographic:
-        return render_template('datapage.html',title2="Birth Control Use by Demographic",subset=demographic, question= "How often do you use birth control when not trying to get pregnant?", displaylist=use)#yValues=y)
+        return render_template('datapage.html',title2="Birth Control Use by Demographic",subset=demographic, question= "How often do you use birth control when not trying to get pregnant?", displaylist=use, xValues=x, yValues=y)
     else:
         return render_template('notFound.html')
 
@@ -80,9 +89,16 @@ def get_birth_control_access_concerns_by_demographic(demographic):
     #user_ids = data_accessor.get_user_ids_by_demographic(demographic)
     #if user_ids != []:
     concerns=data_accessor.get_birth_control_access_concerns_by_demographic(demographic)
-        #y=list(data_accessor.yvals(concerns))
+    keys=[]
+    vals=[]
+    for key in concerns:
+        keys.append(key)
+    for key in concerns: 
+        vals.append(concerns[key])
+    x=json.dumps(keys)
+    y=json.dumps(vals)
     if demographic:
-        return render_template('datapage.html',title2="Birth Control Policy Concerns by Demographic",subset=demographic,question="How concerned are you about the upcoming change to the Supreme Court impacting your ability to afford or access your preferred birth control method?", displaylist=concerns) #,yValues=y)
+        return render_template('datapage.html',title2="Birth Control Policy Concerns by Demographic",subset=demographic,question="How concerned are you about the upcoming change to the Supreme Court impacting your ability to afford or access your preferred birth control method?", displaylist=concerns, xValues=x, yValues=y)
     else:
         return render_template('notFound.html')
 
@@ -104,4 +120,4 @@ def python_bug(e):
 
 if __name__ == '__main__':
     data_accessor.load_data()
-    app.run(port = 5202)
+    app.run(port=5202)
