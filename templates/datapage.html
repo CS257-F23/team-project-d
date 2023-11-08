@@ -13,29 +13,6 @@
         <p>{{key}} : {{value}} %</p>
         {% endfor %}
         <div>
-        <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
-        {% block javascript %}
-        <script>
-            var xValues=["Very concerned", "Not applicable/don't believe in birth control","Somewhat concerned","Not very concerned","Not at all concerned","Don't know","Refused"];
-            var yValues=JSON.parse('{{yValues | tojson}}');
-            var barColors = "blue";
-            new Chart("myChart", {
-                type: "bar",
-                data: {
-                    labels:xValues,
-                    datasets: [{
-                        backgroundColor: barColors,
-                        data: yValues
-                    }]
-                },
-                options: {
-                    legend: {display: false},
-                    title: {
-                        display: true,
-                        text: "Birth Control"
-    }
-  }
-});
 </script>
     <h2>Data source</h2>
     <p>Main: <a href=https://ropercenter.cornell.edu/ipoll/study/31118270">Roper iPoll October 2020 Birth Control Survey </a></p>
