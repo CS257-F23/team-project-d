@@ -1,6 +1,6 @@
 <html>
-    <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">  
 </script>
     <head> <link rel= "stylesheet" href="{{url_for('static', filename='datapage.css')}}">
         <h1>{{title2}}</h1>
@@ -13,6 +13,37 @@
         <p>{{key}} : {{value}} %</p>
         {% endfor %}
         <div>
+
+            {% block content %}
+    <h2>{{topic}}</h2>
+
+    
+	    <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+        {% block javascript %}
+            <script>
+            xValues = JSON.parse({{xValues | tojson}})
+	        yValues = JSON.parse({{ yValues | tojson }})
+            barColors= ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"]
+            new Chart("myChart", {
+                type: "bar",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    legend: {display: false},
+                    title: {
+                        display: true,
+    }
+  }
+});
+</script>
+
+    {% endblock %}
+    {% endblock %}
 </script>
     <h2>Data source</h2>
     <p>Main: <a href=https://ropercenter.cornell.edu/ipoll/study/31118270">Roper iPoll October 2020 Birth Control Survey </a></p>
