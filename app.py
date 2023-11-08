@@ -39,10 +39,10 @@ def get_birth_control_use_by_demographic(demographic):
     #user_ids = data_accessor.get_user_ids_by_demographic(demographic)
     #if user_ids != []:
     use=data_accessor.get_use_of_birth_control_by_demographic(demographic)
-    y=json.dumps(data_accessor.yvals(use))
+    #y=json.dumps(data_accessor.yvals(use))
     displaylist={}
     if demographic:
-        return render_template('datapage.html',title2="Birth Control Use by Demographic",subset=demographic, question= "How often do you use birth control when not trying to get pregnant?", displaylist=use,yValues=y)
+        return render_template('datapage.html',title2="Birth Control Use by Demographic",subset=demographic, question= "How often do you use birth control when not trying to get pregnant?", displaylist=use)#yValues=y)
     else:
         return render_template('notFound.html')
 
@@ -104,4 +104,4 @@ def python_bug(e):
 
 if __name__ == '__main__':
     data_accessor.load_data()
-    app.run()
+    app.run(port = 5202)
