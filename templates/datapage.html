@@ -1,8 +1,6 @@
 <html>
 <script
-src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">  
-<script
-src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">  
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">   
 </script>
     <head> <link rel= "stylesheet" href="{{url_for('static', filename='datapage.css')}}">
         <h1>{{title2}}</h1>
@@ -30,12 +28,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
             xValues = JSON.parse({{xValues | tojson}})
 	        yValues = JSON.parse({{ yValues | tojson }})
             barColors= ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#00aba9","#1e7145"]
-            <script>
-            xValues = JSON.parse({{xValues | tojson}})
-	        yValues = JSON.parse({{ yValues | tojson }})
-            barColors= ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#00aba9","#1e7145"]
             new Chart("myChart", {
-                type: "pie",
                 type: "pie",
                 data: {
                     labels: xValues,
@@ -47,16 +40,11 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                 },
                 options: {
                     legend: {display: true},
-                    legend: {display: true},
                     title: {
                         display: true,
     }
   }
 });
-</script>
-
-    {% endblock %}
-    {% endblock %}
 </script>
 
     {% endblock %}
