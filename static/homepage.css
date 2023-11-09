@@ -2,26 +2,19 @@
 h1 {
     padding-top: 1em;
     padding-bottom: 1em;
-    background-color: rgb(16, 0, 157);
-    color: white;
+    background-color:rgb(242, 172, 208) ;
+    color: rgb(22, 1, 16);
     text-align: center;
-}
-
-h2 {
-    font-family: Verdana, Geneva, sans-serif;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    color: rgb(16, 0, 157);
-    text-align: center;
-}
-
-/*All other words on the page*/
-p {
-    font-family: Verdana, Geneva, sans-serif;
-    line-height: 1;
-    font-weight:normal;
-    color: rgb(16, 0, 157);
-    font-size: 20px;
+    font-family: monospace;
+    font-weight: 300;
+    margin-top: 1cm;
+    margin-bottom: 1cm;
+    margin-left: 1cm;
+    margin-right: 1cm;
+    border-style: dashed;
+    border-width: 5px;
+    border-color:rgb(22, 1, 16);
+    font-size: 40px;
 }
 
 /*Put the buttons in the center*/
@@ -31,23 +24,33 @@ p {
 
 /*search button*/
 button {
-    background-color: rgb(16, 0, 157); 
-    color: white;
-    padding: 15px 32px;
+    background-color: rgb(242, 172, 208); 
+    color: rgb(22, 1, 16);
+    padding: 30px 64px;
     text-align: center;
     display: inline-block;
-    font-size: 16px;
-
+    font-size: 32px;
+    font-family: monospace;
+    margin-top: 1cm;
+    margin-bottom: 1cm;
+    margin-left: 1cm;
+    margin-right: 1cm;
   }
 
 button:hover {
-    background-color: rgb(237, 237, 237); /* Green */
-    color: rgb(16, 0, 157);
+    background-color:rgb(244, 233, 233) ;
+    color: rgb(22, 1, 16);
   }
 
-/*line under purpose of website*/
-hr {
-    height:7px;
-    border-width:0;
-    background-color:rgb(16, 0, 157);
+  /*icon*/
+i {
+    color:rgb(242, 172, 208);
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    font-size: 100px;
+  }
+
+  body {
+    background-color:rgb(244, 233, 233);
   }

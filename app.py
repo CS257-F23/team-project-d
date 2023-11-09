@@ -36,11 +36,7 @@ def get_birth_control_use_by_demographic(demographic):
             reponses = the list of responses to the question above
     Returns the string version of that list of responses.
     """
-    #user_ids = data_accessor.get_user_ids_by_demographic(demographic)
-    #if user_ids != []:
     use=data_accessor.get_use_of_birth_control_by_demographic(demographic)
-    #x=json.dumps(data_accessor.xvals(use))
-    #y=json.dumps(data_accessor.yvals(use))
     keys=[]
     vals=[]
     for key in use:
@@ -86,8 +82,6 @@ def get_birth_control_access_concerns_by_demographic(demographic):
             
     Return the string version of that list of responses.
     """
-    #user_ids = data_accessor.get_user_ids_by_demographic(demographic)
-    #if user_ids != []:
     concerns=data_accessor.get_birth_control_access_concerns_by_demographic(demographic)
     keys=[]
     vals=[]
