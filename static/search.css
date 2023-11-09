@@ -1,11 +1,11 @@
 /*content of page outside of title*/
-body {
+/*body {
     background-color: white; 
     text-align: left; 
     margin: 12px;
     font-family: Verdana, Geneva, sans-serif;
     font-size: large;
-}
+}*/
 /*title consistent with rest of page */
 h1 {
   padding-top: 1em;
@@ -82,8 +82,8 @@ input[type="submit"] {
  /* styling all aspects of navbar with dropdown*/
 .navbar {
     overflow: hidden;
-    background-color: rgb(16, 0, 157);
-    font-family: Verdana, Geneva, sans-serif;
+    background-color: rgb(242, 172, 208);
+    font-family: monotone;
   }
   
   
@@ -103,13 +103,13 @@ input[type="submit"] {
   }
   
   
-  .dropdown .dropbtn {
+  /*.dropdown .dropbtn {
     font-size: 16px;
     border: none;
     outline: none;
     color: yellow(16, 0, 157);
     padding: 14px 16px;
-  }
+  }*/
   
 .dropdown .dropbtn {
   font-size: 16px;
@@ -118,13 +118,13 @@ input[type="submit"] {
   color: white;
   padding: 14px 16px;
   background-color: rgb(16, 0, 157);
-  font-family: Verdana, Geneva, sans-serif; 
+  font-family: monotone; 
 }
 
-  .navbar a:hover, .dropdown:hover .dropbtn {
+  /*.navbar a:hover, .dropdown:hover .dropbtn {
     background-color: white;
     color:rgb(16, 0, 157);
-  }
+  }*/
   
   .dropdown-content {
     display: none;
