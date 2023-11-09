@@ -20,21 +20,7 @@ class BirthControl:
         for response in totaled_answers:
             print(response, ":",totaled_answers[response], "%")
         return totaled_answers
-    
 
-    #TODO: rename xvals and yvals to be more meaningful, same with key, vals could be values
-    def xvals(self, totaled_answers):
-        """Initializes xvals for graph which is currently not working"""
-        keys=[]
-        for key in totaled_answers:
-            keys.append(key)
-        return keys
-    def yvals(self,totaled_answers):
-        """Initializes yvals for graph which is currently not working"""
-        vals=[]
-        for key in totaled_answers:
-            vals.append(totaled_answers[key])
-        return vals
 
     def load_data(self):
         """

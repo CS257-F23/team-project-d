@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS test;
-CREATE TABLE test (
-  userID text,
+DROP TABLE IF EXISTS "reproductiveHealthAndDemographicData";
+CREATE TABLE "reproductiveHealthAndDemographicData" (
+  userID int,
   states text,
   region text,
   homeownership text,
