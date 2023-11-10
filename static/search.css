@@ -1,6 +1,6 @@
 h1 {
   padding-top: 1em;
-  /*padding-bottom: 1em;*/
+  padding-bottom: 1em;
   background-color:rgb(242, 172, 208) ;
   color: rgb(22, 1, 16);
   text-align: center;
@@ -42,7 +42,8 @@ p {
 /*search bar*/
 form {
     margin-top: 20px; 
-    margin: 20px
+    margin: 20px;
+    display: inline-block
 }
 
 /*Enter demographic*/
@@ -100,7 +101,7 @@ input[type="submit"] {
   }
  
 .dropdown .dropbtn {
-  font-size: 16px;
+  font-size: 18px;
   border: none;
   outline: none;
   color: rgb(22, 1, 16);
