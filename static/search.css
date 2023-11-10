@@ -43,7 +43,8 @@ p {
 form {
     margin-top: 20px; 
     margin: 20px;
-    display: inline-block
+    font-family: monospace;
+    font-size:25px;
 }
 
 /*Enter demographic*/
