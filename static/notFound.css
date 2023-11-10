@@ -1,32 +1,63 @@
-/*Title consistent with rest of site*/
+/*title consistent with rest of site*/
 h1 {
     padding-top: 1em;
     padding-bottom: 1em;
-    background-color: rgb(16, 0, 157);
-    color: white;
+    background-color:rgb(242, 172, 208) ;
+    color: rgb(22, 1, 16);
     text-align: center;
-}
-
-/*nav to the home page*/
-h2 {
-    font-family: Verdana, Geneva, sans-serif;
+    font-family: monospace;
+    font-weight: 300;
+    margin-top: 1cm;
+    margin-bottom: 1cm;
+    margin-left: 1cm;
+    margin-right: 1cm;
+    border-style: dashed;
+    border-width: 5px;
+    border-color:rgb(22, 1, 16);
+    font-size: 40px;
+}/*title consistent with rest of site*/
+h1 {
     padding-top: 1em;
     padding-bottom: 1em;
-    color: rgb(16, 0, 157);
-    text-align: left;
+    background-color:rgb(242, 172, 208) ;
+    color: rgb(22, 1, 16);
+    text-align: center;
+    font-family: monospace;
+    font-weight: 300;
+    margin-top: 1cm;
+    margin-bottom: 1cm;
+    margin-left: 1cm;
+    margin-right: 1cm;
+    border-style: dashed;
+    border-width: 5px;
+    border-color:rgb(22, 1, 16);
+    font-size: 40px;
 }
 
-/*All other words on the page*/
-p {
-    font-family: Verdana, Geneva, sans-serif;
-    line-height: 1;
-    font-weight:normal
-}
 
-/*home button*/
-a {
+
+
+
+
+  body {
+    background-color:rgb(244, 233, 233);
+  }
+
+
+/*decoration of nav bar*/
+.navbar {
+    overflow: hidden;
+    background-color: rgb(242, 172, 208);
+    font-family: monotone;
+  }
+  
+  
+  .navbar a {
+    float: left;
+    font-size: 16px;
+    color: rgb(22, 1, 16);
+    text-align: center;
+    padding: 14px 16px;
     text-decoration: none;
-    background: rgb(233, 233, 235);
-    padding: 5px;
-    border-radius: 1px;
+    font-family: monospace
   }
