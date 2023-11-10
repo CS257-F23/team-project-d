@@ -90,6 +90,7 @@ input[type="submit"] {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    font-family: monospace
   }
   
   
@@ -105,7 +106,6 @@ input[type="submit"] {
   color: rgb(22, 1, 16);
   padding: 14px 16px;
   background-color: rgb(242, 172, 208);
-  font-family: monotone; 
 }
 
   .dropdown-content {
@@ -114,6 +114,7 @@ input[type="submit"] {
     background-color: rgb(242, 172, 208);
     min-width: 160px;
     z-index: 1;
+    font-family: monospace
   }
   
   .dropdown-content a {
@@ -123,12 +124,14 @@ input[type="submit"] {
     text-decoration: none;
     display: block;
     text-align: left;
+    font-family: monospace
   }
   
+  /*
   .dropdown-content a:hover {
     background-color: rgb(16, 0, 157);
   }
-  
+  */
   .dropdown:hover .dropdown-content {
     display: block;
   }
