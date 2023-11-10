@@ -41,16 +41,6 @@ p {
     border-radius: 1px;
   }
 
-  /*home button
-h3 {
-    font-family: monospace;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    color: rgb(22,1,16);
-    text-align: left;
-    font-size: 20px;
-}*/
-
 /*home button styling*/ 
 .btn {
     background-color: rgb(255, 192, 251); 
@@ -65,8 +55,9 @@ h3 {
   
   /* Darker background on mouse-over */
   .btn:hover {
-    background-color:rgb(255, 141, 247) ;
-  }
+      background-color:rgb(244, 233, 233) ;
+      color: rgb(22, 1, 16);
+    }
 
   /*centering graph*/
 canvas {
