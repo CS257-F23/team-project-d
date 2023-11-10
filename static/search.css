@@ -35,13 +35,14 @@ p {
     font-family: monospace;
     line-height: 1;
     font-weight:normal;
+    font-size:15px;
     color: rgb(22, 1, 16)
 }
 
 /*search bar*/
 form {
     margin-top: 20px; 
-    margin: 10px
+    margin: 20px
 }
 
 /*Enter demographic*/
@@ -101,23 +102,23 @@ input[type="submit"] {
   font-size: 16px;
   border: none;
   outline: none;
-  color: white;
+  color: rgb(22, 1, 16);
   padding: 14px 16px;
-  background-color: rgb(16, 0, 157);
+  background-color: rgb(242, 172, 208);
   font-family: monotone; 
 }
 
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #ddd;
+    background-color: rgb(242, 172, 208);
     min-width: 160px;
     z-index: 1;
   }
   
   .dropdown-content a {
     float: none;
-    color: rgb(16, 0, 157);
+    color: rgb(22, 1, 16);
     padding: 12px 16px;
     text-decoration: none;
     display: block;
