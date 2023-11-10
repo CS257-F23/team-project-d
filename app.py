@@ -102,6 +102,10 @@ def page_not_found(e):
     """ Returns a statement with the instructions when an external error is encountered. """
     
     return render_template('notFound.html')
+
+@app.route('/about',strict_slashes=False)
+def aboutPage():
+    return render_template('about.html')
    
 
 @app.errorhandler(500)
