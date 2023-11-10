@@ -103,7 +103,7 @@ def page_not_found(e):
     
     return render_template('notFound.html')
 
-@app.route('/about')
+@app.route('/about',strict_slashes=False)
 def aboutPage():
     render_template('about.html')
    
