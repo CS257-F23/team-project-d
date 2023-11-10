@@ -105,7 +105,7 @@ def page_not_found(e):
 
 @app.route('/about',strict_slashes=False)
 def aboutPage():
-    render_template('about.html')
+    return render_template('about.html')
    
 
 @app.errorhandler(500)
