@@ -17,7 +17,13 @@ h1 {
     font-size: 40px;
   }
   
-  
+  p {
+    font-family: monospace;
+    line-height: 1;
+    font-size:25px;
+    color: rgb(22,1,16);
+    font-weight:normal;
+}
   
   body {
     background-color:rgb(244, 233, 233);
@@ -41,3 +47,27 @@ h1 {
     font-family: monospace
   }
   
+/*Datasource link at bottom of page*/
+#link {
+  text-decoration: none;
+  background: rgb(242, 172, 208);
+  padding: 5px;
+  border-radius: 1px;
+}
+
+.btn {
+  background-color: rgb(242, 172, 208); 
+  border: 1px solid rgb(22,1,16);
+  color: rgb(22,1,16); 
+  padding: 12px 16px;
+  padding-top:1em;
+  padding-bottom:1em;
+  font-size: 16px;
+  cursor: pointer; 
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+    background-color:rgb(244, 233, 233) ;
+    color: rgb(22, 1, 16);
+  }
