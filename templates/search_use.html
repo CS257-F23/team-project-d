@@ -156,6 +156,16 @@
     <div class="container">
       <p id="description">{{description}} </p>
     </div>
+    <form action="rowbycolumn">
+      <label for="rows">Choose a demographic</label>
+      <select  id="rows" name="rowchoice">
+         {% for row in rows: %}
+         <option value="{{row}}">{{row}}</option>
+         {% endfor %}
+            
+     </select>
+     <input type="submit" value="Submit">
+    </form>
     <form autocomplete="off" action="/birth-control-use" method="post">
       <div class="autocomplete">
         <label for="demographic"> Enter demographic below:</label>
@@ -167,7 +177,6 @@
         <input type="submit" value="Search">
       
     </form>
-
     <script>
       /*source:*https://www.w3schools.com/howto/howto_js_autocomplete.asp*/
       function autocomplete(inp, arr) {
