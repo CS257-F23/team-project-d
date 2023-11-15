@@ -118,4 +118,4 @@ def python_bug(e):
 
 if __name__ == '__main__':
     data_accessor.load_data()
-    app.run(host='0.0.0.0',debug=False,port=5202)
+    app.run(host='0.0.0.0',debug=False,port=5102)

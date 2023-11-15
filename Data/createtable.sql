@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS "reproductiveHealthAndDemographicData";
-CREATE TABLE "reproductiveHealthAndDemographicData" (
+DROP TABLE IF EXISTS reproductiveHealthAndDemographicData;
+CREATE TABLE reproductiveHealthAndDemographicData (
   userID int,
   states text,
   region text,
