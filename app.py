@@ -16,9 +16,9 @@ def homepage():
 def get_birth_control_use():
     if request.method == 'POST':
         demographic = request.form.get('demographic')
-        if demographic=request.form.get('Political View'):
+        if demographic:
             return redirect(url_for('display_political_view_options', demographic=demographic))
-        elif demographic=request.form.get('Religion')::
+        elif demographic:
             return redirect(url_for('display_religion_options', demographic=demographic))
         else:
             return "Invalid input. Please provide a valid demographic value."
