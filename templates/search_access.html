@@ -6,8 +6,8 @@
 </head>
 <body>
     <div class="navbar">
-        <a href="http://127.0.0.1:5202/">Home</a>
-        <a href="http://127.0.0.1:5202/about">About</a>
+        <a href="/">Home</a>
+        <a href="about">About</a>
         <div class="dropdown">
           <button class="dropbtn">Region
             <i class="fa fa-caret-down"></i>
@@ -151,12 +151,22 @@
               <a>Don't know</a>
             </div>
           </div>
+          <form action="rowbycolumn">
+            <label for="rows">Choose a demographic</label>
+            <select  id="rows" name="rowchoice">
+               {% for row in rows: %}
+               <option value="{{row}}">{{row}}</option>
+               {% endfor %}
+                  
+           </select>
+           <input type="submit" value="Submit">
+          </form>
       </div>
     <p>Toggle through the options above to see demographic lookup options</p>
     <div class="container">
       <p id="description">{{description}} </p>
     </div>
-    <form autocomplete="off" action="/birth-control-use" method="post">
+    <form autocomplete="off" action="/birth-control-access" method="post">
       <div class="autocomplete">
         <label for="demographic"> Enter demographic below:</label>
       
