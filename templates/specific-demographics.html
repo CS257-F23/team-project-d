@@ -1,0 +1,11 @@
+<html>
+    <form action="/datapage">
+        <label for="rows">Choose a demographic</label>
+        <select  id="rows" name="rowchoice">
+           {% for row in rows: %}
+           <option value="{{row}}">{{row}}</option>
+           {% endfor %}
+        </select>
+        <input type="submit" value="Submit">
+       </form>
+</html>
