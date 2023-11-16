@@ -3,7 +3,7 @@ from ProductionCode.birth_control import *
 from ProductionCode.datasource import *
 
 data_accessor = BirthControl()
-
+data_source_accessor=DataSource()
 app = Flask(__name__)
 
 """Displays two question options"""
@@ -28,12 +28,12 @@ def get_birth_control_use():
 @app.route('/birth-control-use/politicalview', strict_slashes = False, methods=['GET','POST'])
 def display_political_view_options():
     if request.method == 'POST':
-        demographic = request.form.get('demographic')
+        demographic = request.form.get('rows')
         if demographic:
             return redirect(url_for('get_birth_control_use_by_demographic', demographic=demographic))
         else:
             return "Invalid input. Please provide a valid demographic value."
-    return render-template('specific-demographics',rows=data_accessor.get_political_views_for_form())
+    return render_template('specific-demographics.html',rows=data_source_accessor.get_political_views_for_form())
 
 @app.route('/birth-control-use/<demographic>', strict_slashes = False)
 def get_birth_control_use_by_demographic(demographic):
