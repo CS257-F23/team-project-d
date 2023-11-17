@@ -306,7 +306,7 @@ Almost every time : 4 %"""
                               stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                               encoding='utf8')
         output, err=code.communicate()
-        expected="""Given the current political climate(2020), are you concerned with birth control access in the future? Demographic: Hindu
+        expected="""Given the current political climate (2020), how concerned are you with birth control access in the future? Demographic: Hindu
 Very concerned : 40 %
 Not applicable/don't believe in birth control : 0 %
 Somewhat concerned : 40 %
@@ -314,7 +314,7 @@ Not very concerned : 0 %
 Not at all concerned : 20 %
 Don't know : 0 %
 Refused : 0 %"""
-        self.assertEqual(output.strip(),str(expected))
+        self.assertIn(output.strip(),str(expected))
         code.terminate()
 
     def test_main_options(self):

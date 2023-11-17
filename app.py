@@ -3,7 +3,7 @@ from ProductionCode.birth_control import *
 from ProductionCode.datasource import *
 
 data_accessor = BirthControl()
-data_source_accessor=DataSource()
+
 app = Flask(__name__)
 
 """Displays two question options"""
@@ -17,23 +17,11 @@ def get_birth_control_use():
     if request.method == 'POST':
         demographic = request.form.get('demographic')
         if demographic:
-            return redirect(url_for('display_political_view_options', demographic=demographic))
-        elif demographic:
-            return redirect(url_for('display_religion_options', demographic=demographic))
+            return redirect(url_for('get_birth_control_use_by_demographic', demographic=demographic))
         else:
             return "Invalid input. Please provide a valid demographic value."
 
     return render_template('search_use.html',header="Birth Control Use By Demographic",description="When not trying to get pregnant, how often, if at all, do you use some form of birth control such as birth control pills or condoms when you have vaginal intercourse?",rows=['Political View','Religion'])
-
-@app.route('/birth-control-use/politicalview', strict_slashes = False, methods=['GET','POST'])
-def display_political_view_options():
-    if request.method == 'POST':
-        demographic = request.form.get('rows') #category either religion or political view
-        if demographic:
-            return redirect(url_for('get_birth_control_use_by_demographic', demographic=demographic))
-        else:
-            return "Invalid input. Please provide a valid demographic value."
-    return render_template('specific-demographics.html',rows=data_source_accessor.get_political_views_for_form())
 
 @app.route('/birth-control-use/<demographic>', strict_slashes = False)
 def get_birth_control_use_by_demographic(demographic):

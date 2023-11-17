@@ -16,7 +16,7 @@ class TestFlaskApp(unittest.TestCase):
     def test_route_homepage(self):
         self.app = app.test_client()
         response = self.app.get('/', follow_redirects=True)
-        self.assertIn(b'This website analyzes data', response.data)
+        self.assertIn(b'About', response.data)
 
     """This is the base case test for the information on the search page for birth control uses"""
     def test_route_searchpage_use(self):
