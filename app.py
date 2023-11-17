@@ -28,7 +28,7 @@ def get_birth_control_use():
 @app.route('/birth-control-use/politicalview', strict_slashes = False, methods=['GET','POST'])
 def display_political_view_options():
     if request.method == 'POST':
-        demographic = request.form.get('rows')
+        demographic = request.form.get('rows') #category either religion or political view
         if demographic:
             return redirect(url_for('get_birth_control_use_by_demographic', demographic=demographic))
         else:
