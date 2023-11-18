@@ -66,4 +66,8 @@ p {
 canvas {
     margin: 10 auto;
 }
-body {background-color: rgb(244, 233, 233);}
+body {
+  background-color: rgb(244, 233, 233);
+  padding-left: 2cm;
+  padding-right: 2cm;
+}

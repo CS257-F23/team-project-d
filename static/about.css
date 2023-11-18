@@ -16,6 +16,10 @@ h1 {
     border-color:rgb(22, 1, 16);
     font-size: 40px;
   }
+
+  h2 {
+    font-family: monospace;
+  }
   
   p {
     font-family: monospace;
@@ -27,6 +31,8 @@ h1 {
   
   body {
     background-color:rgb(244, 233, 233);
+    padding-left: 2cm;
+    padding-right: 2cm;
   }
   
   /*decoration of nav bar*/

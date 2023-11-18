@@ -16,6 +16,10 @@ h1 {
   font-size: 40px;
 }
 
+p {
+  font-family: monospace;
+}
+
 a {
   font-family: monospace;
 }
@@ -140,6 +144,8 @@ input[type="submit"] {
   
   body {
     background-color: rgb(244,233,233);
+    padding-left: 2cm;
+    padding-right: 2cm;
   }
 
 
