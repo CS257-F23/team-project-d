@@ -53,6 +53,7 @@ p {
     padding-bottom:1em;
     font-size: 16px;
     cursor: pointer; 
+    font-family: monospace;
   }
   
   /* Darker background on mouse-over */
