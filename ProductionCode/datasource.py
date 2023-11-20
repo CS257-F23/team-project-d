@@ -20,39 +20,7 @@ class DataSource:
             exit()
         return connection
     
-    def get_political_views_for_form(self):
-        """
-        Returns the unique values for the politial view column
-        from the table to be used for options in a dropdown form.
-        Returns political_view_options, a list of the unique
-        political views present in the table. 
-        """
-        try:
-            cursor = self.connection.cursor()
-            cursor.execute("SELECT DISTINCT poliView FROM reproductiveHealthAndDemographicData;")
-            political_view_options = cursor.fetchall()
-            return political_view_options
-        
-        except Exception as e:
-            print("Something went wrong when executing the query: ", e)
-            return None
-        
-    def get_religions_for_form(self):
-        """
-        Returns the unique values for the religion column
-        from the table to be used for a dropdown form. 
-        Returns religion_options, a list of the unique
-        religions present in the table. 
-        """
-        try:
-            cursor = self.connection.cursor()
-            cursor.execute("SELECT DISTINCT religion FROM reproductiveHealthAndDemographicData;")
-            religion_options = cursor.fetchall()
-            return religion_options
-        
-        except Exception as e:
-            print("Something went wrong when executing the query: ", e)
-            return None
+    
 
     
     def get_access_column_by_demographic(self, demographic):
@@ -65,7 +33,7 @@ class DataSource:
         """
         try:
             cursor = self.connection.cursor()
-            cursor.execute("SELECT birthcontrol_access FROM reproductiveHealthAndDemographicData WHERE states=%s OR region=%s OR homeownership=%s OR marriage=%s OR employ1=%s OR education=%s OR race=%s OR poliParty=%s OR poliView=%s OR religion=%s OR insurance=%s", (demographic, demographic, demographic, demographic, demographic,  demographic, demographic, demographic, demographic, demographic, demographic,))
+            cursor.execute("SELECT birthcontrol_access FROM reproductiveResponsesOnDemographics WHERE states=%s OR poliParty=%s OR poliView=%s OR religion=%s", (demographic, demographic, demographic, demographic,))
             access_column_for_demographic = cursor.fetchall()
             return access_column_for_demographic
         
@@ -83,7 +51,7 @@ class DataSource:
 
         try: 
             cursor = self.connection.cursor()
-            cursor.execute("SELECT birthcontrol_use FROM reproductiveHealthAndDemographicData WHERE states=%s OR region=%s OR homeownership=%s OR marriage=%s OR employ1=%s OR education=%s OR race=%s OR poliParty=%s OR poliView=%s OR religion=%s OR insurance=%s", (demographic, demographic, demographic, demographic, demographic,  demographic, demographic, demographic, demographic, demographic, demographic,))
+            cursor.execute("SELECT birthcontrol_use FROM reproductiveResponsesOnDemographics WHERE states=%s OR poliParty=%s OR poliView=%s OR religion=%s", (demographic, demographic, demographic, demographic,))
             use_column_for_demographic = cursor.fetchall()
             return use_column_for_demographic
 
