@@ -33,7 +33,7 @@ class DataSource:
         """
         try:
             cursor = self.connection.cursor()
-            cursor.execute("SELECT birthcontrol_access FROM reproductiveResponsesOnDemographics WHERE states=%s OR poliParty=%s OR poliView=%s OR religion=%s", (demographic, demographic, demographic, demographic,))
+            cursor.execute("SELECT birthcontrol_access FROM reproductiveResponsesByDemographics WHERE poliParty=%s OR religion=%s", (demographic, demographic,))
             access_column_for_demographic = cursor.fetchall()
             return access_column_for_demographic
         
@@ -51,7 +51,7 @@ class DataSource:
 
         try: 
             cursor = self.connection.cursor()
-            cursor.execute("SELECT birthcontrol_use FROM reproductiveResponsesOnDemographics WHERE states=%s OR poliParty=%s OR poliView=%s OR religion=%s", (demographic, demographic, demographic, demographic,))
+            cursor.execute("SELECT birthcontrol_use FROM reproductiveResponsesByDemographics WHERE poliParty=%s OR religion=%s", (demographic, demographic, ))
             use_column_for_demographic = cursor.fetchall()
             return use_column_for_demographic
 
