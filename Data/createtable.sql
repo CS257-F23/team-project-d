@@ -1,6 +1,5 @@
 DROP TABLE IF EXISTS reproductiveResponsesOnDemographics;
 CREATE TABLE reproductiveResponsesOnDemographics (
-  userID int,
   states text,
   poliParty text,
   poliView text,
