@@ -2,257 +2,75 @@
 <html>
 <head>
     <h1>{{header}}</h1>
-    <link rel= "stylesheet" href="{{url_for('static', filename='search.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='search.css')}}">
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <script>
+      /*source:*https://www.w3schools.com/howto/howto_js_cascading_dropdown.asp*/
+        var subjectObject = {
+            "PoliticalParty": ["Republican", "Independent", "Democratic"],
+            "Religion": ["Non-denominational or Independent Church","Lutheran","Protestant", "Catholic, Roman Catholic", "Evangelical","Church of Christ, or Disciples of Christ (Christian Church)","Church of God", "Episcopalian or Anglican","Methodist", "Baptist","Buddhist","Agnostic", "Jehovah's Witness",  "Atheist", "Nothing in particular", "Hindu", "Presbyterian","Pentecostal (Assemblies of God, Four-Square Gospel)"]
+        };
+
+        window.onload = function() {
+            var categorySel = document.getElementById("category");
+            var demographicSel = document.getElementById("demographic");
+            var form = document.getElementById("form1");
+
+            for (var x in subjectObject) {
+                categorySel.options[categorySel.options.length] = new Option(x, x);
+            }
+
+            categorySel.onchange = function() {
+                demographicSel.length = 0;
+                demographicSel.options.add(new Option("Please select the specific demographic value", ""));
+
+                if (this.value === "") {
+                    return;
+                }
+
+                for (var y in subjectObject[this.value]) {
+                    demographicSel.options.add(new Option(subjectObject[this.value][y], subjectObject[this.value][y]));
+                }
+            }
+
+            form.onsubmit = function(event) {
+                event.preventDefault(); 
+                var selectedDemographic = encodeURIComponent(demographicSel.value);
+                var actionUrl = "/birth-control-access" + "/"+selectedDemographic;
+                window.location.href = actionUrl;
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="navbar">
         <a href="/">Home</a>
         <a href="about">About</a>
-        <div class="dropdown">
-          <button class="dropbtn">Region
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content">
-            <a>North East</a>
-            <a>South</a>
-            <a>North Central</a>
-            <a>West</a>
-          </div>
-        </div>
-        <div class="dropdown">
-            <button class="dropbtn">State
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <a>Abbr of any state ex. MN</a>
-            </div>
-          </div>
-          <div class="dropdown">
-            <button class="dropbtn">Religion
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <a>Protestant</a>
-              <a>Orthodox</a>
-              <a>Jewish</a>
-              <a>Catholic</a>
-              <a>Christian</a>
-              <a>Methodist</a>
-              <a>Baptist</a>
-              <a>Unitarian</a>
-              <a>Mormon</a>
-              <a>Agnostic</a>
-              <a>Jehovahs Witness</a>
-              <a>Episcopalian</a>
-              <a>Atheist</a>
-              <a>Nothing</a>
-              <a>Hindu</a>
-              <a>Pentecostal</a>
-            </div>
-          </div>
-          <div class="dropdown">
-            <button class="dropbtn">Homeownership
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <a>Owned</a>
-              <a>Rented</a>
-            </div>
-          </div>
-          <div class="dropdown">
-            <button class="dropbtn">Employ
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <a>Retired</a>
-              <a>Homemaker</a>
-              <a>Full-time</a>
-              <a>Part-time</a>
-              <a>Other</a>
-              <a>Temporarily unemployed</a>
-              <a>Disabled</a>
-            </div>
-          </div>
-          <div class="dropdown">
-            <button class="dropbtn">Employ
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <a>Maritial status</a>
-              <a>Never Married</a>
-              <a>Widowed</a>
-              <a>Married</a>
-              <a>Divorced</a>
-              <a>Single</a>
-            </div>
-          </div>
-          <div class="dropdown">
-            <button class="dropbtn">Education
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <a>Four year college</a>
-              <a>High School graduate</a>
-              <a>Some college</a>
-              <a>Two year associate degree</a>
-              <a>Postgraduate or professional degree</a>
-              <a>Some postgraduate or professional schooling</a>
-              <a>Refused</a>
-              <a>Less than high school</a>
-            </div>
-          </div>
-          <div class="dropdown">
-            <button class="dropbtn">Race
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <a>White Non-hispanic</a>
-              <a>Native American</a>
-              <a>White Hispanic</a>
-              <a>Black Non-Hispanic</a>
-              <a>Mixed</a>
-              <a>Asian</a>
-              <a>Refused</a>
-              <a>Black Hispanic</a>
-            </div>
-          </div>
-          <div class="dropdown">
-            <button class="dropbtn">Pol. Party
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <a>Independant</a>
-              <a>Republican</a>
-              <a>Democrat</a>
-              <a>Refused</a>
-            </div>
-          </div>
-          <div class="dropdown">
-            <button class="dropbtn">Pol. view
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <a>Somewhat conservative</a>
-              <a>Moderate</a>
-              <a>Somewhat liberal</a>
-              <a>Very liberal</a>
-              <a>Very conservative</a>
-              <a>Some postgraduate or professional schooling</a>
-              <a>Refused</a>
-            </div>
-          </div>
-          <div class="dropdown">
-            <button class="dropbtn">Insurance
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <a>Covered by health insurance</a>
-              <a>Not covered by health insurance</a>
-              <a>Don't know</a>
-            </div>
-          </div>
-          <!-- <form action="rowbycolumn">
-            <label for="rows">Choose a demographic</label>
-            <select  id="rows" name="rowchoice">
-               {% for row in rows: %}
-               <option value="{{row}}">{{row}}</option>
-               {% endfor %}
-                  
-           </select>
-           <input type="submit" value="Submit">
-          </form> -->
-      </div>
-    <p>Toggle through the options above to see demographic lookup options</p>
-    <div class="container">
-      <p id="description">{{description}} </p>
+        <a href="birth-control-use">Birth-Control-Use</a>
     </div>
-    <form autocomplete="off" action="/birth-control-access" method="post">
-      <div class="autocomplete">
-        <label for="demographic"> Enter demographic below:</label>
-      
-        <input type="text" name="demographic" id="demographic" required>
-      </div>
-      <div class="autocomplete-suggestions"></div>
-        <br>
-        <input type="submit" value="Search">
-      
-    </form>
-    <script>
-      /*source:*https://www.w3schools.com/howto/howto_js_autocomplete.asp*/
-      function autocomplete(inp, arr) {
-        var currentFocus;
-        inp.addEventListener("input", function(e) {
-            var a, b, i, val = this.value;
-            closeAllLists();
-            if (!val) { return false;}
-            currentFocus = -1;
-            a = document.createElement("DIV");
-            a.setAttribute("id", this.id + "autocomplete-list");
-            a.setAttribute("class", "autocomplete-items");
-            this.parentNode.appendChild(a);
-            for (i = 0; i < arr.length; i++) {
-              if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-                b = document.createElement("DIV");
-                b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-                b.innerHTML += arr[i].substr(val.length);
-                b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
-                b.addEventListener("click", function(e) {
-                  
-                    inp.value = this.getElementsByTagName("input")[0].value;
-                    closeAllLists();
-                });
-                a.appendChild(b);
-              }
-            }
-        });
-      
-        inp.addEventListener("keydown", function(e) {
-            var x = document.getElementById(this.id + "autocomplete-list");
-            if (x) x = x.getElementsByTagName("div");
-            if (e.keyCode == 40) {
-              currentFocus++;
-              addActive(x);
-            } else if (e.keyCode == 38) { 
-              currentFocus--;
-              addActive(x);
-            } else if (e.keyCode == 13) {
-            
-              e.preventDefault();
-              if (currentFocus > -1) {
-                if (x) x[currentFocus].click();
-              }
-            }
-        });
-        function addActive(x) {
+    <div class="container">
+        <p id="description">{{description}}</p>
+    </div>
+    <div class="searchbox">
+
+        <form name="form1" id="form1" action="/birth_control_access" method="post">
+            Category: 
+            <select name="category" id="category">
+                <option value="" selected="selected">Select a demographic category</option>
+            </select>
+            <br><br>
+            Option: 
+            <select name="demographic" id="demographic">
+                <option value="" selected="selected">Please select the specific demographic value</option>
+            </select>
+            <br><br>
+            <input type="submit" value="Search">
+          </div>
           
-          if (!x) return false;
-          removeActive(x);
-          if (currentFocus >= x.length) currentFocus = 0;
-          if (currentFocus < 0) currentFocus = (x.length - 1);
-          x[currentFocus].classList.add("autocomplete-active");
-        }
-        function removeActive(x) {
-          for (var i = 0; i < x.length; i++) {
-            x[i].classList.remove("autocomplete-active");
-          }
-        }
-        function closeAllLists(elmnt) {
-          var x = document.getElementsByClassName("autocomplete-items");
-          for (var i = 0; i < x.length; i++) {
-            if (elmnt != x[i] && elmnt != inp) {
-              x[i].parentNode.removeChild(x[i]);
-            }
-          }
-        }
-       
-        document.addEventListener("click", function (e) {
-            closeAllLists(e.target);
-        });
-      }
-      
-      var demographic = ["North East","South","North Central","West","Non-denominational or Independent Church","Muslim/Islamic","Mormon (Church of Jesus Christ of Latter-Day Saints/LDS)","Lutheran","Protestant", "Orthodox", "Jewish/Judaism", "Catholic, Roman Catholic","Christian (Just Christian)", "Evangelical","Church of Christ, or Disciples of Christ (Christian Church)","Church of God", "Episcopalian or Anglican","Methodist", "Baptist","Buddhist", "Unitarian/Universalist", "Agnostic", "Jehovah's Witness",  "Atheist", "Nothing in particular", "Hindu", "Presbyterian","Pentecostal (Assemblies of God, Four-Square Gospel)","Retired", "Homemaker", "Full-time", "Part-time", "Other not employed", "Temporarily unemployed", "Disabled/Handicapped","Single, living with a partner","Single, that is never married", "Widowed", "Married", "Divorced", "Seperated", "Less than high school (Grades 1-8 or no formal schooling)","High school graduate (Grade 12 with diploma or GED certificate)","Some college, no degree (includes community college)","Four year college or university degree/Bachelor.s degree (e.g., BS, BA, AB)","Two year associate degree from a college or university","Postgraduate or professional degree, including master's, doctorate, medical or law degree (e.g., MA, MS, PhD, MD, JD)","Some postgraduate or professional schooling, no postgraduate degree","White Non-hispanic","Unspecified Hispanic", "Native American/American Indian/Alaska Native", "White Hispanic", "Black Non-Hispanic",  "Asian/Chinese/Japanese", "Black Hispanic","Mixed","Other Race","An Independant", "A Republican", "A Democrat","Somewhat conservative", "Moderate", "Somewhat liberal", "Very liberal", "Very conservative","Yes, covered by health insurance","No, not covered by health insurance"];
-      
-      autocomplete(document.getElementById("demographic"), demographic);
-      </script>
+        </form>
+   
 </body>
 </html>

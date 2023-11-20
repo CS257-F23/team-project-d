@@ -5,20 +5,25 @@
     <link rel="stylesheet" href="{{url_for('static', filename='search.css')}}">
 </head>
 <body>
-    <h1>{{header}}</h1>
-    
+    <h1>Political Party</h1>
     <div class="container">
         <p id="description">{{description}}</p>
     </div>
+   
+    
+    
     
     <div class="searchbox">
-        <form action="/birth-control-use" method="post">
-            <select name="category">
-                <option value="Religion">Religion</option>
-                <option value="PoliticalParty">Political Party</option>
+        <form action="/birth-control-use/politicalparty" method="post">
+            <select name="demographic">
+                <option value="Independent">Independent</option>
+                <option value="Democratic">Democratic</option>
+                <option value="Republican">Republican</option>
+              
             </select>
             <input type="submit" value="Search">
         </form>
     </div>
+
 </body>
 </html>

@@ -3,4 +3,4 @@ Ella Visconti
 Katherine Baker
 Evelyn Xie
 
-\copy test FROM 'GD4.csv' DELIMITER ',' CSV
+\copy reproductiveResponsesByDemographics  FROM 'Data/GD4_revised3.csv' DELIMITER ',' CSV

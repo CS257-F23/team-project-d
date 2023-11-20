@@ -12,19 +12,66 @@ def homepage():
     return render_template('homepage.html')
 
 """Allows the users to look up for the results of birth control use by their input of a demographic value"""
-@app.route('/birth-control-use', strict_slashes=False, methods=['GET', 'POST'])
+@app.route('/birth-control-use',methods=['GET','POST'])
 def get_birth_control_use():
     if request.method == 'POST':
-        demographic = request.form.get('demographic')
-        if demographic:
-            return redirect(url_for('get_birth_control_use_by_demographic', demographic=demographic))
+        category = request.form.get('category')
+        if category == 'Religion':
+            return redirect(url_for('search_birth_control_use_by_religion'))
+        elif category == "PoliticalParty":
+            return redirect(url_for('search_birth_control_use_by_poliParty'))
         else:
-            return "Invalid input. Please provide a valid demographic value."
+            return render_template('notFound.html')
+    return render_template('search_use.html', header="Birth Control Use By Demographic", 
+                           description="When not trying to get pregnant, how often, if at all, do you use some form of birth control such as birth control pills or condoms when you have vaginal intercourse?")
 
-    return render_template('search_use.html',header="Birth Control Use By Demographic",description="When not trying to get pregnant, how often, if at all, do you use some form of birth control such as birth control pills or condoms when you have vaginal intercourse?",rows=['Political View','Religion'])
+"""Intermediate page for religion"""
+@app.route('/birth-control-use/religion', methods=['GET', 'POST'])
+def search_birth_control_use_by_religion():
+    if request.method == 'POST':
+        religion = request.form.get('demographic')
+        return redirect(url_for('get_birth_control_use_by_religion', demographic=religion))
+    return render_template('religion_use.html', description="Search for the results of your question in Religion")
+    
+@app.route('/birth-control-use/religion/<demographic>', strict_slashes = False)
+def get_birth_control_use_by_religion(demographic):
+    """
+    Returns a list of the responses to the question "How often do you
+    use birth control when not trying to get pregnant?" from the csv
+    based upon the demographic that is passed in. 
+        Parameters:
+            demographic = the demographic that was passed in;\
+            all output will be from people in that demographic.
+        Variables:
+            reponses = the list of responses to the question above
+    Returns the string version of that list of responses.
+    """
+    use=data_accessor.get_use_of_birth_control_by_demographic(demographic)
+    keys=[]
+    vals=[]
+    for key in use:
+        keys.append(key)
+    for key in use: 
+        vals.append(use[key])
+    x=json.dumps(keys)
+    y=json.dumps(vals)
+    displaylist={}
+    if demographic:
+        return render_template('datapage.html',title2="Birth Control Use by Demographic",subset=demographic, question= "How often do you use birth control when not trying to get pregnant?", displaylist=use, xValues=x, yValues=y)
+    else:
+        return render_template('notFound.html')
 
-@app.route('/birth-control-use/<demographic>', strict_slashes = False)
-def get_birth_control_use_by_demographic(demographic):
+
+"""Intermediate page for politcalparty"""
+@app.route('/birth-control-use/politicalparty', methods=['GET', 'POST'])
+def search_birth_control_use_by_poliParty():
+    if request.method == 'POST':
+        poliParty = request.form.get('demographic')
+        return redirect(url_for('get_birth_control_use_by_poliParty', demographic=poliParty))
+    return render_template('poliParty_use.html', description="Search for the results of your question in Political Party")
+    
+@app.route('/birth-control-use/politicalparty/<demographic>', strict_slashes = False)
+def get_birth_control_use_by_poliParty(demographic):
     """
     Returns a list of the responses to the question "How often do you
     use birth control when not trying to get pregnant?" from the csv
@@ -118,4 +165,4 @@ def python_bug(e):
 
 if __name__ == '__main__':
     data_accessor.load_data()
-    app.run(port=5125)
+    app.run(port=5125,host='0.0.0.0',debug=False)
