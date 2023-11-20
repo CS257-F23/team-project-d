@@ -1,8 +1,6 @@
-DROP TABLE IF EXISTS reproductiveResponsesOnDemographics;
-CREATE TABLE reproductiveResponsesOnDemographics (
-  states text,
+DROP TABLE IF EXISTS reproductiveResponsesByDemographics;
+CREATE TABLE reproductiveResponsesByDemographics (
   poliParty text,
-  poliView text,
   religion text,
   birthcontrol_use text,
   birthcontrol_access text
