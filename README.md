@@ -1,2 +1,6 @@
 # CS257-F23-TeamTemplate
-Template for long-term team projects
+Ella Visconti
+Katherine Baker
+Evelyn Xie
+
+\copy reproductiveResponsesByDemographics  FROM 'Data/GD4_revised3.csv' DELIMITER ',' CSV

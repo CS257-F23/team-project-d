@@ -1,0 +1,127 @@
+h1 {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background-color:rgb(242, 172, 208) ;
+  color: rgb(22, 1, 16);
+  text-align: center;
+  font-family: monospace;
+  font-weight: 300;
+  margin-top: 1cm;
+  margin-bottom: 1cm;
+  margin-left: 1cm;
+  margin-right: 1cm;
+  border-style: dashed;
+  border-width: 5px;
+  border-color:rgb(22, 1, 16);
+  font-size: 40px;
+}
+
+p {
+  font-family: monospace;
+}
+
+a {
+  font-family: monospace;
+}
+.container {
+  border: 1px solid rgb(22,1,16);
+  background-color: rgb(242, 172, 208);
+  padding: 10px; 
+  margin: 10px; 
+  text-align: center;
+}
+/*Displays looked up demographic and birthcontrol question*/
+#description {
+  font-family: monospace;
+  color: rgb(22,1,16);
+  text-align: left;
+  font-size:20px
+}
+
+/*search bar*/
+form {
+    margin-top: 20px; 
+    margin: 20px;
+    font-family: monospace;
+    font-size:20px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
+
+/*Enter demographic*/
+label {
+    font-family: monospace;
+    color: rgb(22, 1, 16);
+    display: block; 
+    font-weight: bold; 
+    margin-top: 10px; 
+    margin: 10px
+}
+
+/*search box*/
+.searchbox {
+  background-color:rgb(242, 172, 208);
+  padding: 20px;
+  margin: 20px auto;
+  width: 50%;
+  font-family: monospace;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+
+/*search button */
+input[type="submit"] {
+    background-color:white(242, 172, 208) ; 
+    color: rgb(22, 1, 16); 
+    padding: 15px 25px; 
+    border: none; 
+    border-radius: 10px; 
+    cursor: pointer; 
+    margin-top: 10px; 
+    margin: 10px;
+    font-family: monospace;
+    font-weight: bold; 
+    font-size:15px;
+    text-align: center;
+    
+}
+
+ /* styling all aspects of navbar with dropdown*/
+.navbar {
+    overflow: hidden;
+    background-color: rgb(242, 172, 208);
+    font-family: monospace;
+  }
+  
+  
+  .navbar a {
+    float: left;
+    font-size: 16px;
+    color: rgb(22, 1, 16);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: monospace
+  }
+  
+  
+  .dropdown {
+    float: left;
+    overflow: hidden;
+    font-family: monospace;
+  }
+ 
+  
+  body {
+    background-color: rgb(244,233,233);
+    padding-left: 2cm;
+    padding-right: 2cm;
+  }
+
+
+  * {
+    box-sizing: border-box;
+  }
+ 
+  

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='search.css')}}">
+</head>
+<body>
+    <h1>Religion</h1>
+    <div class="container">
+        <p id="description">{{description}}</p>
+    </div>
+   
+    
+    
+    
+    <div class="searchbox">
+        <form action="/birth-control-use/religion" method="post">
+            <select name="demographic">
+                <option value="Non-denominational or Independent Church">Non-denominational or Independent Church</option>
+                <option value="Lutheran">Lutheran</option>
+                <option value="Protestant">Protestant</option>
+                <option value="Catholic, Roman Catholic">Catholic, Roman Catholic</option>
+                <option value="Evangelical">Evangelical</option>
+                <option value="Church of Christ, or Disciples of Christ (Christian Church)">Church of Christ, or Disciples of Christ (Christian Church)</option>
+                <option value="Church of God">Church of God</option>
+                <option value="Episcopalian or Anglican">Episcopalian or Anglican</option>
+                <option value="Methodist">Methodist</option>
+                <option value="Baptist">Baptist</option>
+                <option value="Buddhist">Buddhist</option>
+                <option value="Agnostic">Agnostic</option>
+                <option value="Jehovah's Witness">Jehovah's Witness</option>
+                <option value="Atheist">Atheist</option>
+                <option value="Nothing in particular">Nothing in particular</option>
+                <option value="Hindu">Hindu</option>
+                <option value="Presbyterian">Presbyterian</option>
+                <option value="Pentecostal (Assemblies of God, Four-Square Gospel)">Pentecostal (Assemblies of God, Four-Square Gospel)</option>
+            </select>
+            <input type="submit" value="Search">
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <h1>{{header}}</h1>
+    <link rel="stylesheet" href="{{url_for('static', filename='search.css')}}">
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <script>
+      /*source:*https://www.w3schools.com/howto/howto_js_cascading_dropdown.asp*/
+        var subjectObject = {
+            "PoliticalParty": ["Republican", "Independent", "Democratic"],
+            "Religion": ["Non-denominational or Independent Church","Lutheran","Protestant", "Catholic, Roman Catholic", "Evangelical","Church of Christ, or Disciples of Christ (Christian Church)","Church of God", "Episcopalian or Anglican","Methodist", "Baptist","Buddhist","Agnostic", "Jehovah's Witness",  "Atheist", "Nothing in particular", "Hindu", "Presbyterian","Pentecostal (Assemblies of God, Four-Square Gospel)"]
+        };
+
+        window.onload = function() {
+            var categorySel = document.getElementById("category");
+            var demographicSel = document.getElementById("demographic");
+            var form = document.getElementById("form1");
+
+            for (var x in subjectObject) {
+                categorySel.options[categorySel.options.length] = new Option(x, x);
+            }
+
+            categorySel.onchange = function() {
+                demographicSel.length = 0;
+                demographicSel.options.add(new Option("Please select the specific demographic value", ""));
+
+                if (this.value === "") {
+                    return;
+                }
+
+                for (var y in subjectObject[this.value]) {
+                    demographicSel.options.add(new Option(subjectObject[this.value][y], subjectObject[this.value][y]));
+                }
+            }
+
+            form.onsubmit = function(event) {
+                event.preventDefault(); 
+                var selectedDemographic = encodeURIComponent(demographicSel.value);
+                var actionUrl = "/birth-control-access" + "/"+selectedDemographic;
+                window.location.href = actionUrl;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="about">About</a>
+        <a href="birth-control-use">Birth-Control-Use</a>
+    </div>
+    <div class="container">
+        <p id="description">{{description}}</p>
+    </div>
+    <div class="searchbox">
+
+        <form name="form1" id="form1" action="/birth_control_access" method="post">
+            Category: 
+            <select name="category" id="category">
+                <option value="" selected="selected">Select a demographic category</option>
+            </select>
+            <br><br>
+            Option: 
+            <select name="demographic" id="demographic">
+                <option value="" selected="selected">Please select the specific demographic value</option>
+            </select>
+            <br><br>
+            <input type="submit" value="Search">
+          </div>
+          
+        </form>
+   
+</body>
+</html>

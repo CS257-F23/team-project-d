@@ -1,0 +1,80 @@
+/*title consistent with rest of site*/
+h1 {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color:rgb(242, 172, 208) ;
+    color: rgb(22, 1, 16);
+    text-align: center;
+    font-family: monospace;
+    font-weight: 300;
+    margin-top: 1cm;
+    margin-bottom: 1cm;
+    margin-left: 1cm;
+    margin-right: 1cm;
+    border-style: dashed;
+    border-width: 5px;
+    border-color:rgb(22, 1, 16);
+    font-size: 40px;
+  }
+
+  h2 {
+    font-family: monospace;
+  }
+  
+  p {
+    font-family: monospace;
+    line-height: 1;
+    font-size:25px;
+    color: rgb(22,1,16);
+    font-weight:normal;
+}
+  
+  body {
+    background-color:rgb(244, 233, 233);
+    padding-left: 2cm;
+    padding-right: 2cm;
+  }
+  
+  /*decoration of nav bar*/
+  .navbar {
+    overflow: hidden;
+    background-color: rgb(242, 172, 208);
+    font-family: monospace;
+  }
+  
+  
+  .navbar a {
+    float: left;
+    font-size: 16px;
+    color: rgb(22, 1, 16);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-family: monospace
+  }
+  
+/*Datasource link at bottom of page*/
+#link {
+  text-decoration: none;
+  background: rgb(242, 172, 208);
+  padding: 5px;
+  border-radius: 1px;
+}
+
+.btn {
+  background-color: rgb(242, 172, 208); 
+  border: 1px solid rgb(22,1,16);
+  color: rgb(22,1,16); 
+  padding: 12px 16px;
+  padding-top:1em;
+  padding-bottom:1em;
+  font-size: 16px;
+  cursor: pointer; 
+  font-family: monospace;
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+    background-color:rgb(244, 233, 233) ;
+    color: rgb(22, 1, 16);
+  }

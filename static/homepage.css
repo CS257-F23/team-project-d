@@ -1,0 +1,56 @@
+/*title consistent with rest of site*/
+h1 {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color:rgb(242, 172, 208) ;
+    color: rgb(22, 1, 16);
+    text-align: center;
+    font-family: monospace;
+    font-weight: 300;
+    margin-top: 1cm;
+    margin-bottom: 1cm;
+    margin-left: 1cm;
+    margin-right: 1cm;
+    border-style: dashed;
+    border-width: 5px;
+    border-color:rgb(22, 1, 16);
+    font-size: 40px;
+}
+
+/*Put the buttons in the center*/
+.button-container {
+    text-align: center;
+}
+
+/*search button*/
+button {
+    background-color: rgb(242, 172, 208); 
+    color: rgb(22, 1, 16);
+    padding: 30px 64px;
+    text-align: center;
+    display: inline-block;
+    font-size: 32px;
+    font-family: monospace;
+    margin-top: 1cm;
+    margin-bottom: 1cm;
+    margin-left: 1cm;
+    margin-right: 1cm;
+  }
+
+button:hover {
+    background-color:rgb(244, 233, 233) ;
+    color: rgb(22, 1, 16);
+  }
+
+  /*icon*/
+i {
+    color:rgb(242, 172, 208);
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    font-size: 100px;
+  }
+
+  body {
+    background-color:rgb(244, 233, 233);
+  }
